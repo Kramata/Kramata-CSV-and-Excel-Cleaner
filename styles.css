@@ -70,6 +70,7 @@ a:hover{text-decoration:underline}
 .price h3{margin:0 0 6px}
 .amt{font-size:38px;font-weight:800;margin-bottom:16px}
 .amt span{font-size:16px;color:var(--dim);font-weight:500}
+.amt .was{font-size:22px;color:var(--muted);text-decoration:line-through;font-weight:600;margin-right:6px}
 .price ul{list-style:none;padding:0;margin:0 0 22px}
 .price li{padding:7px 0 7px 26px;position:relative;color:#384049}
 .price li:before{content:"✓";position:absolute;left:0;color:var(--accent);font-weight:700}
