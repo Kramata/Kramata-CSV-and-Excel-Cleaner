@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>A Simple Power Query Alternative for Non-Technical Analysts</title>
+  <meta name="description" content="Power Query is powerful but fiddly. Kramata gives you repeatable data cleaning — merge, pivot, unpivot, dedupe, fix dates — in plain language, fully local, no M code." />
+  <link rel="canonical" href="https://kramata.com/blog/power-query-alternative.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="A Simple Power Query Alternative for Non-Technical Analysts" />
+  <meta property="og:description" content="Repeatable data cleaning in plain language — merge, pivot, unpivot, dedupe — fully local, no M code." />
+  <meta property="og:image" content="https://kramata.com/assets/og-image.png" />
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Article","headline":"A Simple Power Query Alternative for Non-Technical Analysts","publisher":{"@type":"Organization","name":"Kramata"}}
+  </script>
+  <link rel="stylesheet" href="../styles.css" />
+  <style>
+    .article{max-width:720px;margin:0 auto;padding:54px 22px}
+    .article h1{font-size:32px;margin-bottom:8px}.article .meta{color:var(--text-faint);margin-bottom:26px}
+    .article h2{font-size:23px;margin-top:34px}.article p,.article li{font-size:17px;color:#2b3138}
+    .article ul{padding-left:22px}
+    table.cmp{width:100%;border-collapse:collapse;margin:22px 0;font-size:15px}
+    table.cmp th,table.cmp td{border:1px solid var(--border);padding:9px 12px;text-align:left}
+    table.cmp th{background:var(--bg-2)}
+    .cta-box{text-align:center;margin:40px 0}
+  </style>
+</head>
+<body>
+  <header class="nav"><div class="wrap nav-inner">
+    <a class="logo" href="/">Kra<span>mata</span></a>
+    <nav><a href="/#download" class="btn btn-sm">Download free</a></nav>
+  </div></header>
+
+  <article class="article">
+    <h1>A Simple Power Query Alternative for Non-Technical Analysts</h1>
+    <div class="meta">Repeatable cleaning, without the M code or the learning curve.</div>
+
+    <p>
+      Power Query is genuinely powerful — it's the right answer for repeatable data prep inside Excel.
+      But for a lot of analysts and ops folks it's also <strong>fiddly</strong>: the Query Editor is a
+      maze, applied-steps break in confusing ways, the M language leaks through the moment you do
+      anything custom, and sharing a query with a teammate is awkward.
+    </p>
+    <p>
+      If you mostly need to <strong>clean the same messy export the same way every time</strong>, you
+      may want something simpler and more focused.
+    </p>
+
+    <h2>What people actually struggle with in Power Query</h2>
+    <ul>
+      <li>Steps that silently break when columns are renamed or reordered.</li>
+      <li>The jump from the friendly buttons to hand-editing <strong>M code</strong>.</li>
+      <li>It lives <em>inside</em> a workbook — not a portable thing you can hand to a colleague.</li>
+      <li>For non-technical users, the whole editor is intimidating.</li>
+    </ul>
+
+    <h2>Kramata: the same idea, in plain language</h2>
+    <p>
+      <a href="/">Kramata</a> is a free, local desktop app built around one idea: define your cleaning
+      steps once (a <em>recipe</em>), then re-apply them to any new version of the file in one click.
+      Every step is plain language — no formulas, no M.
+    </p>
+
+    <table class="cmp">
+      <thead><tr><th></th><th>Power Query</th><th>Kramata</th></tr></thead>
+      <tbody>
+        <tr><td>Repeatable steps</td><td>Yes</td><td>Yes</td></tr>
+        <tr><td>Merge / lookup, pivot, unpivot</td><td>Yes</td><td>Yes</td></tr>
+        <tr><td>Plain language (no M code)</td><td>Partly</td><td>Yes</td></tr>
+        <tr><td>Portable recipe file to share</td><td>No</td><td>Yes (.json)</td></tr>
+        <tr><td>Flags bad rows for review</td><td>No</td><td>Yes</td></tr>
+        <tr><td>Runs over a whole folder at once</td><td>Limited</td><td>Yes (batch)</td></tr>
+        <tr><td>Fully local, nothing uploaded</td><td>Yes</td><td>Yes</td></tr>
+      </tbody>
+    </table>
+
+    <h2>What it does</h2>
+    <ul>
+      <li>Merge from another file (a reproducible VLOOKUP), group &amp; summarize (pivot), unpivot.</li>
+      <li>Remove duplicates, standardize dates, trim &amp; fix case, find &amp; replace, fill blanks, convert types.</li>
+      <li>Calculated columns, split/merge columns, filter rows, and flag invalid rows to a separate list.</li>
+    </ul>
+
+    <div class="cta-box">
+      <a class="btn btn-lg btn-primary" href="/#download">Download Kramata free for Windows</a>
+    </div>
+
+    <p class="meta">Not a replacement for everything Power Query does — but if your job is cleaning
+      recurring files the same way every time, it's faster to learn and easier to trust.</p>
+  </article>
+
+  <footer><div class="wrap foot">
+    <a class="logo" href="/">Kra<span>mata</span></a>
+    <div class="links"><a href="/">Home</a><a href="/blog/">Blog</a><a href="/#download">Download</a></div>
+    <div class="copy">© 2026 Kramata</div>
+  </div></footer>
+</body>
+</html>

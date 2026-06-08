@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Merge Two Spreadsheets by a Common Column (a Reproducible VLOOKUP Alternative)</title>
+  <meta name="description" content="Combine two CSV or Excel files by matching a key column — without VLOOKUP, XLOOKUP, or formulas that break. Build it once and re-run it on every new file." />
+  <link rel="canonical" href="https://kramata.com/blog/merge-two-spreadsheets-vlookup-alternative.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Merge Two Spreadsheets by a Common Column (a Reproducible VLOOKUP Alternative)" />
+  <meta property="og:description" content="Combine two files by a key column — no VLOOKUP, no broken formulas. Build once, re-run forever." />
+  <meta property="og:image" content="https://kramata.com/assets/og-image.png" />
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Article","headline":"Merge Two Spreadsheets by a Common Column (a Reproducible VLOOKUP Alternative)","publisher":{"@type":"Organization","name":"Kramata"}}
+  </script>
+  <link rel="stylesheet" href="../styles.css" />
+  <style>
+    .article{max-width:720px;margin:0 auto;padding:54px 22px}
+    .article h1{font-size:32px;margin-bottom:8px}.article .meta{color:var(--text-faint);margin-bottom:26px}
+    .article h2{font-size:23px;margin-top:34px}.article p,.article li{font-size:17px;color:#2b3138}
+    .article ol,.article ul{padding-left:22px}
+    .callout{background:var(--accent-soft);border:1px solid var(--border);border-left:4px solid var(--accent);border-radius:10px;padding:16px 18px;margin:26px 0}
+    .cta-box{text-align:center;margin:40px 0}
+  </style>
+</head>
+<body>
+  <header class="nav"><div class="wrap nav-inner">
+    <a class="logo" href="/">Kra<span>mata</span></a>
+    <nav><a href="/#download" class="btn btn-sm">Download free</a></nav>
+  </div></header>
+
+  <article class="article">
+    <h1>Merge Two Spreadsheets by a Common Column — Without VLOOKUP</h1>
+    <div class="meta">A reproducible alternative to VLOOKUP / XLOOKUP for combining files.</div>
+
+    <p>
+      You have two spreadsheets: orders in one, customer details in another. You need the customer's
+      name, email, and region next to each order. In Excel that means <strong>VLOOKUP</strong> (or
+      XLOOKUP / INDEX-MATCH) — and a familiar set of headaches: the lookup value has to be in the
+      leftmost column, the column index breaks the moment someone inserts a column, and you redo the
+      whole thing every time a new file arrives.
+    </p>
+    <p>
+      There's a cleaner way to <strong>merge two spreadsheets by a common column</strong> that you
+      build <em>once</em> and re-run on every future file.
+    </p>
+
+    <h2>Why VLOOKUP is the wrong tool for recurring files</h2>
+    <ul>
+      <li><strong>It breaks.</strong> Column positions shift; the formula silently returns the wrong column or #N/A.</li>
+      <li><strong>It's one row at a time.</strong> Drag-fill across 100k rows and Excel crawls.</li>
+      <li><strong>It's not repeatable.</strong> Next month's export means rebuilding the lookup from scratch.</li>
+      <li><strong>Duplicates surprise you.</strong> VLOOKUP grabs the first match — fine, until you forget that.</li>
+    </ul>
+
+    <h2>The repeatable way: a “merge” step</h2>
+    <p>The mental model is simpler than VLOOKUP: pick the <strong>key</strong> that links the two files,
+       and choose which columns to bring across.</p>
+    <ol>
+      <li>Open your main file (e.g. <code>orders.csv</code>).</li>
+      <li>Add a <strong>Merge from another file</strong> step and choose the second file (<code>customers.csv</code>).</li>
+      <li>Match <code>orders.CustomerID</code> to <code>customers.ID</code>.</li>
+      <li>Pick the columns to pull in: Name, Email, Region.</li>
+      <li>Choose <strong>keep all rows</strong> (unmatched get blanks) or <strong>only matches</strong>.</li>
+    </ol>
+
+    <div class="callout">
+      It matches like VLOOKUP — the <strong>first</strong> row per key — so duplicate keys never
+      multiply your rows, and the result is identical every time you run it.
+    </div>
+
+    <h2>Do it in one click with Kramata</h2>
+    <p>
+      <a href="/">Kramata</a> is a free desktop app for exactly this. Merge is a step in a
+      <em>recipe</em> — save it, and next month load the new file and click once. No formulas, no
+      broken references, and your files never leave your computer.
+    </p>
+    <ul>
+      <li><strong>Reproducible:</strong> same files + same recipe = identical output.</li>
+      <li><strong>Batch:</strong> apply the merge across a whole folder of files at once.</li>
+      <li><strong>Big files:</strong> powered by an in-process database, not row-by-row formulas.</li>
+    </ul>
+
+    <div class="cta-box">
+      <a class="btn btn-lg btn-primary" href="/#download">Download Kramata free for Windows</a>
+    </div>
+
+    <h2>FAQ</h2>
+    <p><strong>Can I match on more than one column?</strong> Single-key matching today; multi-key is on the way.</p>
+    <p><strong>What if the other file changes?</strong> Re-running the recipe re-reads it — your merge stays current.</p>
+    <p><strong>Is it like Power Query's Merge Queries?</strong> Same idea, in plain language, built for non-technical users.</p>
+  </article>
+
+  <footer><div class="wrap foot">
+    <a class="logo" href="/">Kra<span>mata</span></a>
+    <div class="links"><a href="/">Home</a><a href="/blog/">Blog</a><a href="/#download">Download</a></div>
+    <div class="copy">© 2026 Kramata</div>
+  </div></footer>
+</body>
+</html>

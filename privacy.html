@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy — Kramata</title>
+  <meta name="description" content="Kramata processes your data locally. Your files never leave your computer; only anonymous, opt-out usage stats are collected." />
+  <link rel="canonical" href="https://kramata.com/privacy.html" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .doc{max-width:760px;margin:0 auto;padding:54px 22px}
+    .doc h1{font-size:34px}.doc h2{font-size:22px;margin-top:32px}
+    .doc p,.doc li{font-size:16px;color:#2b3138}.doc code{background:#f0f2f5;padding:1px 5px;border-radius:4px}
+  </style>
+</head>
+<body>
+  <header class="nav"><div class="wrap nav-inner">
+    <a class="logo" href="/">Kra<span>mata</span></a>
+    <nav><a href="/#download" class="btn btn-sm">Download</a></nav>
+  </div></header>
+
+  <main class="doc">
+    <h1>Privacy</h1>
+    <p><strong>Your data never leaves your computer. Only anonymous app usage does — and you can turn that off.</strong></p>
+
+    <h2>Stays 100% local (never sent)</h2>
+    <ul>
+      <li>The files you open and everything in them — names, paths, sheet/column names, and every cell value.</li>
+      <li>Your recipes and where you save outputs.</li>
+      <li>All processing runs on your machine. No file content makes any network request.</li>
+    </ul>
+
+    <h2>Collected (anonymous, opt-out)</h2>
+    <p>To see what's used and where people get stuck, Kramata sends a few anonymous product events via
+      <a href="https://aptabase.com">Aptabase</a> (privacy-first, open-source):</p>
+    <ul>
+      <li><code>app_opened</code>, <code>sample_loaded</code></li>
+      <li><code>file_loaded</code> — file <em>type</em> + a bucketed row count (e.g. “1k–10k”). Never the name or contents.</li>
+      <li><code>rule_added</code> — the rule <em>type</em> only.</li>
+      <li><code>recipe_saved</code>/<code>recipe_loaded</code>, <code>batch_run</code>, <code>export</code></li>
+      <li><code>error</code> — the error <em>code</em> only (e.g. “CSV_PARSE”). Never the message, file, or data.</li>
+    </ul>
+    <p>There are no accounts, no advertising IDs, and no cross-app tracking. A hard allow-list in the
+      app ensures only bounded values are ever sent — file data physically cannot leave.</p>
+
+    <h2>Turn it off</h2>
+    <p>In the app: <strong>Settings &amp; privacy</strong> (gear icon, top-right) → uncheck
+      “Share anonymous usage stats”. Effective immediately.</p>
+
+    <h2>Licensing</h2>
+    <p>Kramata Pro (the Batch feature) uses Gumroad license keys. When you activate a key, it's
+      verified once with Gumroad and then stored locally on your machine.</p>
+
+    <h2>Contact</h2>
+    <p>Questions? <a href="mailto:support@kramata.com">support@kramata.com</a></p>
+  </main>
+
+  <footer><div class="wrap foot">
+    <a class="logo" href="/">Kra<span>mata</span></a>
+    <div class="links"><a href="/">Home</a><a href="/blog/">Blog</a><a href="mailto:support@kramata.com">Support</a></div>
+    <div class="copy">© 2026 Kramata</div>
+  </div></footer>
+</body>
+</html>

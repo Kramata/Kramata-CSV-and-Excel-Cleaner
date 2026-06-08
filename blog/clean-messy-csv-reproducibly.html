@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How to Clean a Messy CSV the Same Way Every Time (No Code)</title>
+  <meta name="description" content="Stop re-cleaning the same messy CSV by hand. Learn how to build a reusable cleaning recipe that turns each new export into a clean file in one click — reproducibly, with no code." />
+  <link rel="canonical" href="https://kramata.com/blog/clean-messy-csv-reproducibly.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="How to Clean a Messy CSV the Same Way Every Time (No Code)" />
+  <meta property="og:description" content="Build a reusable cleaning recipe and turn each new export into a clean file in one click — reproducibly, no code." />
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Article",
+   "headline":"How to Clean a Messy CSV the Same Way Every Time (No Code)",
+   "about":"Reproducible CSV data cleaning without code",
+   "publisher":{"@type":"Organization","name":"Kramata"}}
+  </script>
+  <link rel="stylesheet" href="../styles.css" />
+  <style>
+    .article{max-width:720px;margin:0 auto;padding:54px 22px}
+    .article h1{font-size:34px;margin-bottom:8px}
+    .article .meta{color:var(--muted);margin-bottom:28px}
+    .article h2{font-size:24px;margin-top:36px}
+    .article p,.article li{font-size:17px;color:#2b3138}
+    .article ol,.article ul{padding-left:22px}
+    .callout{background:var(--soft);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:10px;padding:18px 20px;margin:28px 0}
+    .cta-box{text-align:center;margin:40px 0}
+  </style>
+</head>
+<body>
+  <header class="nav"><div class="wrap nav-inner">
+    <a class="logo" href="/">Kra<span>mata</span></a>
+    <nav><a href="/#download" class="btn btn-sm">Download free</a></nav>
+  </div></header>
+
+  <article class="article">
+    <h1>How to Clean a Messy CSV the Same Way Every Time (No Code)</h1>
+    <div class="meta">A practical guide for analysts who get the same ugly export on repeat.</div>
+
+    <p>
+      If you receive the same messy CSV or Excel export every week or month — inconsistent dates,
+      stray spaces, duplicate rows, blank cells, the occasional invalid value — you've probably
+      cleaned it by hand more times than you'd like to admit. The problem isn't the cleaning. It's
+      that you do it <em>again from scratch</em> every single time, and a tiny slip means this
+      month's report doesn't match last month's.
+    </p>
+    <p>
+      The fix is <strong>reproducible cleaning</strong>: define the steps once, then replay the exact
+      same steps on each new file. Here's how to think about it — and how to do it in one click.
+    </p>
+
+    <h2>Why “by hand” quietly fails</h2>
+    <ul>
+      <li><strong>It drifts.</strong> Manual edits are never identical run to run, so your outputs subtly diverge.</li>
+      <li><strong>It's unauditable.</strong> Nobody can see what was changed or why.</li>
+      <li><strong>It hides bad data.</strong> Rows that should be questioned get quietly fixed or deleted.</li>
+      <li><strong>It doesn't scale.</strong> Ten files become a lost afternoon.</li>
+    </ul>
+
+    <h2>The reproducible approach: a cleaning “recipe”</h2>
+    <p>
+      A recipe is just an ordered list of cleaning rules — step 1, step 2, step 3 — applied in
+      sequence. Same input + same recipe = the same output, every time. A good recipe for a typical
+      messy export looks like this:
+    </p>
+    <ol>
+      <li><strong>Trim spaces &amp; fix case</strong> on text columns (e.g. <code>"  john SMITH "</code> → <code>"John Smith"</code>).</li>
+      <li><strong>Standardize dates</strong> — read every format (<code>3/4/26</code>, <code>2026-03-04</code>, <code>4 Mar 2026</code>) and rewrite them one way.</li>
+      <li><strong>Remove duplicates</strong> by a key column like Email, keeping the first occurrence.</li>
+      <li><strong>Fill missing values</strong> in required columns.</li>
+      <li><strong>Flag invalid rows</strong> (e.g. emails without an “@”) to a separate list instead of silently dropping them.</li>
+      <li><strong>Convert types</strong> so numbers sort as numbers and dates as dates.</li>
+    </ol>
+
+    <div class="callout">
+      <strong>The golden rule:</strong> never silently corrupt or drop data. A value that can't be
+      parsed should be <em>flagged</em>, not guessed. That's what makes the output trustworthy.
+    </div>
+
+    <h2>Do it in one click with Kramata</h2>
+    <p>
+      <a href="/">Kramata</a> is a free desktop app built exactly for this. You drop in a file, add
+      cleaning steps with a live before/after preview, then save the whole thing as a recipe. When
+      next month's file arrives, you load it, click once, and get an identical clean output — plus a
+      separate “Flagged” list of anything that didn't pass your checks.
+    </p>
+    <ul>
+      <li><strong>No code, no formulas.</strong> Every rule is a plain-language step.</li>
+      <li><strong>Reproducible.</strong> Same file + same recipe = byte-identical result.</li>
+      <li><strong>Batch mode.</strong> Run the recipe over a whole folder of files at once.</li>
+      <li><strong>Fully local.</strong> Your files never leave your computer.</li>
+    </ul>
+
+    <div class="cta-box">
+      <a class="btn btn-lg btn-primary" href="/#download">Download Kramata free for Windows</a>
+    </div>
+
+    <h2>Frequently asked</h2>
+    <p><strong>Is this like Power Query?</strong> Similar goal — repeatable transforms — but built for
+      non-technical users: no formula language, plain-language steps, and a flagged-rows view so bad
+      data is surfaced, not hidden.</p>
+    <p><strong>Will it handle large files?</strong> Yes. Kramata uses an in-process database, so big
+      CSVs load and scroll smoothly.</p>
+    <p><strong>Does my data get uploaded?</strong> No. All processing is local.</p>
+  </article>
+
+  <footer><div class="wrap foot">
+    <a class="logo" href="/">Kra<span>mata</span></a>
+    <div class="links"><a href="/">Home</a><a href="/blog/">Blog</a><a href="/#download">Download</a></div>
+    <div class="copy">© 2026 Kramata</div>
+  </div></footer>
+</body>
+</html>

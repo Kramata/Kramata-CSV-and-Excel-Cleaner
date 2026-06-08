@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kramata — Clean messy CSV & Excel the same way, every time</title>
+  <meta name="description" content="Kramata cleans recurring CSV and Excel files reproducibly. Build cleaning steps once, re-apply to every new file in one click. No code, no cloud — fully local. A Power Query alternative for non-technical analysts." />
+  <link rel="canonical" href="https://kramata.com/" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
+
+  <!-- Open Graph / social -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Kramata — Clean messy CSV & Excel the same way, every time" />
+  <meta property="og:description" content="Build a cleaning recipe once, re-apply it to every new file in one click. Fully local, no code, no cloud." />
+  <meta property="og:url" content="https://kramata.com/" />
+  <meta property="og:image" content="https://kramata.com/assets/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Structured data: helps search engines understand it's a downloadable app -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Kramata",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Windows",
+    "description": "Reproducibly clean recurring CSV and Excel files. Build cleaning steps once, re-apply to every new file in one click. Fully local — no code, no cloud.",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <div class="logo">Kra<span>mata</span></div>
+      <nav>
+        <a href="#how">How it works</a>
+        <a href="#features">Features</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#privacy">Privacy</a>
+        <a class="btn btn-sm" href="#download">Download</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="wrap">
+      <h1>Clean your messy spreadsheets <span class="accent">the same way, every time.</span></h1>
+      <p class="lead">
+        Get the same ugly CSV or Excel export on a schedule? Build your cleaning steps once,
+        then re-apply them to the next file — or a whole folder of them — in one click.
+        No formulas, no code, nothing leaves your computer.
+      </p>
+      <div class="cta">
+        <a class="btn btn-lg" href="#download">Download for Windows — free</a>
+        <a class="btn btn-lg btn-ghost" href="#how">See how it works</a>
+      </div>
+      <!-- Replace with a real GIF of messy-file → clean-file. assets/demo.gif -->
+      <div class="demo">
+        <img src="assets/demo.gif" alt="Kramata cleaning a messy spreadsheet into a clean one" onerror="this.style.display='none';this.parentNode.classList.add('demo-placeholder')" />
+        <div class="demo-fallback">▶ &nbsp;Demo GIF: messy file in → clean file out</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="how" class="band">
+    <div class="wrap">
+      <h2>From mess to clean in three steps</h2>
+      <div class="steps">
+        <div class="step"><div class="num">1</div><h3>Drop your file</h3><p>CSV or Excel. Kramata figures out the columns, even messy multi-row headers.</p></div>
+        <div class="step"><div class="num">2</div><h3>Add cleaning steps</h3><p>Remove duplicates, fix dates, trim spaces, split columns, flag bad rows — see the result update live.</p></div>
+        <div class="step"><div class="num">3</div><h3>Save the recipe</h3><p>Next month's file? Load it, click once, done. Identical results, every time.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="features" class="band alt">
+    <div class="wrap">
+      <h2>Power tools that make Excel hurt — without the formulas</h2>
+      <div class="grid">
+        <div class="card"><h3>Merge two spreadsheets</h3><p>Pull columns from a second file by matching a key — a reproducible VLOOKUP / XLOOKUP that never breaks.</p></div>
+        <div class="card"><h3>Pivot &amp; group</h3><p>Group rows and total them (sum, count, average) — a pivot table you can re-run on every new file.</p></div>
+        <div class="card"><h3>Unpivot (wide → long)</h3><p>Fold month/category columns into tidy rows in one step — the transform Excel makes painful.</p></div>
+        <div class="card"><h3>Calculated columns</h3><p>Totals, differences, percentages, averages across columns — no formula language to learn.</p></div>
+        <div class="card"><h3>Remove duplicates &amp; fix dates</h3><p>Dedupe on any columns, standardize messy date formats, trim spaces, fix case, fill blanks.</p></div>
+        <div class="card"><h3>Flag bad rows</h3><p>Rows that fail your checks go to a separate Flagged list to review &amp; export — never silently dropped.</p></div>
+        <div class="card"><h3>Batch over many files</h3><p>Run your recipe across a whole folder at once — separate outputs or merged into one.</p></div>
+        <div class="card"><h3>Reproducible</h3><p>Same input + same recipe = byte-identical output. Build once, re-run forever.</p></div>
+        <div class="card"><h3>Handles big files</h3><p>An in-process database (DuckDB) means large CSVs load and scroll smoothly.</p></div>
+      </div>
+      <div class="shots">
+        <img src="assets/screenshot-grid.png" alt="Kramata cleaning a spreadsheet with a recipe of steps" onerror="this.closest('.shots').style.display='none'" />
+      </div>
+    </div>
+  </section>
+
+  <section id="replaces" class="band">
+    <div class="wrap">
+      <h2>Replaces the spreadsheet chores you dread</h2>
+      <p class="sub">If you do any of these by hand every week, Kramata turns them into a one-click, repeatable recipe.</p>
+      <div class="grid">
+        <div class="card"><h3>VLOOKUP / XLOOKUP</h3><p>Combine two spreadsheets by a common column — no broken formulas when columns move.</p></div>
+        <div class="card"><h3>Pivot tables</h3><p>Summaries that re-run themselves on next month's export.</p></div>
+        <div class="card"><h3>Remove Duplicates</h3><p>Non-destructive and repeatable — not a one-off button you re-run from scratch.</p></div>
+        <div class="card"><h3>Text to Columns</h3><p>Split and merge columns reliably, every time.</p></div>
+        <div class="card"><h3>Fixing mixed date formats</h3><p>Read every format and rewrite them one way.</p></div>
+        <div class="card"><h3>Power Query</h3><p>The repeatable-transforms power, in plain language — built for non-technical analysts.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="pricing" class="band">
+    <div class="wrap">
+      <h2>Pricing</h2>
+      <p class="sub">Simple and honest. The app is free; Pro unlocks unlimited batch processing.</p>
+      <div class="prices">
+        <div class="price">
+          <h3>Free</h3><div class="amt">$0</div>
+          <ul><li>All cleaning rules</li><li>Save &amp; re-run recipes</li><li>Single-file cleaning</li><li>CSV &amp; Excel export</li></ul>
+          <a class="btn btn-block" href="#download">Download</a>
+        </div>
+        <div class="price featured">
+          <div class="tag">Most popular</div>
+          <h3>Pro</h3><div class="amt">One-time</div>
+          <ul><li>Everything in Free</li><li><b>Batch processing</b> (unlimited files)</li><li>Priority support</li><li>Early features</li></ul>
+          <a class="btn btn-block btn-primary" href="https://rai89.gumroad.com/l/kramata">Get Kramata Pro</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="privacy" class="band alt">
+    <div class="wrap narrow">
+      <h2>Your data never leaves your computer</h2>
+      <p>
+        Kramata processes everything locally. Your files — their names, contents, and every value —
+        are never uploaded anywhere. No accounts, no cloud, no AI training on your data.
+      </p>
+      <p class="sub">
+        We collect only anonymous usage stats (like “app opened” or “an error happened”, never your
+        files) to improve the app — and you can turn that off in Settings.
+        <a href="/privacy.html">Read our privacy details →</a>
+      </p>
+    </div>
+  </section>
+
+  <section id="download" class="band download">
+    <div class="wrap narrow">
+      <h2>Download Kramata</h2>
+      <p class="sub">Windows 10 &amp; 11. Free to start.</p>
+      <div class="dl-row">
+        <a class="btn btn-lg btn-primary" href="https://github.com/abhishekrai43/kramata-website/releases/latest/download/Kramata-Setup-x64.exe">Download installer (.exe)</a>
+        <a class="btn btn-lg btn-ghost" href="https://github.com/abhishekrai43/kramata-website/releases/latest/download/Kramata-Portable-x64.zip">Portable (.zip)</a>
+      </div>
+      <p class="fineprint">
+        Free · Windows 10 &amp; 11 · x64. The <b>installer</b> adds a Start-menu shortcut and auto-updates;
+        the <b>portable zip</b> runs from a folder with no install (good for locked-down PCs).
+        Also coming to the Microsoft Store. The direct download is unsigned for now, so Windows may show a
+        “More info → Run anyway” prompt on first launch — that's expected.
+        <br /><a href="https://github.com/abhishekrai43/kramata-website/releases/latest">All downloads &amp; release notes →</a>
+      </p>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap foot">
+      <div class="logo">Kra<span>mata</span></div>
+      <div class="links">
+        <a href="#features">Features</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#privacy">Privacy</a>
+        <a href="/blog/">Blog</a>
+        <a href="https://github.com/abhishekrai43/kramata-website">GitHub</a>
+      </div>
+      <div class="copy">© 2026 Kramata</div>
+    </div>
+  </footer>
+</body>
+</html>
