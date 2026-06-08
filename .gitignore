@@ -7,3 +7,11 @@ node_modules/
 !.dev.vars.example
 .env*
 !.env.example
+
+# internal / developer docs — keep local, never publish
+README.md
+RELEASE.md
+DEVELOPMENT.md
+DEPLOY.md
+NOTES.md
+*.local.md

@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Remove Duplicates and Fix Dates in a CSV — Without Formulas</title>
+  <meta name="description" content="Remove duplicate rows and standardize messy date formats in a CSV or Excel file without formulas — and re-run the exact same cleanup on every new file." />
+  <link rel="canonical" href="https://kramata.com/blog/remove-duplicates-fix-dates-without-formulas.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Remove Duplicates and Fix Dates in a CSV — Without Formulas" />
+  <meta property="og:description" content="Dedupe rows and fix mixed date formats without formulas. Build it once, re-run it on every new file." />
+  <meta property="og:image" content="https://kramata.com/assets/og-image.png" />
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Article","headline":"Remove Duplicates and Fix Dates in a CSV — Without Formulas","publisher":{"@type":"Organization","name":"Kramata"}}
+  </script>
+  <link rel="stylesheet" href="../styles.css" />
+  <style>
+    .article{max-width:720px;margin:0 auto;padding:54px 22px}
+    .article h1{font-size:32px;margin-bottom:8px}.article .meta{color:var(--text-faint);margin-bottom:26px}
+    .article h2{font-size:23px;margin-top:34px}.article p,.article li{font-size:17px;color:#2b3138}
+    .article ol,.article ul{padding-left:22px}
+    .callout{background:var(--accent-soft);border:1px solid var(--border);border-left:4px solid var(--accent);border-radius:10px;padding:16px 18px;margin:26px 0}
+    .cta-box{text-align:center;margin:40px 0}
+  </style>
+</head>
+<body>
+  <header class="nav"><div class="wrap nav-inner">
+    <a class="logo" href="/">Kra<span>mata</span></a>
+    <nav><a href="/#download" class="btn btn-sm">Download free</a></nav>
+  </div></header>
+
+  <article class="article">
+    <h1>Remove Duplicates and Fix Dates in a CSV — Without Formulas</h1>
+    <div class="meta">Two of the most common cleanup chores, done once and re-run on every new file.</div>
+
+    <p>
+      Most spreadsheet cleanup comes down to the same two jobs: getting rid of
+      <strong>duplicate rows</strong>, and forcing a column of <strong>messy dates</strong> into one
+      consistent format. In Excel both are doable — but both are fiddly, easy to get subtly wrong, and
+      worst of all, you redo them by hand every single time a new file lands.
+    </p>
+    <p>
+      Here's how to do both <em>without formulas</em>, in a way you build once and re-run on next
+      month's export in one click.
+    </p>
+
+    <h2>Why duplicates are harder than they look</h2>
+    <ul>
+      <li><strong>"Remove Duplicates" is destructive.</strong> Excel's button deletes rows in place. Make a mistake and the original is gone.</li>
+      <li><strong>It's a one-off.</strong> It's not saved. Next file means clicking through the dialog again and re-picking the columns.</li>
+      <li><strong>Whitespace and case fool it.</strong> <code>"ACME "</code> and <code>"acme"</code> look identical to you but Excel treats them as different rows.</li>
+    </ul>
+    <p>
+      The fix is to decide <em>which columns define a duplicate</em> (often an ID or an email, not the
+      whole row), trim and normalize those values first, then keep the first occurrence of each.
+    </p>
+
+    <h2>Why mixed date formats are worse</h2>
+    <p>
+      A single date column often arrives as a mess: <code>3/4/2026</code>, <code>2026-04-03</code>,
+      <code>Apr 3 2026</code>, <code>03.04.26</code>. Sorting it does nothing useful, and
+      <code>=DATEVALUE()</code> chokes on half the rows. The only reliable fix is to <strong>read every
+      format and rewrite them all one way</strong> (e.g. <code>YYYY-MM-DD</code>) — something Excel
+      won't do for you in one move.
+    </p>
+
+    <h2>The repeatable way, step by step</h2>
+    <ol>
+      <li>Open your file (CSV or Excel).</li>
+      <li>Add a <strong>Trim spaces</strong> step on the key columns so stray whitespace stops hiding duplicates.</li>
+      <li>Add a <strong>Fix case</strong> step if your keys should match regardless of capitalization.</li>
+      <li>Add a <strong>Remove duplicates</strong> step and pick the columns that define a duplicate.</li>
+      <li>Add a <strong>Standardize dates</strong> step on the date column and choose your target format.</li>
+      <li>Save the whole thing as a recipe.</li>
+    </ol>
+
+    <div class="callout">
+      The order matters: trim and normalize <em>before</em> you dedupe, so near-identical rows actually
+      collapse. A saved recipe locks that order in, so you can never get it wrong again.
+    </div>
+
+    <h2>Do it in one click with Kramata</h2>
+    <p>
+      <a href="/">Kramata</a> is a free desktop app built for exactly this. Each cleanup is a step in a
+      <em>recipe</em>; once saved, next month you load the new file and click once. It's
+      <strong>non-destructive</strong> (your source file is never overwritten), reproducible, and your
+      data never leaves your computer.
+    </p>
+    <ul>
+      <li><strong>Dedupe on any columns</strong> — keep the first match, review the rest.</li>
+      <li><strong>Date standardizer</strong> reads dozens of formats and rewrites them one way.</li>
+      <li><strong>Trim, fix case, fill blanks</strong> — the small fixes that make dedupe actually work.</li>
+      <li><strong>Reproducible:</strong> same file + same recipe = identical output, every time.</li>
+    </ul>
+
+    <div class="cta-box">
+      <a class="btn btn-lg btn-primary" href="/#download">Download Kramata free for Windows</a>
+    </div>
+
+    <h2>Related</h2>
+    <p>
+      <a href="/blog/clean-messy-csv-reproducibly.html">How to clean a messy CSV the same way every time</a> ·
+      <a href="/blog/merge-two-spreadsheets-vlookup-alternative.html">Merge two spreadsheets without VLOOKUP</a>
+    </p>
+
+    <h2>FAQ</h2>
+    <p><strong>Does it change my original file?</strong> No. Kramata works on a copy and exports a clean file; your source is untouched.</p>
+    <p><strong>What date formats does it read?</strong> The common ones — slashes, dashes, dots, and textual months — including two- and four-digit years, and rewrites them all to the format you pick.</p>
+    <p><strong>Can I see what got removed?</strong> Yes — the preview shows how many rows a step affects before you commit.</p>
+  </article>
+
+  <footer><div class="wrap foot">
+    <a class="logo" href="/">Kra<span>mata</span></a>
+    <div class="links"><a href="/">Home</a><a href="/blog/">Blog</a><a href="/#download">Download</a></div>
+    <div class="copy">© 2026 Kramata</div>
+  </div></footer>
+</body>
+</html>

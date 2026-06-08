@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How to Merge Multiple CSV Files Into One (No Code)</title>
+  <meta name="description" content="Combine a whole folder of CSV or Excel files into one clean file — without code or copy-paste — and clean them all the same way in the same pass." />
+  <link rel="canonical" href="https://kramata.com/blog/merge-multiple-csv-files-into-one.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="How to Merge Multiple CSV Files Into One (No Code)" />
+  <meta property="og:description" content="Combine a folder of CSV/Excel files into one clean file — no code, no copy-paste — and clean them all in the same pass." />
+  <meta property="og:image" content="https://kramata.com/assets/og-image.png" />
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Article","headline":"How to Merge Multiple CSV Files Into One (No Code)","publisher":{"@type":"Organization","name":"Kramata"}}
+  </script>
+  <link rel="stylesheet" href="../styles.css" />
+  <style>
+    .article{max-width:720px;margin:0 auto;padding:54px 22px}
+    .article h1{font-size:32px;margin-bottom:8px}.article .meta{color:var(--text-faint);margin-bottom:26px}
+    .article h2{font-size:23px;margin-top:34px}.article p,.article li{font-size:17px;color:#2b3138}
+    .article ol,.article ul{padding-left:22px}
+    .callout{background:var(--accent-soft);border:1px solid var(--border);border-left:4px solid var(--accent);border-radius:10px;padding:16px 18px;margin:26px 0}
+    .cta-box{text-align:center;margin:40px 0}
+  </style>
+</head>
+<body>
+  <header class="nav"><div class="wrap nav-inner">
+    <a class="logo" href="/">Kra<span>mata</span></a>
+    <nav><a href="/#download" class="btn btn-sm">Download free</a></nav>
+  </div></header>
+
+  <article class="article">
+    <h1>How to Merge Multiple CSV Files Into One</h1>
+    <div class="meta">Combine a folder of files into one clean file — no code, no copy-paste marathon.</div>
+
+    <p>
+      Twelve monthly exports. Or one CSV per store, per region, per client. Each file has the same
+      columns, and you need them stacked into a single file you can actually work with. Opening twelve
+      files and copy-pasting them one under another is slow, and you'll redo it next month.
+    </p>
+    <p>
+      There's a cleaner way to <strong>merge multiple CSV files into one</strong> — and clean them all
+      the same way in the same pass.
+    </p>
+
+    <h2>Why copy-paste (and most scripts) let you down</h2>
+    <ul>
+      <li><strong>Copy-paste is slow and risky.</strong> Miss a header row, paste into the wrong spot, and the whole file is off by one.</li>
+      <li><strong>Files drift.</strong> One export has an extra space in a header, another has a different date format — and your stacked file is quietly inconsistent.</li>
+      <li><strong>A Python script works once.</strong> Then a column moves, the path changes, and the non-coder on the team is stuck.</li>
+    </ul>
+
+    <h2>Two kinds of "merge" — know which you need</h2>
+    <p>
+      <strong>Stacking (append):</strong> same columns, more rows — twelve months into one year. That's
+      what this guide covers.
+    </p>
+    <p>
+      <strong>Joining (by a key):</strong> pulling columns from a second file by matching an ID — the
+      VLOOKUP job. That's a different step;
+      see <a href="/blog/merge-two-spreadsheets-vlookup-alternative.html">merge two spreadsheets without VLOOKUP</a>.
+    </p>
+
+    <h2>The repeatable way, step by step</h2>
+    <ol>
+      <li>Put all the files you want to combine in one folder.</li>
+      <li>Build a cleaning recipe on a single sample file (trim, fix dates, dedupe — whatever they all need).</li>
+      <li>Run the recipe in <strong>batch</strong> mode across the folder.</li>
+      <li>Choose <strong>merge into one file</strong> as the output (instead of one cleaned file each).</li>
+      <li>Export the single combined, cleaned file.</li>
+    </ol>
+
+    <div class="callout">
+      The win isn't just stacking — it's that every file gets the <em>same</em> cleanup before it's
+      combined, so the merged result is consistent instead of a patchwork.
+    </div>
+
+    <h2>Do it with Kramata</h2>
+    <p>
+      <a href="/">Kramata</a> is a free desktop app for repeatable spreadsheet cleanup. Build the recipe
+      once on a sample, then point batch processing at the whole folder and choose
+      <strong>merge into one</strong>. No code, no copy-paste, and your files never leave your computer.
+    </p>
+    <ul>
+      <li><strong>Same cleanup for every file</strong> — consistency by default.</li>
+      <li><strong>Separate outputs or merged</strong> — one cleaned file each, or all combined into one.</li>
+      <li><strong>Big folders, big files</strong> — powered by an in-process database, not formulas.</li>
+    </ul>
+    <p>
+      Cleaning a single file and saving recipes is free. Batch processing across a folder is part of
+      <a href="/#pricing">Kramata Pro</a>.
+    </p>
+
+    <div class="cta-box">
+      <a class="btn btn-lg btn-primary" href="/#download">Download Kramata free for Windows</a>
+    </div>
+
+    <h2>Related</h2>
+    <p>
+      <a href="/blog/clean-messy-csv-reproducibly.html">Clean a messy CSV the same way every time</a> ·
+      <a href="/blog/merge-two-spreadsheets-vlookup-alternative.html">Merge two spreadsheets without VLOOKUP</a>
+    </p>
+
+    <h2>FAQ</h2>
+    <p><strong>Do the files need identical columns?</strong> Same columns stack cleanly. Matching headers first (trim, fix case) keeps the merge tidy.</p>
+    <p><strong>CSV and Excel mixed?</strong> Yes — Kramata reads both and combines them.</p>
+    <p><strong>Is it reproducible next month?</strong> Yes — drop the new files in the folder and re-run the same recipe.</p>
+  </article>
+
+  <footer><div class="wrap foot">
+    <a class="logo" href="/">Kra<span>mata</span></a>
+    <div class="links"><a href="/">Home</a><a href="/blog/">Blog</a><a href="/#download">Download</a></div>
+    <div class="copy">© 2026 Kramata</div>
+  </div></footer>
+</body>
+</html>
