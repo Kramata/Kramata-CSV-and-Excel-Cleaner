@@ -9,7 +9,6 @@ node_modules/
 !.env.example
 
 # internal / developer docs — keep local, never publish
-README.md
 RELEASE.md
 DEVELOPMENT.md
 DEPLOY.md
