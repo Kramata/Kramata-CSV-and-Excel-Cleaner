@@ -69,10 +69,19 @@
         <tr><td>Plain language (no M code)</td><td>Partly</td><td>Yes</td></tr>
         <tr><td>Portable recipe file to share</td><td>No</td><td>Yes (.json)</td></tr>
         <tr><td>Flags bad rows for review</td><td>No</td><td>Yes</td></tr>
-        <tr><td>Runs over a whole folder at once</td><td>Limited</td><td>Yes (batch)</td></tr>
+        <tr><td>Folder of files → one merged table</td><td>Yes (From Folder)</td><td>Yes</td></tr>
+        <tr><td>Folder of files → separate cleaned files back</td><td>No</td><td>Yes</td></tr>
         <tr><td>Fully local, nothing uploaded</td><td>Yes</td><td>Yes</td></tr>
       </tbody>
     </table>
+
+    <h2>The one thing Power Query truly can’t do</h2>
+    <p>
+      Power Query can stack a folder of files into one table inside a workbook. It <strong>can’t hand
+      you back thirty clean files</strong>. If your job is “clean each of these exports and send them
+      back out”, Kramata’s batch mode does exactly that — point it at the folder, get every file back
+      cleaned, or merged into one. Your choice.
+    </p>
 
     <h2>What it does</h2>
     <ul>

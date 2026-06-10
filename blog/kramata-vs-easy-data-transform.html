@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kramata vs Easy Data Transform — Which Data Cleaning Tool Fits You?</title>
+  <meta name="description" content="An honest comparison of Kramata and Easy Data Transform: both local, both batch-capable. Kramata is a simple linear recipe; EDT is a flexible node graph." />
+  <link rel="canonical" href="https://kramata.com/blog/kramata-vs-easy-data-transform.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Kramata vs Easy Data Transform — Which Data Cleaning Tool Fits You?" />
+  <meta property="og:description" content="Both local, both batch-capable. Kramata is a simple linear recipe; EDT is a flexible node graph." />
+  <meta property="og:image" content="https://kramata.com/assets/og-image.png" />
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Article","headline":"Kramata vs Easy Data Transform — Which Data Cleaning Tool Fits You?","publisher":{"@type":"Organization","name":"Kramata"}}
+  </script>
+  <link rel="stylesheet" href="../styles.css" />
+  <style>
+    .article{max-width:720px;margin:0 auto;padding:54px 22px}
+    .article h1{font-size:32px;margin-bottom:8px}.article .meta{color:var(--text-faint);margin-bottom:26px}
+    .article h2{font-size:23px;margin-top:34px}.article p,.article li{font-size:17px;color:#2b3138}
+    .article ul{padding-left:22px}
+    table.cmp{width:100%;border-collapse:collapse;margin:22px 0;font-size:15px}
+    table.cmp th,table.cmp td{border:1px solid var(--border);padding:9px 12px;text-align:left}
+    table.cmp th{background:var(--bg-2)}
+    .cta-box{text-align:center;margin:40px 0}
+  </style>
+</head>
+<body>
+  <header class="nav"><div class="wrap nav-inner">
+    <a class="logo" href="/">Kra<span>mata</span></a>
+    <nav><a href="/#download" class="btn btn-sm">Download free</a></nav>
+  </div></header>
+
+  <article class="article">
+    <h1>Kramata vs Easy Data Transform</h1>
+    <div class="meta">Two local-first data cleaning tools, two different philosophies.</div>
+
+    <p>
+      Easy Data Transform is a good
+      product — a mature, node-based data wrangling app that, like Kramata, runs entirely on your
+      computer and can batch-process a folder of files. If you're comparing the two, here's an honest
+      breakdown of where they differ.
+    </p>
+
+    <h2>The short version</h2>
+    <ul>
+      <li><strong>Easy Data Transform</strong> is more flexible: you build a visual <em>graph</em> of
+        nodes that can branch, join multiple sources, and output to many formats. That power comes
+        with a steeper learning curve.</li>
+      <li><strong>Kramata</strong> is deliberately simpler: one linear list of plain-language steps
+        with a live preview — closer to "what I'd do by hand, recorded" than a dataflow diagram.
+        Free for single files; batch is a one-time $29.</li>
+    </ul>
+
+    <h2>Side by side</h2>
+    <table class="cmp">
+      <thead><tr><th></th><th>Easy Data Transform</th><th>Kramata</th></tr></thead>
+      <tbody>
+        <tr><td>Runs fully local, nothing uploaded</td><td>Yes</td><td>Yes</td></tr>
+        <tr><td>Batch a folder → separate cleaned files</td><td>Yes</td><td>Yes</td></tr>
+        <tr><td>Batch a folder → one merged file</td><td>Yes</td><td>Yes</td></tr>
+        <tr><td>Interface</td><td>Node graph (visual dataflow)</td><td>Linear recipe (list of steps, live preview)</td></tr>
+        <tr><td>Steps described in</td><td>Transform names (Join, Pivot, Gather…)</td><td>Plain language (“like VLOOKUP”, “Trim spaces &amp; fix case”)</td></tr>
+        <tr><td>Invalid values</td><td>Varies by transform</td><td>Flagged to a review list — never changed silently</td></tr>
+        <tr><td>Big CSVs</td><td>In-memory engine</td><td>In-process database (DuckDB)</td></tr>
+        <tr><td>File formats</td><td>Many (CSV, Excel, JSON, XML, …)</td><td>CSV &amp; Excel</td></tr>
+        <tr><td>Price</td><td>Paid (see their site)</td><td>Free; Pro $29 one-time (batch)</td></tr>
+        <tr><td>Platforms</td><td>Windows &amp; Mac</td><td>Windows</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Pick Easy Data Transform if…</h2>
+    <ul>
+      <li>You need to join <strong>many sources</strong> in one flow, or branch one input into several outputs.</li>
+      <li>You work with JSON, XML, or other formats beyond CSV and Excel.</li>
+      <li>You're on a Mac.</li>
+    </ul>
+
+    <h2>Pick Kramata if…</h2>
+    <ul>
+      <li>Your job is the <strong>recurring export ritual</strong>: the same messy CSV or Excel file
+        arrives every week or month, and you want to clean it the same way in one click.</li>
+      <li>You'd rather read “Remove duplicates, fix dates, flag bad rows” than learn a dataflow canvas.</li>
+      <li>You want anything that fails your checks <strong>flagged for review</strong>, never silently kept or dropped.</li>
+      <li>$29 once feels right for a focused tool.</li>
+    </ul>
+
+    <div class="cta-box">
+      <a class="btn btn-lg btn-primary" href="/#download">Download Kramata free for Windows</a>
+    </div>
+
+    <p class="meta">We genuinely respect Easy Data Transform — it proved a one-person, local-first
+      data tool can thrive. Kramata just bets that most spreadsheet users want fewer knobs, not more.</p>
+  </article>
+
+  <footer><div class="wrap foot">
+    <a class="logo" href="/">Kra<span>mata</span></a>
+    <div class="links"><a href="/">Home</a><a href="/blog/">Blog</a><a href="/#download">Download</a></div>
+    <div class="copy">© 2026 Kramata</div>
+  </div></footer>
+</body>
+</html>
