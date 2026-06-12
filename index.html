@@ -14,6 +14,23 @@
     gtag('config', 'AW-832148034');
   </script>
 
+  <!-- Google Ads: fire the Download conversion on CLICK (not page load) so only real
+       download intent is counted. Each Store/installer CTA calls this. -->
+  <script>
+    function gtagDownloadConversion(url) {
+      var callback = function () {
+        if (typeof url !== 'undefined') { window.location = url; }
+      };
+      gtag('event', 'conversion', {
+        'send_to': 'AW-832148034/6op1CIiU7b0cEMKk5owD',
+        'value': 1.0,
+        'currency': 'INR',
+        'event_callback': callback
+      });
+      return false;
+    }
+  </script>
+
   <title>Kramata — Clean messy CSV & Excel the same way, every time</title>
   <meta name="description" content="Kramata cleans recurring CSV and Excel files reproducibly. Build cleaning steps once, re-apply to every new file in one click. No code, no cloud — fully local. A Power Query alternative for non-technical analysts." />
   <link rel="canonical" href="https://kramata.com/" />
@@ -80,13 +97,13 @@
         in one click. No formulas, and nothing leaves your computer.
       </p>
       <div class="cta">
-        <a class="store-badge" href="https://apps.microsoft.com/detail/9PH81XKFZ77D?cid=website" aria-label="Get Kramata from the Microsoft Store">
+        <a class="store-badge" href="https://apps.microsoft.com/detail/9PH81XKFZ77D?cid=website" onclick="return gtagDownloadConversion('https://apps.microsoft.com/detail/9PH81XKFZ77D?cid=website');" aria-label="Get Kramata from the Microsoft Store">
           <img src="https://get.microsoft.com/images/en-us%20light.svg" alt="Get Kramata from the Microsoft Store" />
         </a>
       </div>
       <p class="cta-alt">
         Free · Windows 10 &amp; 11. Prefer a direct download?
-        <a href="https://github.com/Kramata/Kramata-CSV-and-Excel-Cleaner/releases/download/v1.0.0.0/Kramata-Setup-x64.zip?cid=website">Get the installer (.zip)</a>
+        <a href="https://github.com/Kramata/Kramata-CSV-and-Excel-Cleaner/releases/download/v1.0.0.0/Kramata-Setup-x64.zip?cid=website" onclick="return gtagDownloadConversion('https://github.com/Kramata/Kramata-CSV-and-Excel-Cleaner/releases/download/v1.0.0.0/Kramata-Setup-x64.zip?cid=website');">Get the installer (.zip)</a>
       </p>
     </div>
   </section>
@@ -188,7 +205,7 @@
       <h2>Download Kramata</h2>
       <p class="sub">Windows 10 &amp; 11.</p>
       <div class="dl-row">
-        <a class="store-badge" href="https://apps.microsoft.com/detail/9PH81XKFZ77D?cid=website" aria-label="Get Kramata from the Microsoft Store">
+        <a class="store-badge" href="https://apps.microsoft.com/detail/9PH81XKFZ77D?cid=website" onclick="return gtagDownloadConversion('https://apps.microsoft.com/detail/9PH81XKFZ77D?cid=website');" aria-label="Get Kramata from the Microsoft Store">
           <img src="https://get.microsoft.com/images/en-us%20light.svg" alt="Get Kramata from the Microsoft Store" />
         </a>
       </div>
@@ -196,9 +213,9 @@
         Free · Windows 10 &amp; 11 · x64. <b>The Microsoft Store is the easiest way in</b> — one click,
         no security warnings, and the app updates itself automatically.<br />
         Prefer a direct download? Get the
-        <a href="https://github.com/Kramata/Kramata-CSV-and-Excel-Cleaner/releases/download/v1.0.0.0/Kramata-Setup-x64.zip?cid=website">installer (.zip)</a>
+        <a href="https://github.com/Kramata/Kramata-CSV-and-Excel-Cleaner/releases/download/v1.0.0.0/Kramata-Setup-x64.zip?cid=website" onclick="return gtagDownloadConversion('https://github.com/Kramata/Kramata-CSV-and-Excel-Cleaner/releases/download/v1.0.0.0/Kramata-Setup-x64.zip?cid=website');">installer (.zip)</a>
         — unzip and run it; Windows may warn the first time, so click <b>More info → Run anyway</b>. Or grab the
-        <a href="https://github.com/Kramata/Kramata-CSV-and-Excel-Cleaner/releases/download/v1.0.0.0/Kramata-Setup-x64.exe?cid=website">.exe directly</a>.
+        <a href="https://github.com/Kramata/Kramata-CSV-and-Excel-Cleaner/releases/download/v1.0.0.0/Kramata-Setup-x64.exe?cid=website" onclick="return gtagDownloadConversion('https://github.com/Kramata/Kramata-CSV-and-Excel-Cleaner/releases/download/v1.0.0.0/Kramata-Setup-x64.exe?cid=website');">.exe directly</a>.
       </p>
     </div>
   </section>
