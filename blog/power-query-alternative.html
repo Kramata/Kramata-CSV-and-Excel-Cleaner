@@ -24,6 +24,14 @@
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"Article","headline":"A Simple Power Query Alternative for Non-Technical Analysts","publisher":{"@type":"Organization","name":"Kramata"}}
   </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+    {"@type":"Question","name":"Is Kramata a full Power Query replacement?","acceptedAnswer":{"@type":"Answer","text":"For repeatable cleaning of recurring files, yes — merge, pivot, unpivot, dedupe, fix dates, and more. For deep custom M transformations or dozens of live data connectors, Power Query still wins."}},
+    {"@type":"Question","name":"Do I need to write M code?","acceptedAnswer":{"@type":"Answer","text":"No. Every step is plain language — no formulas, no M."}},
+    {"@type":"Question","name":"Can I share my steps with a colleague?","acceptedAnswer":{"@type":"Answer","text":"Yes. A recipe is a portable .json file you send them; they apply it in one click."}},
+    {"@type":"Question","name":"Does it work offline?","acceptedAnswer":{"@type":"Answer","text":"Yes. Kramata is a local desktop app — your files never leave your computer."}}
+  ]}
+  </script>
   <link rel="stylesheet" href="../styles.css" />
   <style>
     .article{max-width:720px;margin:0 auto;padding:54px 22px}
@@ -101,12 +109,43 @@
       <li>Calculated columns, split/merge columns, filter rows, and flag invalid rows to a separate list.</li>
     </ul>
 
+    <h2>When Power Query is still the right call</h2>
+    <p>
+      This isn't "Power Query is bad." If you live inside Excel, need bespoke <strong>M</strong>
+      transformations, or pull from dozens of database and web connectors, Power Query is the right
+      tool. Kramata is for the other, far more common case: the <strong>same messy export, cleaned
+      the same way, every week</strong> — by someone who doesn't want to learn a query language to
+      do it.
+    </p>
+
+    <h2>Moving a Power Query habit to Kramata</h2>
+    <ol>
+      <li>Open one sample of the file you clean on a schedule.</li>
+      <li>Add the steps you'd normally apply — merge, dedupe, fix dates, split columns — each in plain language.</li>
+      <li>Watch the table update live as you go, so you can trust the result before you commit.</li>
+      <li>Save it as a <strong>recipe</strong> — a portable <code>.json</code> file.</li>
+      <li>Next month: open the new file, apply the recipe, click once. Identical output, every time.</li>
+    </ol>
+
     <div class="cta-box">
       <a class="btn btn-lg btn-primary" href="/#download">Download Kramata free for Windows</a>
     </div>
 
     <p class="meta">Not a replacement for everything Power Query does — but if your job is cleaning
       recurring files the same way every time, it's faster to learn and easier to trust.</p>
+
+    <h2>Related guides</h2>
+    <p>
+      <a href="/blog/merge-two-spreadsheets-vlookup-alternative.html">Merge two spreadsheets without VLOOKUP</a> ·
+      <a href="/blog/merge-multiple-csv-files-into-one.html">Merge multiple CSV files into one</a> ·
+      <a href="/blog/clean-messy-csv-reproducibly.html">Clean a messy CSV the same way every time</a>
+    </p>
+
+    <h2>FAQ</h2>
+    <p><strong>Is Kramata a full Power Query replacement?</strong> For repeatable cleaning of recurring files, yes — merge, pivot, unpivot, dedupe, fix dates, and more. For deep custom M transformations or dozens of live data connectors, Power Query still wins.</p>
+    <p><strong>Do I need to write M code?</strong> No. Every step is plain language — no formulas, no M.</p>
+    <p><strong>Can I share my steps with a colleague?</strong> Yes. A recipe is a portable <code>.json</code> file you send them; they apply it in one click.</p>
+    <p><strong>Does it work offline?</strong> Yes. Kramata is a local desktop app — your files never leave your computer.</p>
   </article>
 
   <footer><div class="wrap foot">

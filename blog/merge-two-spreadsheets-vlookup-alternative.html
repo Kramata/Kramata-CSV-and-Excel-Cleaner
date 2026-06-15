@@ -24,6 +24,14 @@
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"Article","headline":"Merge Two Spreadsheets by a Common Column (a Reproducible VLOOKUP Alternative)","publisher":{"@type":"Organization","name":"Kramata"}}
   </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+    {"@type":"Question","name":"Can I match on more than one column?","acceptedAnswer":{"@type":"Answer","text":"Single-key matching today; multi-key is on the way."}},
+    {"@type":"Question","name":"What if the other file changes?","acceptedAnswer":{"@type":"Answer","text":"Re-running the recipe re-reads it — your merge stays current."}},
+    {"@type":"Question","name":"Is it faster than VLOOKUP on big files?","acceptedAnswer":{"@type":"Answer","text":"Yes — it matches through an in-process database, not a formula dragged down 100k rows, so large files stay fast."}},
+    {"@type":"Question","name":"Is it like Power Query's Merge Queries?","acceptedAnswer":{"@type":"Answer","text":"Same idea, in plain language, built for non-technical users."}}
+  ]}
+  </script>
   <link rel="stylesheet" href="../styles.css" />
   <style>
     .article{max-width:720px;margin:0 auto;padding:54px 22px}
@@ -96,9 +104,17 @@
       <a class="btn btn-lg btn-primary" href="/#download">Download Kramata free for Windows</a>
     </div>
 
+    <h2>Related guides</h2>
+    <p>
+      <a href="/blog/merge-multiple-csv-files-into-one.html">Merge multiple CSV files into one</a> ·
+      <a href="/blog/power-query-alternative.html">A simple Power Query alternative</a> ·
+      <a href="/blog/clean-messy-csv-reproducibly.html">Clean a messy CSV the same way every time</a>
+    </p>
+
     <h2>FAQ</h2>
     <p><strong>Can I match on more than one column?</strong> Single-key matching today; multi-key is on the way.</p>
     <p><strong>What if the other file changes?</strong> Re-running the recipe re-reads it — your merge stays current.</p>
+    <p><strong>Is it faster than VLOOKUP on big files?</strong> Yes — it matches through an in-process database, not a formula dragged down 100k rows, so large files stay fast.</p>
     <p><strong>Is it like Power Query's Merge Queries?</strong> Same idea, in plain language, built for non-technical users.</p>
   </article>
 
