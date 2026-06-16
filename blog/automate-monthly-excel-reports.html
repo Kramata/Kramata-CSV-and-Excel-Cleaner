@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-832148034"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'AW-832148034');
+    gtag('config', 'G-V3P8HEN7CB');
+  </script>
+  <title>How to Automate Monthly Excel Reports (No VBA)</title>
+  <meta name="description" content="Stop rebuilding the same Excel report every month. Build it once as a reusable recipe, then turn each new export into the report in one click." />
+  <link rel="canonical" href="https://kramata.com/blog/automate-monthly-excel-reports" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="How to Automate Monthly Excel Reports (No VBA)" />
+  <meta property="og:description" content="Stop rebuilding the same report every month. Build it once, then turn each new export into the finished report in one click." />
+  <meta property="og:image" content="https://kramata.com/assets/og-image.png" />
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Article","headline":"How to Automate Monthly Excel Reports (No VBA)","publisher":{"@type":"Organization","name":"Kramata"}}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+    {"@type":"Question","name":"How do I stop rebuilding the same report every month?","acceptedAnswer":{"@type":"Answer","text":"Build the cleanup and layout once as a reusable recipe. Each month, open the new export, apply the recipe, and the finished report comes out the other side — no rebuilding from scratch."}},
+    {"@type":"Question","name":"What if the new file has the same columns but new rows?","acceptedAnswer":{"@type":"Answer","text":"That's the ideal case. The recipe references columns by name, so it just processes the new rows and produces the same report layout every time."}},
+    {"@type":"Question","name":"Can I combine several monthly files into one?","acceptedAnswer":{"@type":"Answer","text":"Yes. Run the recipe in batch across a folder and choose to merge the cleaned files into one combined report — for example twelve months into a single year-to-date file."}},
+    {"@type":"Question","name":"Do I need any code or VBA?","acceptedAnswer":{"@type":"Answer","text":"No. Every step is plain language. Your files stay on your computer."}}
+  ]}
+  </script>
+  <link rel="stylesheet" href="../styles.css" />
+  <style>
+    .article{max-width:720px;margin:0 auto;padding:54px 22px}
+    .article h1{font-size:32px;margin-bottom:8px}.article .meta{color:var(--dim);margin-bottom:26px}
+    .article h2{font-size:23px;margin-top:34px}.article p,.article li{font-size:17px;color:#2b3138}
+    .article ol,.article ul{padding-left:22px}
+    .callout{background:var(--soft);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:10px;padding:16px 18px;margin:26px 0}
+    .cta-box{text-align:center;margin:40px 0}
+  </style>
+</head>
+<body>
+  <header class="nav"><div class="wrap nav-inner">
+    <a class="logo" href="/">Kra<span>mata</span></a>
+    <nav><a href="/#download" class="btn btn-sm">Download free</a></nav>
+  </div></header>
+
+  <article class="article">
+    <h1>How to Automate Monthly Excel Reports — Without VBA</h1>
+    <div class="meta">Stop rebuilding the same report from scratch every single month.</div>
+
+    <p>
+      You know the routine. The export lands on the first of the month. You open it, strip the junk
+      rows, fix the dates, dedupe, merge in the lookup table, total it up, and reshape it into the
+      report your boss expects. It takes an hour. And next month you do <strong>the exact same thing
+      again</strong>, by hand, from zero.
+    </p>
+    <p>
+      The work isn't hard — it's just <em>repetitive</em>. Which means it's exactly the kind of thing
+      you should build once and never rebuild.
+    </p>
+
+    <h2>The monthly-report treadmill</h2>
+    <ul>
+      <li>Same source, same mess, same fixes — re-done manually every cycle.</li>
+      <li>One slip (a missed dedupe, a date read day-first instead of month-first) and the numbers are quietly wrong.</li>
+      <li>When you're on leave, nobody else knows the twelve little steps in your head.</li>
+    </ul>
+
+    <h2>Build the report logic once</h2>
+    <p>
+      Instead of performing the cleanup, <strong>record it</strong> as a
+      <a href="/blog/spreadsheet-recipes">recipe</a>: an ordered list of plain-language steps. You build
+      it once on this month's file, watching the preview update so you can trust every step.
+    </p>
+    <ol>
+      <li>Open the latest monthly export.</li>
+      <li>Add the steps it always needs — remove duplicates, standardize dates, trim &amp; fix case, filter out the junk rows.</li>
+      <li>Merge in any reference data (region, owner, targets) from a second file — a reproducible lookup that won't break.</li>
+      <li>Group &amp; summarize to the totals your report needs; reshape with pivot or unpivot as required.</li>
+      <li>Save the whole sequence as a recipe.</li>
+    </ol>
+
+    <div class="callout">
+      The payoff isn't just speed — it's <strong>consistency</strong>. Every month's report is built
+      the identical way, so the numbers are comparable and a typo can't sneak in. The recipe doesn't
+      forget a step the way a tired human does at 5 p.m. on deadline day.
+    </div>
+
+    <h2>Next month: one click</h2>
+    <p>
+      When the new file arrives, you don't rebuild anything. Open it, apply the recipe, export the
+      finished report. The hour becomes seconds. And because the recipe is a portable file, you can hand
+      it to a colleague so the report keeps going out even when you don't.
+    </p>
+    <p>
+      Got a stack of them — one file per region or per client? Run the recipe in <strong>batch</strong>
+      across the whole folder and get every report back cleaned, or
+      <a href="/blog/merge-multiple-csv-files-into-one">merged into one</a>.
+    </p>
+
+    <div class="cta-box">
+      <a class="btn btn-lg btn-primary" href="/#download">Download Kramata free for Windows</a>
+    </div>
+
+    <p class="meta">Kramata is a free, local desktop app for repeatable spreadsheet work. Build the
+      report once; every future month is one click. Nothing leaves your computer.</p>
+
+    <h2>Related guides</h2>
+    <p>
+      <a href="/blog/spreadsheet-recipes">Spreadsheet recipes: build once, reuse forever</a> ·
+      <a href="/blog/excel-workflow-automation-without-vba">Excel workflow automation without VBA</a> ·
+      <a href="/blog/clean-messy-csv-reproducibly">Clean a messy CSV the same way every time</a>
+    </p>
+
+    <h2>FAQ</h2>
+    <p><strong>How do I stop rebuilding the same report every month?</strong> Build the cleanup and layout once as a reusable recipe. Each month, open the new export, apply the recipe, and the finished report comes out — no rebuilding from scratch.</p>
+    <p><strong>What if the new file has the same columns but new rows?</strong> That's the ideal case. The recipe references columns by name, so it just processes the new rows and produces the same report layout every time.</p>
+    <p><strong>Can I combine several monthly files into one?</strong> Yes. Run the recipe in batch across a folder and choose to merge the cleaned files into one combined report — e.g. twelve months into one year-to-date file.</p>
+    <p><strong>Do I need any code or VBA?</strong> No. Every step is plain language. Your files stay on your computer.</p>
+  </article>
+
+  <footer><div class="wrap foot">
+    <a class="logo" href="/">Kra<span>mata</span></a>
+    <div class="links"><a href="/">Home</a><a href="/blog/">Blog</a><a href="/#download">Download</a></div>
+    <div class="copy">© 2026 Kramata</div>
+  </div></footer>
+</body>
+</html>

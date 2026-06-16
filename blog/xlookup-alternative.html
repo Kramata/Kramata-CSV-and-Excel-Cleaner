@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-832148034"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'AW-832148034');
+    gtag('config', 'G-V3P8HEN7CB');
+  </script>
+  <title>An XLOOKUP Alternative That Works Across Files</title>
+  <meta name="description" content="Match data across separate workbooks and recurring files without XLOOKUP — a reproducible merge you build once and re-run on every new file." />
+  <link rel="canonical" href="https://kramata.com/blog/xlookup-alternative" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="An XLOOKUP Alternative That Works Across Files" />
+  <meta property="og:description" content="Match data across separate workbooks and recurring files without XLOOKUP — a reproducible merge you build once and re-run forever." />
+  <meta property="og:image" content="https://kramata.com/assets/og-image.png" />
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Article","headline":"An XLOOKUP Alternative That Works Across Files","publisher":{"@type":"Organization","name":"Kramata"}}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+    {"@type":"Question","name":"Can I XLOOKUP between two separate workbooks?","acceptedAnswer":{"@type":"Answer","text":"You can, but cross-workbook XLOOKUP is fragile — it breaks when a file moves or is renamed. A merge step matches the two files by a key column and is rebuilt automatically each run, so it stays reliable."}},
+    {"@type":"Question","name":"How is this different from VLOOKUP?","acceptedAnswer":{"@type":"Answer","text":"Same job — pull columns from a second file by a matching key — but as a reusable step instead of a formula. It doesn't break when columns move and you don't rebuild it for each new file."}},
+    {"@type":"Question","name":"Does it work on multiple files at once?","acceptedAnswer":{"@type":"Answer","text":"Yes. Save the merge as part of a recipe and run it in batch across a whole folder, so every file gets the same lookup applied."}},
+    {"@type":"Question","name":"Will it slow down on large files?","acceptedAnswer":{"@type":"Answer","text":"No. Matching runs through an in-process database rather than a formula dragged down thousands of rows, so big files stay fast."}}
+  ]}
+  </script>
+  <link rel="stylesheet" href="../styles.css" />
+  <style>
+    .article{max-width:720px;margin:0 auto;padding:54px 22px}
+    .article h1{font-size:32px;margin-bottom:8px}.article .meta{color:var(--dim);margin-bottom:26px}
+    .article h2{font-size:23px;margin-top:34px}.article p,.article li{font-size:17px;color:#2b3138}
+    .article ol,.article ul{padding-left:22px}
+    .callout{background:var(--soft);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:10px;padding:16px 18px;margin:26px 0}
+    table.cmp{width:100%;border-collapse:collapse;margin:22px 0;font-size:15px}
+    table.cmp th,table.cmp td{border:1px solid var(--line);padding:9px 12px;text-align:left}
+    table.cmp th{background:var(--soft)}
+    .cta-box{text-align:center;margin:40px 0}
+  </style>
+</head>
+<body>
+  <header class="nav"><div class="wrap nav-inner">
+    <a class="logo" href="/">Kra<span>mata</span></a>
+    <nav><a href="/#download" class="btn btn-sm">Download free</a></nav>
+  </div></header>
+
+  <article class="article">
+    <h1>An XLOOKUP Alternative That Works Across Files</h1>
+    <div class="meta">For matching between separate workbooks and recurring exports.</div>
+
+    <p>
+      XLOOKUP is a real upgrade over VLOOKUP — it looks left, returns whole arrays, and doesn't care
+      about column index numbers. But it's still a <strong>formula bound to a workbook</strong>. The
+      moment your data lives in <em>two separate files</em>, or the same file lands again next month,
+      XLOOKUP starts to creak: cross-workbook references break when a file is moved or renamed, and you
+      rebuild the whole thing on every new export.
+    </p>
+    <p>
+      If your job is matching data <strong>across files, on a schedule</strong>, there's a sturdier way
+      that you build once and re-run.
+    </p>
+
+    <h2>Where XLOOKUP still falls short</h2>
+    <ul>
+      <li><strong>Across workbooks it's fragile.</strong> A formula pointing at another file breaks if that file moves, is renamed, or isn't open.</li>
+      <li><strong>It's not repeatable.</strong> Next month's file means re-pointing or rebuilding the lookup from scratch.</li>
+      <li><strong>It's per-cell.</strong> Drag XLOOKUP down hundreds of thousands of rows and the workbook crawls.</li>
+      <li><strong>It can't span a folder.</strong> Applying the same lookup to twenty files is twenty manual jobs.</li>
+    </ul>
+
+    <h2>The repeatable approach: a merge step</h2>
+    <p>
+      Instead of a formula, use a <strong>merge</strong>: pick the key column that links the two files
+      and choose which columns to bring across. It's the same mental model as XLOOKUP — match on a key,
+      pull values — but it's a reusable step, not a brittle reference.
+    </p>
+    <ol>
+      <li>Open your main file (e.g. <code>orders.csv</code>).</li>
+      <li>Add a <strong>merge from another file</strong> step and choose the second file (e.g. <code>customers.xlsx</code>) — a different workbook entirely.</li>
+      <li>Match <code>orders.CustomerID</code> to <code>customers.ID</code>.</li>
+      <li>Pick the columns to pull in: Name, Email, Region.</li>
+      <li>Keep all rows (unmatched get blanks) or only matches.</li>
+    </ol>
+
+    <div class="callout">
+      Like XLOOKUP, it takes the <strong>first</strong> match per key — so duplicate keys never multiply
+      your rows — and because the merge re-reads both files each run, the result is identical every time,
+      even when next month's export replaces the old one.
+    </div>
+
+    <table class="cmp">
+      <thead><tr><th></th><th>XLOOKUP across files</th><th>Kramata merge</th></tr></thead>
+      <tbody>
+        <tr><td>Match on a key column</td><td>Yes</td><td>Yes</td></tr>
+        <tr><td>Survives the other file moving/renaming</td><td>No</td><td>Yes (re-pick once)</td></tr>
+        <tr><td>Re-runs on next month's file</td><td>Rebuild</td><td>One click</td></tr>
+        <tr><td>Fast on 100k+ rows</td><td>Slows down</td><td>Yes (database)</td></tr>
+        <tr><td>Apply across a whole folder</td><td>No</td><td>Yes (batch)</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Across many files at once</h2>
+    <p>
+      Save the merge as part of a <a href="/blog/spreadsheet-recipes">recipe</a> and run it in
+      <strong>batch</strong> across a folder — every file gets the same lookup applied, with no formula
+      copied anywhere. That's the part XLOOKUP simply can't do.
+    </p>
+
+    <div class="cta-box">
+      <a class="btn btn-lg btn-primary" href="/#download">Download Kramata free for Windows</a>
+    </div>
+
+    <p class="meta">Kramata is a free, local desktop app. Match across files without formulas, and re-run
+      it on every new export in one click. Your files never leave your computer.</p>
+
+    <h2>Related guides</h2>
+    <p>
+      <a href="/blog/merge-two-spreadsheets-vlookup-alternative">Merge two spreadsheets without VLOOKUP</a> ·
+      <a href="/blog/merge-multiple-csv-files-into-one">Merge multiple CSV files into one</a> ·
+      <a href="/blog/spreadsheet-recipes">Spreadsheet recipes: build once, reuse forever</a>
+    </p>
+
+    <h2>FAQ</h2>
+    <p><strong>Can I XLOOKUP between two separate workbooks?</strong> You can, but cross-workbook XLOOKUP is fragile — it breaks when a file moves or is renamed. A merge step matches the two files by a key column and is rebuilt automatically each run, so it stays reliable.</p>
+    <p><strong>How is this different from VLOOKUP?</strong> Same job — pull columns from a second file by a matching key — but as a reusable step instead of a formula. It doesn't break when columns move and you don't rebuild it for each new file.</p>
+    <p><strong>Does it work on multiple files at once?</strong> Yes. Save the merge as part of a recipe and run it in batch across a whole folder, so every file gets the same lookup applied.</p>
+    <p><strong>Will it slow down on large files?</strong> No. Matching runs through an in-process database rather than a formula dragged down thousands of rows, so big files stay fast.</p>
+  </article>
+
+  <footer><div class="wrap foot">
+    <a class="logo" href="/">Kra<span>mata</span></a>
+    <div class="links"><a href="/">Home</a><a href="/blog/">Blog</a><a href="/#download">Download</a></div>
+    <div class="copy">© 2026 Kramata</div>
+  </div></footer>
+</body>
+</html>

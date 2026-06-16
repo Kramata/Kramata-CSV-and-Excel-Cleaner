@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-832148034"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'AW-832148034');
+    gtag('config', 'G-V3P8HEN7CB');
+  </script>
+  <title>Spreadsheet Recipes: Build Once, Reuse Forever</title>
+  <meta name="description" content="A spreadsheet recipe is a saved sequence of cleaning steps you build once and re-run on every new file in one click — reproducible, shareable, no code." />
+  <link rel="canonical" href="https://kramata.com/blog/spreadsheet-recipes" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Spreadsheet Recipes: Build Once, Reuse Forever" />
+  <meta property="og:description" content="Save your cleaning steps as a reusable recipe, then re-run them on every new file in one click. Reproducible, shareable, no code." />
+  <meta property="og:image" content="https://kramata.com/assets/og-image.png" />
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Article","headline":"Spreadsheet Recipes: Build Once, Reuse Forever","publisher":{"@type":"Organization","name":"Kramata"}}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+    {"@type":"Question","name":"What is a spreadsheet recipe?","acceptedAnswer":{"@type":"Answer","text":"An ordered list of cleaning and transform steps — written in plain language — that you save once and re-apply to any new version of a file in one click. Same input plus same recipe gives identical output every time."}},
+    {"@type":"Question","name":"How is a recipe different from a macro or formula?","acceptedAnswer":{"@type":"Answer","text":"A recipe is plain language, not VBA or M code. It is a portable file you can share, it does not break when columns move, and it is non-destructive — your source file is never overwritten."}},
+    {"@type":"Question","name":"Can I share a recipe with my team?","acceptedAnswer":{"@type":"Answer","text":"Yes. A recipe is a portable .json file. Send it to a colleague and they apply the exact same steps to their files in one click — no setup."}},
+    {"@type":"Question","name":"Is the result reproducible?","acceptedAnswer":{"@type":"Answer","text":"Yes. The same file run through the same recipe produces byte-identical output. That is the whole point — build it once, trust it forever."}}
+  ]}
+  </script>
+  <link rel="stylesheet" href="../styles.css" />
+  <style>
+    .article{max-width:720px;margin:0 auto;padding:54px 22px}
+    .article h1{font-size:32px;margin-bottom:8px}.article .meta{color:var(--dim);margin-bottom:26px}
+    .article h2{font-size:23px;margin-top:34px}.article p,.article li{font-size:17px;color:#2b3138}
+    .article ol,.article ul{padding-left:22px}
+    .callout{background:var(--soft);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:10px;padding:16px 18px;margin:26px 0}
+    .cta-box{text-align:center;margin:40px 0}
+  </style>
+</head>
+<body>
+  <header class="nav"><div class="wrap nav-inner">
+    <a class="logo" href="/">Kra<span>mata</span></a>
+    <nav><a href="/#download" class="btn btn-sm">Download free</a></nav>
+  </div></header>
+
+  <article class="article">
+    <h1>Spreadsheet Recipes: Build the Cleanup Once, Reuse It Forever</h1>
+    <div class="meta">The idea that turns a weekly chore into a one-click job.</div>
+
+    <p>
+      Most spreadsheet work isn't one-off. The same export lands every week or every month — the same
+      messy headers, the same duplicate rows, the same dates in three formats — and you clean it the
+      same way, by hand, every single time. A <strong>spreadsheet recipe</strong> is the fix: you
+      describe the cleanup once, save it, and re-run it on each new file in a single click.
+    </p>
+
+    <h2>What is a spreadsheet recipe?</h2>
+    <p>
+      A recipe is an <strong>ordered list of steps</strong> — remove duplicates, fix dates, trim spaces,
+      split a column, merge in a lookup, filter bad rows — written in plain language, not formulas or
+      code. It's saved as a small portable file. Point it at next month's export and it replays every
+      step in order, exactly as you defined them.
+    </p>
+    <p>
+      Think of it as the difference between <em>doing</em> the cleanup and <em>recording</em> it. Once
+      it's recorded, the doing is free.
+    </p>
+
+    <h2>Why a recipe beats formulas, macros, and one-off cleanups</h2>
+    <ul>
+      <li><strong>It's repeatable.</strong> A manual cleanup has to be redone from scratch every time. A recipe runs again in one click.</li>
+      <li><strong>It doesn't break when columns move.</strong> Steps reference columns by name and intent, not by a fragile cell address or column index.</li>
+      <li><strong>It's plain language.</strong> No VBA, no M code, no formula soup — so the person who inherits the file can actually run it.</li>
+      <li><strong>It's portable.</strong> A recipe is a file you can hand to a teammate. They get your exact process, instantly.</li>
+      <li><strong>It's non-destructive.</strong> Your source file is never overwritten; you always get a clean copy out.</li>
+    </ul>
+
+    <h2>What you can put in a recipe</h2>
+    <ul>
+      <li>Remove duplicates, standardize dates, trim and fix case, find &amp; replace, fill blanks, convert types.</li>
+      <li>Merge in columns from another file (a reproducible VLOOKUP), group &amp; summarize (pivot), unpivot wide columns into tidy rows.</li>
+      <li>Calculated columns, split/merge columns, filter rows, and flag invalid rows to a separate list for review.</li>
+    </ul>
+
+    <div class="callout">
+      The quiet superpower is <strong>determinism</strong>: the same file run through the same recipe
+      produces byte-identical output, every time, on any machine. No "did I remember to dedupe this
+      month?" — the recipe remembers for you.
+    </div>
+
+    <h2>How to build and reuse one</h2>
+    <ol>
+      <li>Open a single sample of the file you clean on a schedule.</li>
+      <li>Add the steps it needs, in plain language, watching the table update live as you go.</li>
+      <li>Save the sequence as a <strong>recipe</strong> — a portable <code>.json</code> file.</li>
+      <li>Next time the file arrives: open it, apply the recipe, click once. Done.</li>
+      <li>Need to clean a whole folder of them? Run the recipe in batch across every file at once.</li>
+    </ol>
+
+    <h2>Share the recipe, not the instructions</h2>
+    <p>
+      The hardest part of a "cleaning process" is usually that it lives in one person's head. A recipe
+      makes it a file. Send it to a colleague and they run your exact steps on their own files — no
+      walkthrough, no screen-share, no "wait, which columns do I delete first?" The process becomes an
+      asset the team owns, not tribal knowledge.
+    </p>
+
+    <div class="cta-box">
+      <a class="btn btn-lg btn-primary" href="/#download">Download Kramata free for Windows</a>
+    </div>
+
+    <p class="meta">Kramata is a free, local desktop app built entirely around recipes. Build the
+      cleanup once; every future file is one click. Your files never leave your computer.</p>
+
+    <h2>Related guides</h2>
+    <p>
+      <a href="/blog/excel-workflow-automation-without-vba">Excel workflow automation without VBA</a> ·
+      <a href="/blog/automate-monthly-excel-reports">Automate monthly Excel reports</a> ·
+      <a href="/blog/clean-messy-csv-reproducibly">Clean a messy CSV the same way every time</a>
+    </p>
+
+    <h2>FAQ</h2>
+    <p><strong>What is a spreadsheet recipe?</strong> An ordered list of cleaning and transform steps — in plain language — that you save once and re-apply to any new version of a file in one click. Same input plus same recipe gives identical output every time.</p>
+    <p><strong>How is a recipe different from a macro or formula?</strong> A recipe is plain language, not VBA or M code. It's a portable file you can share, it doesn't break when columns move, and it's non-destructive — your source file is never overwritten.</p>
+    <p><strong>Can I share a recipe with my team?</strong> Yes. A recipe is a portable <code>.json</code> file. Send it to a colleague and they apply the exact same steps to their files in one click — no setup.</p>
+    <p><strong>Is the result reproducible?</strong> Yes. The same file run through the same recipe produces byte-identical output. That's the whole point — build it once, trust it forever.</p>
+  </article>
+
+  <footer><div class="wrap foot">
+    <a class="logo" href="/">Kra<span>mata</span></a>
+    <div class="links"><a href="/">Home</a><a href="/blog/">Blog</a><a href="/#download">Download</a></div>
+    <div class="copy">© 2026 Kramata</div>
+  </div></footer>
+</body>
+</html>

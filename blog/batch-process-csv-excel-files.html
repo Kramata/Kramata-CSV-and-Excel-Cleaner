@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-832148034"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'AW-832148034');
+    gtag('config', 'G-V3P8HEN7CB');
+  </script>
+  <title>Batch Process Hundreds of CSV &amp; Excel Files</title>
+  <meta name="description" content="Clean a whole folder of CSV or Excel files in one pass — apply the same steps to every file, then get them back cleaned separately or merged into one. No code." />
+  <link rel="canonical" href="https://kramata.com/blog/batch-process-csv-excel-files" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Batch Process Hundreds of CSV &amp; Excel Files" />
+  <meta property="og:description" content="Clean a whole folder of CSV or Excel files in one pass — same steps on every file, back as separate cleaned files or merged into one. No code." />
+  <meta property="og:image" content="https://kramata.com/assets/og-image.png" />
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Article","headline":"Batch Process Hundreds of CSV & Excel Files","publisher":{"@type":"Organization","name":"Kramata"}}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+    {"@type":"Question","name":"How do I clean multiple CSV files at once?","acceptedAnswer":{"@type":"Answer","text":"Build a cleaning recipe on one sample file, then run it in batch across the whole folder. Every file gets the same steps in one pass — no opening them one at a time."}},
+    {"@type":"Question","name":"Can I get separate cleaned files back, or one merged file?","acceptedAnswer":{"@type":"Answer","text":"Either. Batch can output one cleaned file per input, or merge them all into a single combined file — your choice at run time."}},
+    {"@type":"Question","name":"Can I mix CSV and Excel in the same folder?","acceptedAnswer":{"@type":"Answer","text":"Yes. Kramata reads CSV, modern Excel (.xlsx/.xlsm) and legacy binary Excel (.xls), and processes them together in one batch."}},
+    {"@type":"Question","name":"How many files can it handle?","acceptedAnswer":{"@type":"Answer","text":"Hundreds of files and large row counts — it's powered by an in-process database, not row-by-row formulas. Practical limits depend on your PC's memory and disk."}}
+  ]}
+  </script>
+  <link rel="stylesheet" href="../styles.css" />
+  <style>
+    .article{max-width:720px;margin:0 auto;padding:54px 22px}
+    .article h1{font-size:32px;margin-bottom:8px}.article .meta{color:var(--dim);margin-bottom:26px}
+    .article h2{font-size:23px;margin-top:34px}.article p,.article li{font-size:17px;color:#2b3138}
+    .article ol,.article ul{padding-left:22px}
+    .callout{background:var(--soft);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:10px;padding:16px 18px;margin:26px 0}
+    .cta-box{text-align:center;margin:40px 0}
+  </style>
+</head>
+<body>
+  <header class="nav"><div class="wrap nav-inner">
+    <a class="logo" href="/">Kra<span>mata</span></a>
+    <nav><a href="/#download" class="btn btn-sm">Download free</a></nav>
+  </div></header>
+
+  <article class="article">
+    <h1>Batch Process Hundreds of CSV &amp; Excel Files</h1>
+    <div class="meta">Same cleanup, every file, in one pass — separate outputs or merged.</div>
+
+    <p>
+      One file per store. One export per region, per client, per day. A whole folder of CSVs that all
+      need the <strong>same</strong> cleanup before anyone can use them. Opening them one at a time and
+      repeating the steps by hand is the kind of task that eats an afternoon and invites mistakes — and
+      you'll do it again next week.
+    </p>
+    <p>
+      Batch processing solves it: clean <strong>every file in the folder the same way</strong>, in a
+      single run.
+    </p>
+
+    <h2>The problem with one-file-at-a-time</h2>
+    <ul>
+      <li><strong>It's slow.</strong> Fifty files means fifty rounds of the same clicks.</li>
+      <li><strong>It drifts.</strong> File 12 gets a slightly different cleanup than file 1, and now your set is inconsistent.</li>
+      <li><strong>A script fixes it once.</strong> Then a column moves or the path changes, and the non-coder on the team is stuck.</li>
+    </ul>
+
+    <h2>Batch processing, explained</h2>
+    <p>
+      The idea is simple: build the cleanup once as a <a href="/blog/spreadsheet-recipes">recipe</a> on a
+      single sample file, then point it at the whole folder. Two ways to get the results back:
+    </p>
+    <ul>
+      <li><strong>Separate files:</strong> one cleaned file out for each file in — same names, cleaned contents.</li>
+      <li><strong>Merged into one:</strong> every file cleaned and stacked into a single combined file.</li>
+    </ul>
+
+    <div class="callout">
+      The real win isn't just speed — it's that <strong>every file gets the identical treatment</strong>.
+      The same dedupe, the same date format, the same trimmed headers. Consistency by default, instead of
+      a patchwork you have to spot-check.
+    </div>
+
+    <h2>How to do it, step by step</h2>
+    <ol>
+      <li>Put all the files you want to process in one folder.</li>
+      <li>Build a recipe on a single sample — trim, fix dates, dedupe, whatever they all need.</li>
+      <li>Run the recipe in <strong>batch</strong> mode across the folder.</li>
+      <li>Choose the output: one cleaned file each, or merge into one.</li>
+      <li>Export. Hundreds of files, one pass, identical cleanup.</li>
+    </ol>
+
+    <h2>CSV and Excel, together</h2>
+    <p>
+      Real folders are mixed. Kramata reads <strong>CSV</strong>, modern <strong>Excel</strong>
+      (<code>.xlsx</code>/<code>.xlsm</code>) and even legacy binary <strong>.xls</strong>, and processes
+      them in the same batch — so you don't have to convert everything to one format first.
+    </p>
+    <p>
+      Need only to stack same-shaped files rather than clean a folder of them? See
+      <a href="/blog/merge-multiple-csv-files-into-one">how to merge multiple CSV files into one</a>.
+    </p>
+
+    <div class="cta-box">
+      <a class="btn btn-lg btn-primary" href="/#download">Download Kramata free for Windows</a>
+    </div>
+
+    <p class="meta">Cleaning a single file and saving recipes is free; batch processing across a folder
+      is part of <a href="/#pricing">Kramata Pro</a>. Everything runs locally — nothing uploaded.</p>
+
+    <h2>Related guides</h2>
+    <p>
+      <a href="/blog/merge-multiple-csv-files-into-one">Merge multiple CSV files into one</a> ·
+      <a href="/blog/automate-monthly-excel-reports">Automate monthly Excel reports</a> ·
+      <a href="/blog/spreadsheet-recipes">Spreadsheet recipes: build once, reuse forever</a>
+    </p>
+
+    <h2>FAQ</h2>
+    <p><strong>How do I clean multiple CSV files at once?</strong> Build a cleaning recipe on one sample file, then run it in batch across the whole folder. Every file gets the same steps in one pass — no opening them one at a time.</p>
+    <p><strong>Separate cleaned files, or one merged file?</strong> Either. Batch can output one cleaned file per input, or merge them all into a single combined file — your choice at run time.</p>
+    <p><strong>Can I mix CSV and Excel in the same folder?</strong> Yes. Kramata reads CSV, modern Excel (.xlsx/.xlsm) and legacy binary Excel (.xls), and processes them together in one batch.</p>
+    <p><strong>How many files can it handle?</strong> Hundreds of files and large row counts — it's powered by an in-process database, not row-by-row formulas. Practical limits depend on your PC's memory and disk.</p>
+  </article>
+
+  <footer><div class="wrap foot">
+    <a class="logo" href="/">Kra<span>mata</span></a>
+    <div class="links"><a href="/">Home</a><a href="/blog/">Blog</a><a href="/#download">Download</a></div>
+    <div class="copy">© 2026 Kramata</div>
+  </div></footer>
+</body>
+</html>

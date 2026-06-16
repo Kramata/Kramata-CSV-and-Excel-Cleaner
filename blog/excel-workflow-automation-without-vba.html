@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-832148034"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'AW-832148034');
+    gtag('config', 'G-V3P8HEN7CB');
+  </script>
+  <title>Excel Workflow Automation Without VBA or Macros</title>
+  <meta name="description" content="Automate repetitive Excel data work — clean, merge, reshape recurring files — without VBA, macros, or code. Build the workflow once, re-run it in one click." />
+  <link rel="canonical" href="https://kramata.com/blog/excel-workflow-automation-without-vba" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Excel Workflow Automation Without VBA or Macros" />
+  <meta property="og:description" content="Automate repetitive Excel data work without VBA or code. Build the workflow once, re-run on every new file in one click." />
+  <meta property="og:image" content="https://kramata.com/assets/og-image.png" />
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Article","headline":"Excel Workflow Automation Without VBA or Macros","publisher":{"@type":"Organization","name":"Kramata"}}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+    {"@type":"Question","name":"Can I automate Excel without VBA?","acceptedAnswer":{"@type":"Answer","text":"Yes. For the common case — cleaning, merging and reshaping recurring files — you can build the whole workflow in plain language as a reusable recipe and re-run it in one click, with no VBA or macros."}},
+    {"@type":"Question","name":"Why not just use a macro?","acceptedAnswer":{"@type":"Answer","text":"Macros break when columns move, need someone who can read VBA to maintain them, and live trapped inside one workbook. A plain-language recipe is portable, doesn't break on column changes, and anyone on the team can run it."}},
+    {"@type":"Question","name":"Does it run on a schedule by itself?","acceptedAnswer":{"@type":"Answer","text":"Kramata is a manual one-click run, not an unattended server job — by design, so your data stays local. The automation is in not rebuilding the steps: open the new file, apply the recipe, done."}},
+    {"@type":"Question","name":"Is it really code-free?","acceptedAnswer":{"@type":"Answer","text":"Yes. Every step is plain language — no VBA, no M, no formulas. Your files never leave your computer."}}
+  ]}
+  </script>
+  <link rel="stylesheet" href="../styles.css" />
+  <style>
+    .article{max-width:720px;margin:0 auto;padding:54px 22px}
+    .article h1{font-size:32px;margin-bottom:8px}.article .meta{color:var(--dim);margin-bottom:26px}
+    .article h2{font-size:23px;margin-top:34px}.article p,.article li{font-size:17px;color:#2b3138}
+    .article ol,.article ul{padding-left:22px}
+    .callout{background:var(--soft);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:10px;padding:16px 18px;margin:26px 0}
+    table.cmp{width:100%;border-collapse:collapse;margin:22px 0;font-size:15px}
+    table.cmp th,table.cmp td{border:1px solid var(--line);padding:9px 12px;text-align:left}
+    table.cmp th{background:var(--soft)}
+    .cta-box{text-align:center;margin:40px 0}
+  </style>
+</head>
+<body>
+  <header class="nav"><div class="wrap nav-inner">
+    <a class="logo" href="/">Kra<span>mata</span></a>
+    <nav><a href="/#download" class="btn btn-sm">Download free</a></nav>
+  </div></header>
+
+  <article class="article">
+    <h1>Excel Workflow Automation — Without VBA or Macros</h1>
+    <div class="meta">Automate the repetitive data work, skip the code.</div>
+
+    <p>
+      When people say "automate Excel," they usually reach for <strong>VBA macros</strong> — and then
+      they hit a wall. The macro breaks when a column moves. Nobody on the team can read it. It only
+      works on the one workbook it was written for. And the moment the person who wrote it leaves, the
+      "automation" becomes a black box no one dares touch.
+    </p>
+    <p>
+      For the most common job — <strong>cleaning, merging, and reshaping the same files on a
+      schedule</strong> — there's a simpler kind of automation that needs no code at all.
+    </p>
+
+    <h2>Why VBA and macros are the wrong tool for most teams</h2>
+    <ul>
+      <li><strong>They're brittle.</strong> Hard-coded cell ranges and column positions break the instant the source layout shifts.</li>
+      <li><strong>They need a coder.</strong> Editing VBA is a developer skill; the analyst who owns the report often can't maintain it.</li>
+      <li><strong>They're trapped.</strong> A macro lives inside one workbook — not a portable thing you can share or reuse across files.</li>
+      <li><strong>They're opaque.</strong> "Don't touch the macro" is how a one-time automation becomes permanent technical debt.</li>
+    </ul>
+
+    <h2>What spreadsheet "workflow automation" actually means</h2>
+    <p>
+      The repetitive part of Excel work isn't the thinking — it's the <em>redoing</em>. You already know
+      the steps: dedupe, fix the dates, merge in the lookup table, drop the junk rows, total it up.
+      Automation just means <strong>recording that sequence once</strong> so you never hand-perform it
+      again. You build a <a href="/blog/spreadsheet-recipes">recipe</a> — an ordered set of plain-language
+      steps — and replay it on each new file.
+    </p>
+
+    <table class="cmp">
+      <thead><tr><th></th><th>VBA / Macros</th><th>Kramata recipe</th></tr></thead>
+      <tbody>
+        <tr><td>Repeatable</td><td>Yes</td><td>Yes</td></tr>
+        <tr><td>Survives columns moving</td><td>No</td><td>Yes</td></tr>
+        <tr><td>Editable by non-coders</td><td>No</td><td>Yes</td></tr>
+        <tr><td>Portable / shareable file</td><td>No</td><td>Yes (.json)</td></tr>
+        <tr><td>Runs across a whole folder</td><td>Hard</td><td>Yes (batch)</td></tr>
+        <tr><td>Fully local, nothing uploaded</td><td>Yes</td><td>Yes</td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout">
+      The automation isn't a robot doing your job at 3 a.m. — it's that the <strong>steps never have to
+      be rebuilt</strong>. Open the new file, apply the recipe, click once. Minutes of work become
+      seconds, and the result is identical every time.
+    </div>
+
+    <h2>What you can automate this way</h2>
+    <ul>
+      <li>Standardize messy exports — dates, casing, whitespace, types — the same way on every file.</li>
+      <li>Merge in reference data from another file (a reproducible VLOOKUP / XLOOKUP) without formulas.</li>
+      <li>Pivot, unpivot, split and combine columns, and flag rows that fail your checks.</li>
+      <li>Run the whole thing across a <a href="/blog/batch-process-csv-excel-files">folder of files at once</a>.</li>
+    </ul>
+
+    <h2>How to set it up</h2>
+    <ol>
+      <li>Open one representative file.</li>
+      <li>Add your steps in plain language; watch the preview update so you can trust each one.</li>
+      <li>Save it as a recipe.</li>
+      <li>Every future file: load, apply, export. No VBA, no rebuilding, no broken references.</li>
+    </ol>
+
+    <div class="cta-box">
+      <a class="btn btn-lg btn-primary" href="/#download">Download Kramata free for Windows</a>
+    </div>
+
+    <p class="meta">Kramata is a free, local desktop app — repeatable spreadsheet workflows in plain
+      language, no code, nothing uploaded.</p>
+
+    <h2>Related guides</h2>
+    <p>
+      <a href="/blog/spreadsheet-recipes">Spreadsheet recipes: build once, reuse forever</a> ·
+      <a href="/blog/automate-monthly-excel-reports">Automate monthly Excel reports</a> ·
+      <a href="/blog/power-query-alternative">A simple Power Query alternative</a>
+    </p>
+
+    <h2>FAQ</h2>
+    <p><strong>Can I automate Excel without VBA?</strong> Yes. For the common case — cleaning, merging and reshaping recurring files — you build the whole workflow in plain language as a reusable recipe and re-run it in one click, no VBA or macros.</p>
+    <p><strong>Why not just use a macro?</strong> Macros break when columns move, need someone who can read VBA, and live trapped inside one workbook. A plain-language recipe is portable, doesn't break on column changes, and anyone can run it.</p>
+    <p><strong>Does it run on a schedule by itself?</strong> Kramata is a manual one-click run, not an unattended server job — by design, so your data stays local. The automation is in not rebuilding the steps.</p>
+    <p><strong>Is it really code-free?</strong> Yes. Every step is plain language — no VBA, no M, no formulas. Your files never leave your computer.</p>
+  </article>
+
+  <footer><div class="wrap foot">
+    <a class="logo" href="/">Kra<span>mata</span></a>
+    <div class="links"><a href="/">Home</a><a href="/blog/">Blog</a><a href="/#download">Download</a></div>
+    <div class="copy">© 2026 Kramata</div>
+  </div></footer>
+</body>
+</html>
