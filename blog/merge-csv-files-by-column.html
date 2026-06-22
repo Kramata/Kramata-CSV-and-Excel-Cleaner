@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-832148034"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'AW-832148034');
+    gtag('config', 'G-V3P8HEN7CB');
+  </script>
+  <title>How to Merge CSV Files by a Common Column (No Formulas)</title>
+  <meta name="description" content="Join two CSV or Excel files by matching a shared ID or key column — without VLOOKUP, without formulas. Build the merge once and re-run it on every new file." />
+  <link rel="canonical" href="https://kramata.com/blog/merge-csv-files-by-column" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="How to Merge CSV Files by a Common Column (No Formulas)" />
+  <meta property="og:description" content="Join two CSV or Excel files by a shared key column — no VLOOKUP, no broken formulas. Build the merge once and re-run on every new file." />
+  <meta property="og:image" content="https://kramata.com/assets/og-image.png" />
+
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Article","headline":"How to Merge CSV Files by a Common Column (No Formulas)","publisher":{"@type":"Organization","name":"Kramata"},"url":"https://kramata.com/blog/merge-csv-files-by-column"}
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Kramata",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Windows",
+    "description": "Merge CSV or Excel files by a common key column — without VLOOKUP or formulas. Build the merge as a recipe step, save it, and re-run on every new export. Fully local, no code, no cloud.",
+    "downloadUrl": "https://apps.microsoft.com/detail/9PH81XKFZ77D",
+    "installUrl": "https://apps.microsoft.com/detail/9PH81XKFZ77D",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+    {"@type":"Question","name":"What if the key column has a different name in each file?","acceptedAnswer":{"@type":"Answer","text":"You pick which column from each file to match on — the names do not need to be identical across files."}},
+    {"@type":"Question","name":"What happens to rows with no match?","acceptedAnswer":{"@type":"Answer","text":"Your choice: keep them with blank values for the pulled columns (a left join), or drop them (an inner join). Both options are set once in the recipe."}},
+    {"@type":"Question","name":"Can I match on more than one column?","acceptedAnswer":{"@type":"Answer","text":"Single-key matching today; multi-key is on the roadmap."}},
+    {"@type":"Question","name":"Is this the same as Power Query's Merge Queries?","acceptedAnswer":{"@type":"Answer","text":"Same idea — a join between two tables on a common key — in plain language, built for non-technical users. No M code required."}},
+    {"@type":"Question","name":"Is this different from appending files?","acceptedAnswer":{"@type":"Answer","text":"Yes. Merging by a column joins two files horizontally — pulling new columns from a second file to match rows in the first. Appending stacks rows from multiple files with the same structure vertically into one table."}},
+    {"@type":"Question","name":"What if the secondary file changes next month?","acceptedAnswer":{"@type":"Answer","text":"Re-running the recipe re-reads the secondary file fresh — so the merge automatically reflects any updates to it."}}
+  ]}
+  </script>
+
+  <link rel="stylesheet" href="../styles.css" />
+  <style>
+    .article{max-width:720px;margin:0 auto;padding:54px 22px}
+    .article h1{font-size:32px;margin-bottom:8px}.article .meta{color:var(--text-faint);margin-bottom:26px}
+    .article h2{font-size:23px;margin-top:34px}.article p,.article li{font-size:17px;color:#2b3138}
+    .article ol,.article ul{padding-left:22px}
+    .callout{background:var(--accent-soft);border:1px solid var(--border);border-left:4px solid var(--accent);border-radius:10px;padding:16px 18px;margin:26px 0}
+    .cta-box{text-align:center;margin:40px 0}
+  </style>
+</head>
+<body>
+  <header class="nav"><div class="wrap nav-inner">
+    <a class="logo" href="/">Kra<span>mata</span></a>
+    <nav><a href="/#download" class="btn btn-sm">Download free</a></nav>
+  </div></header>
+
+  <article class="article">
+    <h1>How to Merge CSV Files by a Common Column</h1>
+    <div class="meta">Join two files by a shared key — no VLOOKUP, no formulas, nothing that breaks when a column moves.</div>
+
+    <p>
+      You have an orders file and a customers file. You need the customer's name, region, and email
+      next to each order. Both files share a customer ID column. In Excel, this is VLOOKUP territory —
+      and VLOOKUP has a well-earned reputation for breaking the moment the underlying data changes.
+    </p>
+    <p>
+      This guide covers doing that join <strong>reproducibly</strong>: define it once, re-run it on
+      every new export, and get identical results every time.
+    </p>
+    <p>
+      <em>Note: if you want to <strong>stack</strong> multiple files row by row into one table, that
+      is a different operation — see <a href="/blog/combine-append-csv-files">how to combine and
+      append CSV files</a>.</em>
+    </p>
+
+    <h2>Why VLOOKUP struggles with recurring files</h2>
+    <ul>
+      <li><strong>The lookup column must be leftmost</strong> — or you're writing INDEX-MATCH instead.</li>
+      <li><strong>Column positions shift.</strong> A new column inserted upstream breaks the column-index number silently, returning wrong data without an error.</li>
+      <li><strong>It's not portable.</strong> Next month's export means rebuilding the formula from scratch.</li>
+      <li><strong>Performance degrades on large files.</strong> Dragging VLOOKUP down 100,000 rows makes Excel slow to recalculate.</li>
+    </ul>
+
+    <h2>The join model: pick a key, pull the columns</h2>
+    <p>
+      The mental model for key-based merging is simpler than VLOOKUP once you see it:
+    </p>
+    <ol>
+      <li>Open your primary file (e.g. <code>orders.csv</code>).</li>
+      <li>Add a <strong>Merge from another file</strong> step and select the secondary file (<code>customers.csv</code>).</li>
+      <li>Pick the matching columns: <code>orders.CustomerID</code> matches <code>customers.ID</code>.</li>
+      <li>Choose which columns to pull across: Name, Region, Email.</li>
+      <li>Decide how to handle non-matches: keep all rows with blanks for unmatched, or keep only matched rows.</li>
+    </ol>
+
+    <div class="callout">
+      It matches like VLOOKUP — the <strong>first</strong> row per key — so duplicate keys in the
+      secondary file never multiply your row count. Save that as a recipe and re-run it next month in
+      one click. The secondary file is re-read fresh each time, so if it changed, the merge reflects that.
+    </div>
+
+    <h2>Do it with Kramata</h2>
+    <p>
+      <a href="/">Kramata</a> treats the merge as a step inside a
+      <em>recipe</em>. You build it once on a sample file, save it, and next month load the new export
+      and click once. No formulas, no broken references, and your files never leave your computer.
+    </p>
+    <ul>
+      <li><strong>Reproducible:</strong> same files + same recipe = identical output, every time.</li>
+      <li><strong>Batch-ready:</strong> apply the merge across a whole folder of primary files at once.</li>
+      <li><strong>Fast on large files:</strong> matched through an in-process database, not a formula dragged down row by row.</li>
+    </ul>
+    <p>
+      For a full walkthrough including left vs. inner join behavior and handling unmatched rows, see
+      <a href="/blog/merge-two-spreadsheets-vlookup-alternative">merge two spreadsheets without VLOOKUP</a>.
+    </p>
+
+    <div class="cta-box">
+      <a class="btn btn-lg btn-primary" href="/#download">Download Kramata free for Windows</a>
+    </div>
+
+    <h2>Related guides</h2>
+    <p>
+      <a href="/blog/merge-two-spreadsheets-vlookup-alternative">Merge two spreadsheets without VLOOKUP</a> ·
+      <a href="/blog/combine-append-csv-files">Combine and append CSV files without losing data</a> ·
+      <a href="/blog/merge-multiple-csv-files-into-one">Merge multiple CSV files into one</a> ·
+      <a href="/blog/power-query-alternative">A simple Power Query alternative</a>
+    </p>
+
+    <h2>FAQ</h2>
+    <p><strong>What if the key column has a different name in each file?</strong> You pick which column from each file to match on — the names do not need to be identical across files.</p>
+    <p><strong>What happens to rows with no match?</strong> Your choice: keep them with blank values for the pulled columns (a left join), or drop them (an inner join). Both options are set once in the recipe.</p>
+    <p><strong>Can I match on more than one column?</strong> Single-key matching today; multi-key is on the roadmap.</p>
+    <p><strong>Is this the same as Power Query's Merge Queries?</strong> Same idea — a join between two tables on a common key — in plain language, built for non-technical users. No M code required.</p>
+    <p><strong>Is this different from appending files?</strong> Yes. Merging by a column joins two files horizontally — pulling new columns from a second file to match rows in the first. <a href="/blog/combine-append-csv-files">Appending</a> stacks rows from multiple files with the same structure vertically into one table.</p>
+    <p><strong>What if the secondary file changes next month?</strong> Re-running the recipe re-reads the secondary file fresh — so the merge automatically reflects any updates to it.</p>
+  </article>
+
+  <footer><div class="wrap foot">
+    <a class="logo" href="/">Kra<span>mata</span></a>
+    <div class="links"><a href="/">Home</a><a href="/blog/">Blog</a><a href="/#download">Download</a></div>
+    <div class="copy">© 2026 Kramata</div>
+  </div></footer>
+</body>
+</html>

@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-832148034"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'AW-832148034');
+    gtag('config', 'G-V3P8HEN7CB');
+  </script>
+  <title>How to Combine and Append CSV Files Without Losing Data</title>
+  <meta name="description" content="Stack multiple CSV or Excel files into one without losing rows, scrambling columns, or duplicating headers. A no-code method that cleans every file in the same pass." />
+  <link rel="canonical" href="https://kramata.com/blog/combine-append-csv-files" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="How to Combine and Append CSV Files Without Losing Data" />
+  <meta property="og:description" content="Stack multiple CSV or Excel files into one without losing rows, scrambling columns, or duplicating headers — and clean them all in the same pass." />
+  <meta property="og:image" content="https://kramata.com/assets/og-image.png" />
+
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Article","headline":"How to Combine and Append CSV Files Without Losing Data","publisher":{"@type":"Organization","name":"Kramata"},"url":"https://kramata.com/blog/combine-append-csv-files"}
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Kramata",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Windows",
+    "description": "Combine and append multiple CSV or Excel files into one clean file in one click. Build a cleaning recipe once — normalize headers, fix dates, dedupe — then re-run on any new batch. Fully local, no code, no cloud.",
+    "downloadUrl": "https://apps.microsoft.com/detail/9PH81XKFZ77D",
+    "installUrl": "https://apps.microsoft.com/detail/9PH81XKFZ77D",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+    {"@type":"Question","name":"Do all files need to have the same columns?","acceptedAnswer":{"@type":"Answer","text":"Ideally yes — matching columns stack cleanly. If some files have extra or missing columns, Kramata fills the gaps with blanks so the shape stays consistent."}},
+    {"@type":"Question","name":"What if file sizes are large?","acceptedAnswer":{"@type":"Answer","text":"Kramata uses an in-process database (DuckDB) rather than formula-based processing, so large files load and combine without the slowdown you would see in Excel."}},
+    {"@type":"Question","name":"Can I mix CSV and Excel files?","acceptedAnswer":{"@type":"Answer","text":"Yes — Kramata reads both formats and combines them into a single output file."}},
+    {"@type":"Question","name":"How do I verify nothing was lost?","acceptedAnswer":{"@type":"Answer","text":"The recipe is deterministic — same inputs, same recipe, identical output every time. Running it again produces the same result, which is its own verification. Row counts are visible before export."}},
+    {"@type":"Question","name":"Is this different from merging files by a common column?","acceptedAnswer":{"@type":"Answer","text":"Yes. Combining and appending stacks rows from multiple files with the same structure. Merging by a column joins two files horizontally — like VLOOKUP — pulling columns from a second file to match rows in the first."}}
+  ]}
+  </script>
+
+  <link rel="stylesheet" href="../styles.css" />
+  <style>
+    .article{max-width:720px;margin:0 auto;padding:54px 22px}
+    .article h1{font-size:32px;margin-bottom:8px}.article .meta{color:var(--text-faint);margin-bottom:26px}
+    .article h2{font-size:23px;margin-top:34px}.article p,.article li{font-size:17px;color:#2b3138}
+    .article ol,.article ul{padding-left:22px}
+    .callout{background:var(--accent-soft);border:1px solid var(--border);border-left:4px solid var(--accent);border-radius:10px;padding:16px 18px;margin:26px 0}
+    .cta-box{text-align:center;margin:40px 0}
+  </style>
+</head>
+<body>
+  <header class="nav"><div class="wrap nav-inner">
+    <a class="logo" href="/">Kra<span>mata</span></a>
+    <nav><a href="/#download" class="btn btn-sm">Download free</a></nav>
+  </div></header>
+
+  <article class="article">
+    <h1>How to Combine and Append CSV Files Without Losing Data</h1>
+    <div class="meta">Stack multiple files into one — without scrambled headers, dropped rows, or silent inconsistencies.</div>
+
+    <p>
+      You have ten monthly exports, each as its own CSV. You need them in a single file. The obvious
+      move is to copy the rows from each one and paste them below the last. It works — until it
+      doesn't: a header row slips in the middle of your data, one file has an extra space in a column
+      name so two columns that should be one end up separate, and by the end you're not sure whether
+      all 47,000 rows actually made it.
+    </p>
+    <p>
+      <strong>Combining without losing data</strong> is harder than it sounds when you're doing it by hand.
+    </p>
+
+    <h2>What goes wrong when you append files manually</h2>
+    <ul>
+      <li><strong>Header rows land in the middle of your data</strong> if you forget to skip them in files 2 through 10.</li>
+      <li><strong>Column names drift.</strong> One file has "First Name", another "firstname", another "first_name" — and they stack into three separate columns instead of one.</li>
+      <li><strong>Date formats differ across months.</strong> Stacking them raw means mixed formats in a single column: some rows read correctly, others don't.</li>
+      <li><strong>Row counts are hard to verify.</strong> You spot-check the total and hope.</li>
+    </ul>
+
+    <h2>The safer approach: clean first, then combine</h2>
+    <p>
+      The key insight is that appending and cleaning are two separate problems — but they're easiest
+      to solve in a single pass. If you standardize column names, normalize date formats, and remove
+      duplicate rows <em>before</em> combining, the merged result is consistent by construction.
+    </p>
+    <ol>
+      <li>Put all the files you want to combine in one folder.</li>
+      <li>Build a cleaning recipe on one sample file: normalize column names, standardize dates, dedupe.</li>
+      <li>Run that recipe across the folder in batch mode.</li>
+      <li>Choose <strong>merge into one file</strong> as the output — instead of one cleaned file per input.</li>
+      <li>The result is a single file where every row passed through the same cleanup before being combined.</li>
+    </ol>
+
+    <div class="callout">
+      Next month: drop the new files into the folder and run the same recipe. Identical logic,
+      identical output structure — no rebuilding from scratch.
+    </div>
+
+    <h2>Do it with Kramata</h2>
+    <p>
+      <a href="/">Kramata</a> is a free desktop app that handles exactly this. Batch mode points at a
+      folder, applies your recipe to every file, and lets you choose: one cleaned file each, or all
+      merged into one. Your files never leave your computer.
+    </p>
+    <ul>
+      <li><strong>Row integrity:</strong> no manual copy-paste, no missed rows, no rogue header lines.</li>
+      <li><strong>Consistent cleanup:</strong> every file gets the same header normalization and date fixes before combining.</li>
+      <li><strong>Reproducible:</strong> save the recipe, re-run it next month in one click.</li>
+      <li><strong>Big folders, big files:</strong> powered by an in-process database, not formulas.</li>
+    </ul>
+    <p>
+      Single-file cleaning and saving recipes is free. Batch processing across a folder is part of
+      <a href="/#pricing">Kramata Pro</a>.
+    </p>
+
+    <div class="cta-box">
+      <a class="btn btn-lg btn-primary" href="/#download">Download Kramata free for Windows</a>
+    </div>
+
+    <h2>Related guides</h2>
+    <p>
+      <a href="/blog/merge-multiple-csv-files-into-one">How to merge multiple CSV files into one</a> ·
+      <a href="/blog/merge-csv-files-by-column">Merge CSV files by a common column</a> ·
+      <a href="/blog/merge-two-spreadsheets-vlookup-alternative">Merge two spreadsheets without VLOOKUP</a> ·
+      <a href="/blog/batch-process-csv-excel-files">Batch process hundreds of files</a>
+    </p>
+
+    <h2>FAQ</h2>
+    <p><strong>Do all files need to have the same columns?</strong> Ideally yes — matching columns stack cleanly. If some files have extra or missing columns, Kramata fills the gaps with blanks so the shape stays consistent.</p>
+    <p><strong>What if file sizes are large?</strong> Kramata uses an in-process database (DuckDB) rather than formula-based processing, so large files load and combine without the slowdown you would see in Excel.</p>
+    <p><strong>Can I mix CSV and Excel files?</strong> Yes — Kramata reads both formats and combines them into a single output file.</p>
+    <p><strong>How do I verify nothing was lost?</strong> The recipe is deterministic — same inputs, same recipe, identical output every time. Running it again produces the same result, which is its own verification. Row counts are visible before export.</p>
+    <p><strong>Is this different from merging files by a common column?</strong> Yes. Combining and appending stacks rows from multiple files with the same structure. Merging by a column <a href="/blog/merge-csv-files-by-column">joins two files horizontally</a> — like VLOOKUP — pulling columns from a second file to match rows in the first.</p>
+  </article>
+
+  <footer><div class="wrap foot">
+    <a class="logo" href="/">Kra<span>mata</span></a>
+    <div class="links"><a href="/">Home</a><a href="/blog/">Blog</a><a href="/#download">Download</a></div>
+    <div class="copy">© 2026 Kramata</div>
+  </div></footer>
+</body>
+</html>
