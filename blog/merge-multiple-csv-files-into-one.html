@@ -14,21 +14,37 @@
     gtag('config', 'AW-832148034');
     gtag('config', 'G-V3P8HEN7CB');
   </script>
-  <title>How to Merge Multiple CSV Files Into One (No Code)</title>
-  <meta name="description" content="Combine a whole folder of CSV or Excel files into one clean file — without code or copy-paste — and clean them all the same way in the same pass." />
+  <title>How to Merge Multiple CSV Files Into One — 3 Methods Compared</title>
+  <meta name="description" content="Three ways to merge multiple CSV files into one: the Windows CMD copy command (fast but raw), Excel Power Query (powerful but technical), and a repeatable no-code method that cleans every file in the same pass." />
   <link rel="canonical" href="https://kramata.com/blog/merge-multiple-csv-files-into-one" />
   <meta property="og:type" content="article" />
-  <meta property="og:title" content="How to Merge Multiple CSV Files Into One (No Code)" />
-  <meta property="og:description" content="Combine a folder of CSV/Excel files into one clean file — no code, no copy-paste — and clean them all in the same pass." />
+  <meta property="og:title" content="How to Merge Multiple CSV Files Into One — 3 Methods Compared" />
+  <meta property="og:description" content="Windows CMD copy, Excel Power Query, and a repeatable no-code method — compared honestly, with the catches the other guides bury." />
   <meta property="og:image" content="https://kramata.com/assets/og-image.png" />
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"Article","headline":"How to Merge Multiple CSV Files Into One (No Code)","publisher":{"@type":"Organization","name":"Kramata"}}
+  {"@context":"https://schema.org","@type":"Article","headline":"How to Merge Multiple CSV Files Into One — 3 Methods Compared","publisher":{"@type":"Organization","name":"Kramata"},"url":"https://kramata.com/blog/merge-multiple-csv-files-into-one"}
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Kramata",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Windows",
+    "description": "Merge multiple CSV or Excel files into one clean file in one click. Build a cleaning recipe once — dedupe, fix dates, normalize headers — then re-run on any new batch of files. Fully local, no code, no cloud.",
+    "downloadUrl": "https://apps.microsoft.com/detail/9PH81XKFZ77D",
+    "installUrl": "https://apps.microsoft.com/detail/9PH81XKFZ77D",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
   </script>
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
-    {"@type":"Question","name":"Do the files need identical columns?","acceptedAnswer":{"@type":"Answer","text":"Same columns stack cleanly. Matching headers first (trim, fix case) keeps the merge tidy."}},
-    {"@type":"Question","name":"CSV and Excel mixed?","acceptedAnswer":{"@type":"Answer","text":"Yes — Kramata reads both and combines them."}},
-    {"@type":"Question","name":"Is it reproducible next month?","acceptedAnswer":{"@type":"Answer","text":"Yes — drop the new files in the folder and re-run the same recipe."}}
+    {"@type":"Question","name":"What is the quickest way to merge CSV files on Windows?","acceptedAnswer":{"@type":"Answer","text":"The Windows CMD command `copy *.csv combined.csv` combines all CSV files in a folder into one in seconds. The catch: it stacks files exactly as-is, so every file's header row repeats in the middle of your data and there is no cleanup. It works for a quick one-off when files are already clean and have identical columns."}},
+    {"@type":"Question","name":"Can Excel Power Query merge multiple CSV files?","acceptedAnswer":{"@type":"Answer","text":"Yes — Power Query's Get Data › From Folder can combine a folder of CSV files into one table inside a workbook. The limitations: it loads everything into Excel (so you're capped at ~1 million rows), it can't output the result back as clean separate files, and the Query Editor has a learning curve for non-technical users."}},
+    {"@type":"Question","name":"Do the files need identical columns?","acceptedAnswer":{"@type":"Answer","text":"For CMD copy, yes — mismatched columns just stack into the wrong places with no warning. For Power Query and Kramata, mismatched headers are surfaced and can be resolved before combining."}},
+    {"@type":"Question","name":"What if the files are too large to open in Excel?","acceptedAnswer":{"@type":"Answer","text":"Excel has a hard limit of around 1,048,576 rows. CMD copy has no row limit but produces a raw, uncleaned result. Kramata processes files through an in-process database (DuckDB) with no row-count ceiling — large files load and combine without the memory pressure that crashes Excel."}},
+    {"@type":"Question","name":"Can I mix CSV and Excel files?","acceptedAnswer":{"@type":"Answer","text":"CMD copy only handles CSV (it concatenates raw text). Power Query and Kramata can read both formats and combine them."}},
+    {"@type":"Question","name":"Is it reproducible next month?","acceptedAnswer":{"@type":"Answer","text":"CMD copy is not reproducible — you re-run the command manually with no memory of what cleanup was applied. Power Query saves the query inside the workbook, but sharing it with a colleague is awkward. Kramata saves a portable recipe file you can re-run in one click or share with anyone."}}
   ]}
   </script>
   <link rel="stylesheet" href="../styles.css" />
@@ -39,6 +55,7 @@
     .article ol,.article ul{padding-left:22px}
     .callout{background:var(--accent-soft);border:1px solid var(--border);border-left:4px solid var(--accent);border-radius:10px;padding:16px 18px;margin:26px 0}
     .cta-box{text-align:center;margin:40px 0}
+    .warn{background:#fff8f0;border:1px solid #f3d08a;border-left:4px solid #e59300;border-radius:10px;padding:16px 18px;margin:26px 0}
   </style>
 </head>
 <body>
@@ -49,63 +66,128 @@
 
   <article class="article">
     <h1>How to Merge Multiple CSV Files Into One</h1>
-    <div class="meta">Combine a folder of files into one clean file — no code, no copy-paste marathon.</div>
+    <div class="meta">Three methods compared — Windows CMD, Excel Power Query, and a repeatable no-code way.</div>
 
     <p>
-      Twelve monthly exports. Or one CSV per store, per region, per client. Each file has the same
-      columns, and you need them stacked into a single file you can actually work with. Opening twelve
-      files and copy-pasting them one under another is slow, and you'll redo it next month.
+      Twelve monthly exports. One CSV per store, per region, per client. Each file has the same
+      columns and you need them stacked into a single file you can actually work with. There are
+      three common ways to do this on Windows — each with genuine uses and genuine catches.
     </p>
-    <p>
-      There's a cleaner way to <strong>merge multiple CSV files into one</strong> — and clean them all
-      the same way in the same pass.
-    </p>
-
-    <h2>Why copy-paste (and most scripts) let you down</h2>
-    <ul>
-      <li><strong>Copy-paste is slow and risky.</strong> Miss a header row, paste into the wrong spot, and the whole file is off by one.</li>
-      <li><strong>Files drift.</strong> One export has an extra space in a header, another has a different date format — and your stacked file is quietly inconsistent.</li>
-      <li><strong>A Python script works once.</strong> Then a column moves, the path changes, and the non-coder on the team is stuck.</li>
-    </ul>
 
     <h2>Two kinds of "merge" — know which you need</h2>
     <p>
-      <strong>Stacking (append):</strong> same columns, more rows — twelve months into one year. That's
-      what this guide covers.
+      <strong>Stacking (append):</strong> same columns, more rows — twelve months into one year.
+      That's what this guide covers.
     </p>
     <p>
-      <strong>Joining (by a key):</strong> pulling columns from a second file by matching an ID — the
-      VLOOKUP job. That's a different step;
-      see <a href="/blog/merge-two-spreadsheets-vlookup-alternative">merge two spreadsheets without VLOOKUP</a>.
+      <strong>Joining (by a key):</strong> pulling columns from a second file by matching an ID —
+      the VLOOKUP job. That's a different operation;
+      see <a href="/blog/merge-csv-files-by-column">merge CSV files by a common column</a> or
+      <a href="/blog/merge-two-spreadsheets-vlookup-alternative">merge two spreadsheets without VLOOKUP</a>.
     </p>
 
-    <h2>The repeatable way, step by step</h2>
+    <h2>Method 1 — Windows CMD: <code>copy *.csv combined.csv</code></h2>
+    <p>
+      Open Command Prompt, navigate to the folder containing your files, and run:
+    </p>
+    <pre style="background:#f6f8fa;border:1px solid #e1e4e8;border-radius:8px;padding:14px 16px;font-size:15px;overflow-x:auto"><code>copy *.csv combined.csv</code></pre>
+    <p>
+      That's it. Windows concatenates every <code>.csv</code> file in the folder into one file.
+      It takes seconds regardless of how many files you have.
+    </p>
+
+    <div class="warn">
+      <strong>The catches most guides bury:</strong>
+      <ul style="margin:10px 0 0">
+        <li><strong>Every header row repeats.</strong> File 2's header lands as a data row in the middle of your output. You get twelve header rows scattered through the combined file.</li>
+        <li><strong>Columns must already match exactly.</strong> One file with "first_name" and another with "First Name" stack into misaligned columns — silently, with no error.</li>
+        <li><strong>No cleanup, no dedupe.</strong> Whatever inconsistencies are in the source files are stacked directly into the output.</li>
+        <li><strong>Order depends on filename alphabetical sort.</strong> Not always what you want.</li>
+      </ul>
+      <p style="margin:10px 0 0"><strong>Best for:</strong> a quick one-off when your files are already clean, already have identical headers, and you're going to clean the result manually anyway.</p>
+    </div>
+
+    <h2>Method 2 — Excel Power Query: Combine Files</h2>
+    <p>
+      Power Query is the right tool for this inside Excel. Open a blank workbook and go to
+      <strong>Data › Get Data › From File › From Folder</strong>. Select your folder, and Power
+      Query will show you all the files it finds. Click <strong>Combine &amp; Transform</strong>
+      to merge them into one table.
+    </p>
     <ol>
-      <li>Put all the files you want to combine in one folder.</li>
-      <li>Build a cleaning recipe on a single sample file (trim, fix dates, dedupe — whatever they all need).</li>
-      <li>Run the recipe in <strong>batch</strong> mode across the folder.</li>
-      <li>Choose <strong>merge into one file</strong> as the output (instead of one cleaned file each).</li>
-      <li>Export the single combined, cleaned file.</li>
+      <li>Data › Get Data › From File › From Folder.</li>
+      <li>Select the folder containing your CSVs.</li>
+      <li>Click <strong>Combine &amp; Load</strong> (for a quick merge) or <strong>Combine &amp; Transform</strong> (to apply cleaning steps first).</li>
+      <li>Power Query adds a "Source.Name" column so you know which file each row came from.</li>
+      <li>Load the result into a sheet or directly to a table.</li>
+    </ol>
+    <p>
+      Power Query handles mismatched headers better than CMD, and it saves the query so you can
+      refresh it when new files arrive. It's genuinely the right answer if you're already living
+      in Excel.
+    </p>
+
+    <div class="warn">
+      <strong>Where Power Query hits its wall:</strong>
+      <ul style="margin:10px 0 0">
+        <li><strong>Excel's row limit is ~1,048,576.</strong> If your combined files exceed that, Power Query can't load the result.</li>
+        <li><strong>It lives inside a workbook.</strong> The merged table lands in Excel — you can't get thirty clean files back out without scripting.</li>
+        <li><strong>The Query Editor has a learning curve.</strong> The friendly buttons cover the basics; anything custom leaks into M code fast.</li>
+        <li><strong>Sharing is awkward.</strong> A colleague needs the same workbook and a path that resolves the same way on their machine.</li>
+      </ul>
+      <p style="margin:10px 0 0"><strong>Best for:</strong> analysts who work in Excel and need a refreshable merged table inside a workbook. For depth on the Power Query approach, see <a href="/blog/power-query-alternative">Power Query vs the alternatives</a>.</p>
+    </div>
+
+    <h2>Method 3 — The repeatable way: clean first, then combine</h2>
+    <p>
+      The problem CMD and Power Query share is that they stack first and leave cleaning for later
+      — or skip it entirely. The files drift: one export has "First Name", another "first_name",
+      a third has an extra space. Stack them raw and the inconsistency is baked in.
+    </p>
+    <p>
+      The cleaner approach runs cleanup on each file <em>before</em> combining:
+    </p>
+    <ol>
+      <li>Put all the files in one folder.</li>
+      <li>Build a cleaning recipe on a single sample file — normalize headers, fix dates, dedupe, whatever they all need.</li>
+      <li>Run that recipe across the folder in batch mode.</li>
+      <li>Choose <strong>merge into one file</strong> as the output.</li>
+      <li>The result is one file where every row passed through the same cleanup before being combined.</li>
     </ol>
 
     <div class="callout">
-      The win isn't just stacking — it's that every file gets the <em>same</em> cleanup before it's
-      combined, so the merged result is consistent instead of a patchwork.
+      Next month: drop the new files into the folder and run the same recipe. Identical logic,
+      identical output structure — no rebuilding from scratch, no repeated header rows.
     </div>
+
+    <h2>What about files too large for Excel?</h2>
+    <p>
+      CMD has no row limit — it concatenates raw text regardless of size. But the result is
+      uncleaned and the header-row problem gets worse with large files. Power Query caps at Excel's
+      ~1M row ceiling, which many combined datasets exceed.
+    </p>
+    <p>
+      This is where the in-process database approach wins: Kramata processes files through
+      <strong>DuckDB</strong> (a columnar query engine) rather than loading everything into memory
+      the way Excel does. There's no row-count ceiling. A folder of files that would crash Excel
+      loads and combines smoothly — with the same cleanup applied to every row.
+    </p>
 
     <h2>Do it with Kramata</h2>
     <p>
-      <a href="/">Kramata</a> is a free desktop app for repeatable spreadsheet cleanup. Build the recipe
-      once on a sample, then point batch processing at the whole folder and choose
-      <strong>merge into one</strong>. No code, no copy-paste, and your files never leave your computer.
+      <a href="/">Kramata</a> is a free desktop app for repeatable spreadsheet cleanup. Build the
+      recipe once on a sample, point batch processing at the whole folder, and choose
+      <strong>merge into one</strong>. No code, no repeated header rows, and your files never leave
+      your computer.
     </p>
     <ul>
-      <li><strong>Same cleanup for every file</strong> — consistency by default.</li>
+      <li><strong>Same cleanup for every file</strong> — consistency by default, not by luck.</li>
       <li><strong>Separate outputs or merged</strong> — one cleaned file each, or all combined into one.</li>
-      <li><strong>Big folders, big files</strong> — powered by an in-process database, not formulas.</li>
+      <li><strong>No row-count ceiling</strong> — powered by DuckDB, not Excel formulas.</li>
+      <li><strong>Portable recipe</strong> — a <code>.json</code> file you send a colleague; they apply it in one click.</li>
     </ul>
     <p>
-      Cleaning a single file and saving recipes is free. Batch processing across a folder is part of
+      Single-file cleaning and saving recipes is free. Batch processing across a folder is part of
       <a href="/#pricing">Kramata Pro</a>.
     </p>
 
@@ -118,14 +200,17 @@
       <a href="/blog/combine-append-csv-files">Combine and append CSV files without losing data</a> ·
       <a href="/blog/merge-csv-files-by-column">Merge CSV files by a common column</a> ·
       <a href="/blog/merge-two-spreadsheets-vlookup-alternative">Merge two spreadsheets without VLOOKUP</a> ·
-      <a href="/blog/clean-messy-csv-reproducibly">Clean a messy CSV the same way every time</a> ·
+      <a href="/blog/power-query-alternative">Power Query vs the alternatives</a> ·
       <a href="/blog/batch-process-csv-excel-files">Batch process hundreds of files</a>
     </p>
 
     <h2>FAQ</h2>
-    <p><strong>Do the files need identical columns?</strong> Same columns stack cleanly. Matching headers first (trim, fix case) keeps the merge tidy.</p>
-    <p><strong>CSV and Excel mixed?</strong> Yes — Kramata reads both and combines them.</p>
-    <p><strong>Is it reproducible next month?</strong> Yes — drop the new files in the folder and re-run the same recipe.</p>
+    <p><strong>What is the quickest way to merge CSV files on Windows?</strong> The CMD command <code>copy *.csv combined.csv</code> combines all CSV files in a folder into one in seconds. The catch: every file's header row repeats in the output and there is no cleanup. Works for a quick one-off when files are already clean and columns are identical.</p>
+    <p><strong>Can Excel Power Query merge multiple CSV files?</strong> Yes — Get Data › From Folder does exactly this. The limitations: you're capped at ~1 million rows (Excel's row limit), the result lands inside a workbook (you can't get separate cleaned files back out), and the Query Editor has a learning curve.</p>
+    <p><strong>Do the files need identical columns?</strong> For CMD, yes — mismatched columns stack silently into the wrong places. For Power Query and Kramata, mismatched headers are surfaced and can be resolved before combining.</p>
+    <p><strong>What if the files are too large to open in Excel?</strong> Excel caps at ~1,048,576 rows. CMD has no limit but produces a raw result. Kramata processes through DuckDB with no row-count ceiling — large files combine without the memory pressure that crashes Excel.</p>
+    <p><strong>Can I mix CSV and Excel files?</strong> CMD only handles CSV (it concatenates raw text). Power Query and Kramata both read CSV and Excel and can combine them.</p>
+    <p><strong>Is it reproducible next month?</strong> CMD is not — you re-run it manually each time with no saved cleanup. Power Query saves the query inside the workbook but sharing it is awkward. Kramata saves a portable recipe file you re-run in one click or share with anyone.</p>
   </article>
 
   <footer><div class="wrap foot">
