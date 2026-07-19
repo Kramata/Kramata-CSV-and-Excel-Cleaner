@@ -29,7 +29,9 @@
     {"@type":"Question","name":"How do I stop rebuilding the same report every month?","acceptedAnswer":{"@type":"Answer","text":"Build the cleanup and layout once as a reusable recipe. Each month, open the new export, apply the recipe, and the finished report comes out the other side — no rebuilding from scratch."}},
     {"@type":"Question","name":"What if the new file has the same columns but new rows?","acceptedAnswer":{"@type":"Answer","text":"That's the ideal case. The recipe references columns by name, so it just processes the new rows and produces the same report layout every time."}},
     {"@type":"Question","name":"Can I combine several monthly files into one?","acceptedAnswer":{"@type":"Answer","text":"Yes. Run the recipe in batch across a folder and choose to merge the cleaned files into one combined report — for example twelve months into a single year-to-date file."}},
-    {"@type":"Question","name":"Do I need any code or VBA?","acceptedAnswer":{"@type":"Answer","text":"No. Every step is plain language. Your files stay on your computer."}}
+    {"@type":"Question","name":"Do I need any code or VBA?","acceptedAnswer":{"@type":"Answer","text":"No. Every step is plain language. Your files stay on your computer."}},
+    {"@type":"Question","name":"Isn't a VBA macro or Python script better for this?","acceptedAnswer":{"@type":"Answer","text":"If you're comfortable writing and maintaining code, they're more flexible. A recipe gets you the same repeatability without code — and anyone on the team can read what it does, so the report doesn't depend on one person's script."}},
+    {"@type":"Question","name":"Will it understand my files?","acceptedAnswer":{"@type":"Answer","text":"You build the recipe on your own file, watching a live preview, so every step refers to your real column names. Nothing is guessed — and you see the result of each step before you commit it."}}
   ]}
   </script>
   <link rel="stylesheet" href="../styles.css" />
@@ -72,6 +74,26 @@
       <li>One slip (a missed dedupe, a date read day-first instead of month-first) and the numbers are quietly wrong.</li>
       <li>When you're on leave, nobody else knows the twelve little steps in your head.</li>
     </ul>
+
+    <h2>What people usually try first</h2>
+    <ul>
+      <li><strong>A VBA macro.</strong> Works — if someone writes it and keeps maintaining it. In
+        practice the macro breaks the day the export changes shape, the person who wrote it has moved
+        on, and nobody else can read it. Plus every open starts with a security warning.</li>
+      <li><strong>A Python script.</strong> Genuinely the right answer if you're comfortable writing
+        and maintaining code. Most people who own a monthly report aren't — and the script ends up
+        living on one person's machine, which is the same single-point-of-failure problem in a
+        different language.</li>
+      <li><strong>Power Query.</strong> Solid, and built into Excel. But the query lives inside one
+        workbook, and applied steps have a habit of breaking confusingly when columns are renamed.
+        <a href="/blog/power-query-alternative">More on that comparison here</a>.</li>
+    </ul>
+    <p>
+      The common objection to any tool here is: <em>"but will it understand my files?"</em> Fair.
+      That's why the recipe approach starts from <strong>your actual file</strong> — you build the
+      steps on this month's export, watching a live preview, so every step refers to your real column
+      names and your real mess. Nothing is guessed.
+    </p>
 
     <h2>Build the report logic once</h2>
     <p>
@@ -124,6 +146,8 @@
     <p><strong>What if the new file has the same columns but new rows?</strong> That's the ideal case. The recipe references columns by name, so it just processes the new rows and produces the same report layout every time.</p>
     <p><strong>Can I combine several monthly files into one?</strong> Yes. Run the recipe in batch across a folder and choose to merge the cleaned files into one combined report — e.g. twelve months into one year-to-date file.</p>
     <p><strong>Do I need any code or VBA?</strong> No. Every step is plain language. Your files stay on your computer.</p>
+    <p><strong>Isn't a VBA macro or Python script better for this?</strong> If you're comfortable writing and maintaining code, they're more flexible. A recipe gets you the same repeatability without code — and anyone on the team can read what it does, so the report doesn't depend on one person's script.</p>
+    <p><strong>Will it understand my files?</strong> You build the recipe on your own file, watching a live preview, so every step refers to your real column names. Nothing is guessed — and you see the result of each step before you commit it.</p>
   </article>
 
   <footer><div class="wrap foot">

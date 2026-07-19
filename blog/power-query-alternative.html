@@ -46,6 +46,15 @@
   <script type="application/ld+json">
   {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://kramata.com/"}, {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://kramata.com/blog/"}, {"@type": "ListItem", "position": 3, "name": "A Simple Power Query Alternative for Non-Technical Analysts", "item": "https://kramata.com/blog/power-query-alternative"}]}
   </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"ItemList","name":"Power Query alternatives","itemListElement":[
+    {"@type":"ListItem","position":1,"name":"Kramata","url":"https://kramata.com/"},
+    {"@type":"ListItem","position":2,"name":"Easy Data Transform","url":"https://kramata.com/blog/kramata-vs-easy-data-transform"},
+    {"@type":"ListItem","position":3,"name":"OpenRefine","url":"https://kramata.com/blog/kramata-vs-openrefine"},
+    {"@type":"ListItem","position":4,"name":"KNIME","url":"https://www.knime.com/"},
+    {"@type":"ListItem","position":5,"name":"csvkit","url":"https://csvkit.readthedocs.io/"}
+  ]}
+  </script>
 </head>
 <body>
   <header class="nav"><div class="wrap nav-inner">
@@ -136,6 +145,28 @@
 
     <p class="meta">Not a replacement for everything Power Query does — but if your job is cleaning
       recurring files the same way every time, it's faster to learn and easier to trust.</p>
+
+    <h2>Other Power Query alternatives worth knowing</h2>
+    <p>Kramata isn't the only option. Depending on what you need, honestly consider:</p>
+    <ul>
+      <li><strong>Easy Data Transform</strong> — paid, Windows &amp; Mac. A visual node-graph with
+        many transforms and formats; more flexible, steeper learning curve.
+        <a href="/blog/kramata-vs-easy-data-transform">Our comparison</a>.</li>
+      <li><strong>OpenRefine</strong> — free, open source, cross-platform. The power tool for one-off
+        deep cleans: fuzzy clustering of near-duplicate values, reconciliation against Wikidata.
+        Runs as a local server in your browser.
+        <a href="/blog/kramata-vs-openrefine">Our comparison</a>.</li>
+      <li><strong>KNIME</strong> — free, open source, cross-platform. A full visual analytics platform;
+        far more than data cleaning, and sized accordingly. Right if you're heading toward data
+        science, heavy if you just need clean spreadsheets.</li>
+      <li><strong>csvkit</strong> — free, open source command-line tools for CSV (join, stack,
+        convert). Great if you live in a terminal; not for non-technical users.</li>
+    </ul>
+    <p>
+      Kramata's spot in that lineup: the one built specifically for <strong>non-technical users with
+      recurring files</strong> — plain-language steps, live preview, batch a folder, and flagged rows
+      instead of silent changes.
+    </p>
 
     <h2>Related guides</h2>
     <p>
