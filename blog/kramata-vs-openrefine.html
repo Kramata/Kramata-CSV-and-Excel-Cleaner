@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-832148034"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'AW-832148034');
+    gtag('config', 'G-V3P8HEN7CB');
+  </script>
+  <title>Kramata vs OpenRefine — Which Fits You?</title>
+  <meta name="description" content="An honest comparison of Kramata and OpenRefine: both free, both local. OpenRefine is a power tool for deep one-off cleanups; Kramata is built for recurring files and non-technical users." />
+  <link rel="canonical" href="https://kramata.com/blog/kramata-vs-openrefine" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Kramata vs OpenRefine — Which Data Cleaning Tool Fits You?" />
+  <meta property="og:description" content="Both free, both local. OpenRefine is a power tool for deep one-off cleanups; Kramata is built for recurring files and non-technical users." />
+  <meta property="og:image" content="https://kramata.com/assets/og-image.png" />
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Article","headline":"Kramata vs OpenRefine — Which Data Cleaning Tool Fits You?","publisher":{"@type":"Organization","name":"Kramata"}}
+  </script>
+  <script type="application/ld+json">
+  {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://kramata.com/"}, {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://kramata.com/blog/"}, {"@type": "ListItem", "position": 3, "name": "Kramata vs OpenRefine", "item": "https://kramata.com/blog/kramata-vs-openrefine"}]}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+    {"@type":"Question","name":"Is OpenRefine free?","acceptedAnswer":{"@type":"Answer","text":"Yes — OpenRefine is fully free and open source. Kramata is also free for single files; batch processing is a one-time $29."}},
+    {"@type":"Question","name":"Can OpenRefine repeat cleaning steps like a recipe?","acceptedAnswer":{"@type":"Answer","text":"Yes. You can extract a project's operation history as JSON and apply it to another project. It works, but it's a manual extract-and-paste flow and it's sensitive to column names. Kramata makes the recipe the whole product: save once, then open next month's file and apply it in one click."}},
+    {"@type":"Question","name":"Which handles bigger files?","acceptedAnswer":{"@type":"Answer","text":"OpenRefine loads projects into Java memory (2 GB by default) — big files need the memory setting raised and can get slow. Kramata uses DuckDB, an in-process analytical database, so large CSVs load and scroll smoothly without tuning."}},
+    {"@type":"Question","name":"Does either tool upload my data?","acceptedAnswer":{"@type":"Answer","text":"No. Both run entirely on your computer. OpenRefine runs a local server you use from your browser; Kramata is a normal desktop app. Nothing leaves your machine with either."}}
+  ]}
+  </script>
+  <link rel="stylesheet" href="../styles.css" />
+  <style>
+    .article{max-width:720px;margin:0 auto;padding:54px 22px}
+    .article h1{font-size:32px;margin-bottom:8px}.article .meta{color:var(--text-faint);margin-bottom:26px}
+    .article h2{font-size:23px;margin-top:34px}.article p,.article li{font-size:17px;color:#2b3138}
+    .article ul{padding-left:22px}
+    table.cmp{width:100%;border-collapse:collapse;margin:22px 0;font-size:15px}
+    table.cmp th,table.cmp td{border:1px solid var(--border);padding:9px 12px;text-align:left}
+    table.cmp th{background:var(--bg-2)}
+    .cta-box{text-align:center;margin:40px 0}
+  </style>
+</head>
+<body>
+  <header class="nav"><div class="wrap nav-inner">
+    <a class="logo" href="/">Kra<span>mata</span></a>
+    <nav><a href="/#download" class="btn btn-sm">Download free</a></nav>
+  </div></header>
+
+  <article class="article">
+    <h1>Kramata vs OpenRefine</h1>
+    <div class="meta">A power tool for one-off deep cleans vs a simple tool for recurring files.</div>
+
+    <p>
+      OpenRefine (formerly Google Refine) is one of the most respected data cleaning tools ever made —
+      free, open source, and trusted by librarians, journalists, and researchers for over a decade.
+      Like Kramata, it runs entirely on your computer. If you're deciding between the two, here's an
+      honest breakdown: they're built for genuinely different jobs.
+    </p>
+
+    <h2>The short version</h2>
+    <ul>
+      <li><strong>OpenRefine</strong> is a deep-cleaning power tool for <em>exploring and fixing one
+        dataset</em>: faceting, fuzzy clustering of near-duplicate values, reconciliation against
+        external databases like Wikidata, and an optional expression language (GREL). It runs as a
+        local server you use from your browser, and it expects some technical comfort.</li>
+      <li><strong>Kramata</strong> is built for the <em>recurring export ritual</em>: the same messy
+        CSV or Excel file arrives every week, and you want it cleaned the same way in one click.
+        Plain-language steps, live preview, built-in folder batching. Free for single files; batch
+        is a one-time $29.</li>
+    </ul>
+
+    <h2>Side by side</h2>
+    <table class="cmp">
+      <thead><tr><th></th><th>OpenRefine</th><th>Kramata</th></tr></thead>
+      <tbody>
+        <tr><td>Price</td><td>Free, open source</td><td>Free; Pro $29 one-time (batch)</td></tr>
+        <tr><td>Runs fully local, nothing uploaded</td><td>Yes (local server + browser)</td><td>Yes (desktop app)</td></tr>
+        <tr><td>Interface</td><td>Browser tab: facets, menus, expressions</td><td>Linear recipe (list of steps, live preview)</td></tr>
+        <tr><td>Fuzzy clustering of similar values ("NYC" / "New York")</td><td>Yes — a standout feature</td><td>No — exact matching after trim &amp; fix-case</td></tr>
+        <tr><td>Reconcile against Wikidata &amp; other services</td><td>Yes</td><td>No</td></tr>
+        <tr><td>Repeatable steps</td><td>Operation history, exportable as JSON</td><td>Recipe file, re-applied in one click</td></tr>
+        <tr><td>Batch a folder of files</td><td>Not built in (third-party command-line scripts)</td><td>Built in — separate cleaned files or one merged file</td></tr>
+        <tr><td>Big CSVs</td><td>Java memory (2&nbsp;GB default, adjustable)</td><td>In-process database (DuckDB)</td></tr>
+        <tr><td>Invalid values</td><td>Find them yourself with facets</td><td>Flagged to a review list automatically</td></tr>
+        <tr><td>File formats</td><td>Many (CSV, TSV, Excel, JSON, XML, ODS…)</td><td>CSV &amp; Excel</td></tr>
+        <tr><td>Expression language</td><td>GREL (optional, needed for custom work)</td><td>None — every step is plain language</td></tr>
+        <tr><td>Platforms</td><td>Windows, Mac &amp; Linux</td><td>Windows</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Pick OpenRefine if…</h2>
+    <ul>
+      <li>Your data has <strong>near-duplicate text values</strong> — "IBM", "I.B.M.", "International
+        Business Machines" — that need fuzzy clustering to merge. Nothing else does this as well.</li>
+      <li>You need to <strong>reconcile</strong> names against Wikidata or another external database.</li>
+      <li>It's a <strong>one-off deep clean</strong> of a single dataset, and you want to explore it
+        with facets as you go.</li>
+      <li>You work with JSON, XML, or other formats beyond CSV and Excel — or you're on Mac or Linux.</li>
+    </ul>
+
+    <h2>Pick Kramata if…</h2>
+    <ul>
+      <li>The same file arrives <strong>on a schedule</strong> and you want this month's cleanup to be
+        one click, not a repeat of last month's session.</li>
+      <li>You want <strong>batch processing built in</strong>: point at a folder, get every file back
+        cleaned — or merged into one. In OpenRefine that requires third-party command-line tooling.</li>
+      <li>You'd rather read "Remove duplicates, fix dates, flag bad rows" than learn facets and GREL.</li>
+      <li>You want invalid rows <strong>flagged for review automatically</strong>, not hunted down by hand.</li>
+      <li>You prefer a normal desktop app over a local server running in a browser tab.</li>
+    </ul>
+
+    <div class="cta-box">
+      <a class="btn btn-lg btn-primary" href="/#download">Download Kramata free for Windows</a>
+    </div>
+
+    <p class="meta">OpenRefine is a genuinely great tool and we'd recommend it without hesitation for
+      deep one-off cleanups. Kramata bets on a different job: the file that comes back every week,
+      cleaned by someone who doesn't want to learn a power tool to do it.</p>
+
+    <h2>Related</h2>
+    <p>
+      <a href="/blog/kramata-vs-easy-data-transform">Kramata vs Easy Data Transform</a> ·
+      <a href="/blog/power-query-alternative">A simple Power Query alternative</a> ·
+      <a href="/blog/clean-messy-csv-reproducibly">Clean a messy CSV the same way every time</a> ·
+      <a href="/blog/batch-process-csv-excel-files">Batch process hundreds of CSV &amp; Excel files</a>
+    </p>
+
+    <h2>FAQ</h2>
+    <p><strong>Is OpenRefine free?</strong> Yes — fully free and open source. Kramata is also free for single files; batch processing is a one-time $29.</p>
+    <p><strong>Can OpenRefine repeat cleaning steps like a recipe?</strong> Yes — you can extract a project's operation history as JSON and apply it to another project. It works, but it's a manual extract-and-paste flow and it's sensitive to column names. Kramata makes the recipe the whole product: save once, apply to next month's file in one click.</p>
+    <p><strong>Which handles bigger files?</strong> OpenRefine loads projects into Java memory (2&nbsp;GB by default) — big files need the memory setting raised and can get slow. Kramata uses DuckDB, an in-process analytical database, so large CSVs load and scroll smoothly without tuning.</p>
+    <p><strong>Does either tool upload my data?</strong> No. Both run entirely on your computer — OpenRefine as a local server in your browser, Kramata as a normal desktop app.</p>
+  </article>
+
+  <footer><div class="wrap foot">
+    <a class="logo" href="/">Kra<span>mata</span></a>
+    <div class="links"><a href="/">Home</a><a href="/blog/">Blog</a><a href="/#download">Download</a></div>
+    <div class="copy">© 2026 Kramata</div>
+  </div></footer>
+</body>
+</html>
