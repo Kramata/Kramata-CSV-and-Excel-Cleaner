@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-832148034"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'AW-832148034');
+    gtag('config', 'G-V3P8HEN7CB');
+  </script>
+  <title>What Not to Paste Into ChatGPT or Copilot — A Checklist</title>
+  <meta name="description" content="A practical checklist of what never to paste into ChatGPT, Copilot, or Gemini when handling client data — and what happens to pasted data on each tier." />
+  <link rel="canonical" href="https://kramata.com/blog/what-not-to-paste-into-chatgpt-copilot" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="What Not to Paste Into ChatGPT or Copilot — A Client-Data Checklist" />
+  <meta property="og:description" content="What never to paste into ChatGPT, Copilot, or Gemini when handling client data — and what actually happens to pasted data on each tier." />
+  <meta property="og:image" content="https://kramata.com/assets/og-image.png" />
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Article","headline":"What Not to Paste Into ChatGPT or Copilot: A Checklist for People Who Handle Client Data","datePublished":"2026-07-19","dateModified":"2026-07-19","publisher":{"@type":"Organization","name":"Kramata"}}
+  </script>
+  <script type="application/ld+json">
+  {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://kramata.com/"}, {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://kramata.com/blog/"}, {"@type": "ListItem", "position": 3, "name": "What Not to Paste Into ChatGPT or Copilot", "item": "https://kramata.com/blog/what-not-to-paste-into-chatgpt-copilot"}]}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+    {"@type":"Question","name":"Is it OK if I delete the chat afterwards?","acceptedAnswer":{"@type":"Answer","text":"Deleting a chat does not reliably undo anything. On personal ChatGPT tiers, a conversation may already have been used for training before you delete it. On free Gemini, conversations that human reviewers have looked at are stored separately from your account for up to three years and are not removed when you delete your activity."}},
+    {"@type":"Question","name":"Is the paid version safe for client data?","acceptedAnswer":{"@type":"Answer","text":"Paying does not change the data terms by itself. ChatGPT Plus and Pro are still personal tiers where training is on by default. The tiers with contractual protections are business ones: ChatGPT Team/Enterprise, the API, Microsoft 365 Copilot on a work account, and Gemini for Workspace."}},
+    {"@type":"Question","name":"Does this break GDPR or my client contract?","acceptedAnswer":{"@type":"Answer","text":"Pasting client personal data into a consumer AI tool sends it to a third party without a data processing agreement — which is exactly what most client contracts, NDAs, and data protection laws like GDPR prohibit. Whether it becomes a reportable breach depends on the data and jurisdiction; that it was a disclosure is not really in question. This page is not legal advice."}},
+    {"@type":"Question","name":"What about screenshots of a spreadsheet?","acceptedAnswer":{"@type":"Answer","text":"Same thing. Modern AI tools read text out of images, and an uploaded screenshot is processed and retained under the same terms as pasted text."}},
+    {"@type":"Question","name":"Can I still use AI for spreadsheet work at all?","acceptedAnswer":{"@type":"Answer","text":"Yes — ask the question with the shape of your data instead of the data. Five invented rows with the same columns get you the same formula, query, or steps. And much of what people paste spreadsheets in for — merging, dedupe, date fixes — is deterministic work a local tool can do without any data leaving the machine."}}
+  ]}
+  </script>
+  <link rel="stylesheet" href="../styles.css" />
+  <style>
+    .article{max-width:720px;margin:0 auto;padding:54px 22px}
+    .article h1{font-size:32px;margin-bottom:8px}.article .meta{color:var(--dim);margin-bottom:26px}
+    .article h2{font-size:23px;margin-top:34px}.article h3{font-size:17px;margin-top:22px}
+    .article p,.article li{font-size:17px;color:#2b3138}
+    .article ul,.article ol{padding-left:22px}
+    table.cmp{width:100%;border-collapse:collapse;margin:22px 0;font-size:15px}
+    table.cmp th,table.cmp td{border:1px solid var(--line);padding:9px 12px;text-align:left;vertical-align:top}
+    table.cmp th{background:var(--soft)}
+    .checklist{background:var(--soft);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:10px;padding:18px 22px;margin:26px 0}
+    .checklist h3{margin-top:0}
+    .checklist li{padding:3px 0}
+    .fineline{font-size:14px;color:var(--dim)}
+    .scroll-x{overflow-x:auto}
+  </style>
+</head>
+<body>
+  <header class="nav"><div class="wrap nav-inner">
+    <a class="logo" href="/">Kra<span>mata</span></a>
+    <nav><a href="/blog/" class="btn btn-sm">Blog</a></nav>
+  </div></header>
+
+  <article class="article">
+    <h1>What Not to Paste Into ChatGPT or Copilot: A Checklist for People Who Handle Client Data</h1>
+    <div class="meta">Last reviewed July 2026 · policies change — verify before relying on this</div>
+
+    <p>
+      Somebody on your team pasted a client spreadsheet into ChatGPT this week. Probably to write a
+      formula, summarize it, or "just clean it up." It felt like pasting into any other tool.
+    </p>
+    <p>
+      It isn't. On the personal tiers of the big AI assistants, what you paste can be kept, read by
+      human reviewers, and used to train future models — by default, under the terms everyone clicked
+      through. This page is the checklist we wished existed: what never to paste, what actually
+      happens to pasted data on each tier, and how to still get the AI help without the exposure.
+    </p>
+
+    <h2>The one-sentence rule</h2>
+    <p>
+      <strong>If you couldn't email it to a stranger, don't paste it into a personal-tier AI
+      chat.</strong> Everything below is detail on that sentence.
+    </p>
+
+    <h2>Never paste (the checklist)</h2>
+
+    <div class="checklist">
+      <h3>1. Anything that identifies a client's customers</h3>
+      <ul>
+        <li>Names, emails, phone numbers, home addresses</li>
+        <li>National ID / Social Security / tax numbers</li>
+        <li>Dates of birth, account IDs, policy numbers</li>
+      </ul>
+      <p class="fineline">This is the classic case: a customer export pasted in "to remove duplicates."
+      That's personal data disclosed to a third party — the thing your client contract and GDPR-style
+      laws exist to prevent.</p>
+
+      <h3>2. Financial records</h3>
+      <ul>
+        <li>Bank account or card numbers, even partial</li>
+        <li>Payroll and salary data tied to names</li>
+        <li>A client's revenue, margins, or unpublished financials</li>
+      </ul>
+
+      <h3>3. Credentials and keys</h3>
+      <ul>
+        <li>Passwords, API keys, tokens, connection strings</li>
+        <li>Anything from a <code>.env</code> file or a config with secrets</li>
+      </ul>
+      <p class="fineline">Treat a pasted credential as leaked: rotate it. The chat log now contains it,
+      on someone else's servers, for as long as their retention says.</p>
+
+      <h3>4. Regulated categories</h3>
+      <ul>
+        <li>Health information of any kind</li>
+        <li>Data about minors</li>
+        <li>HR records: disciplinary notes, medical leave, references</li>
+      </ul>
+
+      <h3>5. Confidential business material</h3>
+      <ul>
+        <li>Contracts, and anything covered by an NDA</li>
+        <li>M&amp;A, legal disputes, unreleased plans</li>
+        <li>A client list itself — the names of who you work with</li>
+      </ul>
+    </div>
+
+    <h2>What actually happens to pasted data</h2>
+    <p>
+      The terms differ sharply between the personal tier most people use and the business tiers most
+      people assume they're on. As of July 2026:
+    </p>
+    <div class="scroll-x">
+    <table class="cmp">
+      <thead><tr><th>Tool &amp; tier</th><th>Used to train models?</th><th>Worth knowing</th></tr></thead>
+      <tbody>
+        <tr><td>ChatGPT — Free / Plus / Pro (personal)</td><td><strong>Yes, by default.</strong> Opt-out toggle in Data Controls.</td><td>Giving a thumbs-up/down on a reply can submit that whole conversation for training even if you opted out.</td></tr>
+        <tr><td>ChatGPT — Team / Enterprise / API</td><td>No — excluded contractually (DPA).</td><td>This is the tier your company should be on if AI touches work data.</td></tr>
+        <tr><td>Microsoft 365 Copilot (work account)</td><td>No — prompts and responses stay inside your tenant boundary.</td><td>The strong commitments apply to the <em>work</em> deployment, not the free consumer app.</td></tr>
+        <tr><td>Copilot (free, personal account)</td><td>Not covered by the enterprise commitments.</td><td>No tenant boundary, no DPA. Different product from the work one, same name.</td></tr>
+        <tr><td>Gemini — free (personal)</td><td>Conversations can be reviewed by humans and used to improve models.</td><td>Chats a human reviewer has seen are stored <strong>up to 3 years, separately from your account</strong> — deleting your activity does not remove them.</td></tr>
+        <tr><td>Gemini for Workspace</td><td>No — workspace data excluded.</td><td></td></tr>
+        <tr><td>Claude — Free / Pro / Max (personal)</td><td><strong>Yes unless you opt out</strong> (changed August 2025).</td><td>Opted-in data can be retained up to 5 years; opting out returns you to a 30-day window.</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p class="fineline">
+      Every provider changes these terms periodically — usually in the direction of more data use, announced
+      quietly. Re-check before relying on any row of this table.
+    </p>
+
+    <h2>How to still use AI — safely</h2>
+    <ol>
+      <li><strong>Ask with the shape, not the data.</strong> You almost never need real rows to get a
+        formula or an approach. Five invented rows with your real column names get the same answer:
+        "columns: OrderID, CustomerEmail, Amount, Date — how do I find duplicates by email?"</li>
+      <li><strong>Strip identity before pasting.</strong> If you must use real data, delete or scramble
+        the identifying columns first, and replace names with row numbers. If two columns together
+        identify someone (postcode + birth date), that combination counts too.</li>
+      <li><strong>Get on a business tier.</strong> If your team pastes work data into AI weekly, the
+        fix isn't a policy memo — it's ChatGPT Team/Enterprise, Microsoft 365 Copilot on work
+        accounts, or Gemini for Workspace, where training exclusion is contractual.</li>
+      <li><strong>Turn the toggles off anyway.</strong> On personal tiers: ChatGPT Settings → Data
+        Controls → "Improve the model for everyone" off; the equivalent in Claude and Gemini. Belt and
+        suspenders, not a substitute for the rules above.</li>
+      <li><strong>Keep the mechanical work local.</strong> A lot of spreadsheet pasting isn't really an
+        AI question at all — merging files, removing duplicates, fixing dates. That's deterministic
+        work; nothing about it needs a cloud model. Do it in Excel, a script, or a local tool, and the
+        question of "what happens to the data" never arises.</li>
+    </ol>
+
+    <h2>FAQ</h2>
+    <p><strong>Is it OK if I delete the chat afterwards?</strong> No. On personal ChatGPT tiers the
+      conversation may have been used before you deleted it. On free Gemini, human-reviewed chats are
+      stored separately from your account for up to three years and survive deletion of your activity.</p>
+    <p><strong>Is the paid version safe for client data?</strong> Paying alone changes nothing —
+      ChatGPT Plus/Pro are still personal tiers with training on by default. Contractual protection
+      comes with the business tiers: Team/Enterprise, the API, M365 Copilot on work accounts, Gemini
+      for Workspace.</p>
+    <p><strong>Does this break GDPR or my client contract?</strong> Pasting client personal data into a
+      consumer AI tool discloses it to a third party with no data processing agreement — which is what
+      most client contracts, NDAs, and data protection laws prohibit. Whether it's a reportable breach
+      depends on specifics; that it was a disclosure isn't really in question. (Not legal advice.)</p>
+    <p><strong>What about screenshots?</strong> Same rules. The models read text out of images; an
+      uploaded screenshot is processed and retained like pasted text.</p>
+    <p><strong>Can I still use AI for spreadsheet work at all?</strong> Yes — with the shape-not-data
+      approach above. And for the deterministic part (merge, dedupe, date fixes), use something local.</p>
+
+    <p class="fineline" style="margin-top:34px;border-top:1px solid var(--line);padding-top:18px">
+      This page is maintained by the team behind <a href="/">Kramata</a>, a Windows app that does
+      spreadsheet cleanup — merging, dedupe, date fixes — entirely on your own computer, which is why
+      we ended up reading all these data policies in the first place. The checklist stands on its own;
+      use whatever local tool you like.
+    </p>
+  </article>
+
+  <footer><div class="wrap foot">
+    <a class="logo" href="/">Kra<span>mata</span></a>
+    <div class="links"><a href="/">Home</a><a href="/blog/">Blog</a><a href="/#download">Download</a></div>
+    <div class="copy">© 2026 Kramata</div>
+  </div></footer>
+</body>
+</html>

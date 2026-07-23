@@ -1,6 +1,8 @@
 :root{
   --bg:#0f1216; --bg2:#161b22; --ink:#1f2328; --paper:#ffffff; --soft:#f6f8fa;
   --line:#e1e4e8; --accent:#4f9cf9; --accent2:#3b82e0; --dim:#6b7280; --muted:#9aa3af;
+  /* Aliases used by blog article style blocks (kept so those pages resolve). */
+  --border:#e1e4e8; --bg-2:#f6f8fa; --text-faint:#9aa3af; --accent-soft:rgba(79,156,249,0.12);
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
