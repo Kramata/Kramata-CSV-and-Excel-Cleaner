@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-832148034"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'AW-832148034');
+    gtag('config', 'G-V3P8HEN7CB');
+  </script>
+  <title>Kramata vs Kutools for Excel — Which Fits You?</title>
+  <meta name="description" content="An honest Kramata vs Kutools for Excel comparison: Kutools is a 300+ tool add-in that lives inside Excel; Kramata is a standalone recipe-based cleaner." />
+  <link rel="canonical" href="https://kramata.com/blog/kramata-vs-kutools" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Kramata vs Kutools for Excel — Which Data Cleaning Tool Fits You?" />
+  <meta property="og:description" content="Kutools adds 300+ tools inside Excel. Kramata is a standalone recipe-based cleaner that doesn't need Excel open at all." />
+  <meta property="og:image" content="https://kramata.com/assets/og-image.png" />
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Article","headline":"Kramata vs Kutools for Excel — Which Data Cleaning Tool Fits You?","publisher":{"@type":"Organization","name":"Kramata"}}
+  </script>
+  <script type="application/ld+json">
+  {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://kramata.com/"}, {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://kramata.com/blog/"}, {"@type": "ListItem", "position": 3, "name": "Kramata vs Kutools for Excel", "item": "https://kramata.com/blog/kramata-vs-kutools"}]}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+    {"@type":"Question","name":"Is Kutools for Excel free?","acceptedAnswer":{"@type":"Answer","text":"No — Kutools is $49 one-time, which includes 2 years of updates and support. Kramata is free for single files; batch processing is a separate one-time $29."}},
+    {"@type":"Question","name":"Do I need Microsoft Excel installed to use Kutools?","acceptedAnswer":{"@type":"Answer","text":"Yes. Kutools is an add-in — it installs into Excel and adds extra ribbon tabs. You need a licensed copy of Excel running for any of its 300+ tools to work. Kramata is a standalone app; it reads CSV and Excel files directly without Excel installed."}},
+    {"@type":"Question","name":"Can Kutools batch process multiple files?","acceptedAnswer":{"@type":"Answer","text":"Yes — Kutools has one-click batch tools that can act across multiple sheets or workbooks, genuinely overlapping with Kramata's batch mode. The difference is repeatability: Kramata saves an entire cleanup as one portable recipe file you re-run or hand to a colleague. Kutools' batch tools are applied per session unless you layer a VBA macro on top to fully automate them."}},
+    {"@type":"Question","name":"Which handles bigger files?","acceptedAnswer":{"@type":"Answer","text":"Kutools runs inside Excel, so it inherits Excel's row limit (about 1,048,576 rows per sheet). Kramata processes files through DuckDB, an in-process database, with no row-count ceiling."}},
+    {"@type":"Question","name":"Does either tool upload my data?","acceptedAnswer":{"@type":"Answer","text":"No. Both run entirely on your computer — Kutools as an Excel add-in, Kramata as a normal desktop app. Nothing leaves your machine with either."}}
+  ]}
+  </script>
+  <link rel="stylesheet" href="../styles.css" />
+  <style>
+    .article{max-width:720px;margin:0 auto;padding:54px 22px}
+    .article h1{font-size:32px;margin-bottom:8px}.article .meta{color:var(--text-faint);margin-bottom:26px}
+    .article h2{font-size:23px;margin-top:34px}.article p,.article li{font-size:17px;color:#2b3138}
+    .article ul{padding-left:22px}
+    table.cmp{width:100%;border-collapse:collapse;margin:22px 0;font-size:15px}
+    table.cmp th,table.cmp td{border:1px solid var(--border);padding:9px 12px;text-align:left}
+    table.cmp th{background:var(--bg-2)}
+    .cta-box{text-align:center;margin:40px 0}
+  </style>
+</head>
+<body>
+  <header class="nav"><div class="wrap nav-inner">
+    <a class="logo" href="/">Kra<span>mata</span></a>
+    <nav><a href="/#download" class="btn btn-sm">Download</a></nav>
+  </div></header>
+
+  <article class="article">
+    <h1>Kramata vs Kutools for Excel</h1>
+    <div class="meta">300+ tools inside Excel vs one recipe that doesn't need Excel at all.</div>
+
+    <p>
+      Kutools for Excel is a well-established add-in that bolts over 300 extra tools onto Excel's
+      ribbon — everything from batch renaming sheets to mail merge to advanced formula builders.
+      It's a genuinely different kind of product from Kramata: broader, and built to live inside
+      Excel rather than replace any part of your workflow. Here's an honest breakdown of where they
+      differ.
+    </p>
+
+    <h2>The short version</h2>
+    <ul>
+      <li><strong>Kutools for Excel</strong> is an add-in — it requires a licensed copy of Excel
+        installed and running. In exchange you get 300+ tools covering far more than data cleaning:
+        formatting, charts, mail merge, workbook management, and more. $49 one-time, with 2 years of
+        updates and support included.</li>
+      <li><strong>Kramata</strong> is a standalone app with one job: build a cleanup once as a
+        plain-language recipe, then re-run it on any new file in one click — no Excel required at
+        all. Free for single files; batch is a one-time $29.</li>
+    </ul>
+
+    <h2>Side by side</h2>
+    <table class="cmp">
+      <thead><tr><th></th><th>Kutools for Excel</th><th>Kramata</th></tr></thead>
+      <tbody>
+        <tr><td>Price</td><td>$49 one-time (2 years updates/support)</td><td>Free; Pro $29 one-time (batch)</td></tr>
+        <tr><td>Requires Microsoft Excel installed</td><td>Yes — it's an Excel add-in</td><td>No — standalone app</td></tr>
+        <tr><td>Runs fully local, nothing uploaded</td><td>Yes</td><td>Yes</td></tr>
+        <tr><td>Interface</td><td>300+ tools across extra ribbon tabs inside Excel</td><td>Linear recipe (list of steps, live preview)</td></tr>
+        <tr><td>Batch across multiple files</td><td>Yes — one-click batch tools</td><td>Yes — built in, separate files or merged</td></tr>
+        <tr><td>Repeatable as one saved, shareable recipe</td><td>Per-session tools, or a VBA macro layered on top</td><td>Recipe file, re-applied in one click</td></tr>
+        <tr><td>Big CSVs</td><td>Inherits Excel's row limit (~1,048,576)</td><td>In-process database (DuckDB), no row ceiling</td></tr>
+        <tr><td>Invalid values</td><td>Varies by tool used</td><td>Flagged to a review list automatically</td></tr>
+        <tr><td>File formats</td><td>Whatever Excel opens</td><td>CSV &amp; Excel (.xlsx/.xlsm/.xls) natively</td></tr>
+        <tr><td>Platforms</td><td>Windows</td><td>Windows</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Pick Kutools if…</h2>
+    <ul>
+      <li>You already live inside Excel all day and want a broad toolbox — formatting, charts, mail
+        merge, workbook management — not just cleanup.</li>
+      <li>You're comfortable pairing its tools with a VBA macro when you need something fully
+        automated end to end.</li>
+      <li>You want everything available as ribbon buttons inside the spreadsheet you're already in.</li>
+    </ul>
+
+    <h2>Pick Kramata if…</h2>
+    <ul>
+      <li>You don't want to open (or pay for) Excel just to clean a recurring CSV or Excel export.</li>
+      <li>Your files are bigger than Excel's row ceiling.</li>
+      <li>You want <strong>one</strong> saved recipe you build once, not 300 tools to learn and
+        recombine each time.</li>
+      <li>You need to hand the exact same cleanup to a colleague — a Kramata recipe is a portable
+        file anyone can run with the free app; Kutools' tools require their own licensed copy.</li>
+    </ul>
+
+    <div class="cta-box">
+      <a class="btn btn-lg btn-primary" href="/#download">Download Kramata free for Windows</a>
+    </div>
+
+    <p class="meta">Kutools is a genuinely useful, mature toolbox for people who live in Excel.
+      Kramata bets on a narrower job done without Excel at all: the same file, the same cleanup,
+      every time it arrives.</p>
+
+    <h2>Related</h2>
+    <p>
+      <a href="/blog/kramata-vs-easy-data-transform">Kramata vs Easy Data Transform</a> ·
+      <a href="/blog/kramata-vs-openrefine">Kramata vs OpenRefine</a> ·
+      <a href="/blog/power-query-alternative">A simple Power Query alternative</a> ·
+      <a href="/blog/batch-process-csv-excel-files">Batch process hundreds of CSV &amp; Excel files</a>
+    </p>
+
+    <h2>FAQ</h2>
+    <p><strong>Is Kutools for Excel free?</strong> No — $49 one-time, including 2 years of updates and support. Kramata is free for single files; batch processing is a separate one-time $29.</p>
+    <p><strong>Do I need Microsoft Excel installed to use Kutools?</strong> Yes — it's an add-in that requires a licensed, running copy of Excel. Kramata is standalone; it reads CSV and Excel files directly, no Excel needed.</p>
+    <p><strong>Can Kutools batch process multiple files?</strong> Yes — it has one-click batch tools across sheets and workbooks, genuinely overlapping with Kramata's batch mode. The difference is repeatability: Kramata saves the whole cleanup as one portable recipe file; Kutools' batch tools are applied per session unless you add a VBA macro on top.</p>
+    <p><strong>Which handles bigger files?</strong> Kutools runs inside Excel, so it inherits Excel's row limit (about 1,048,576 rows). Kramata uses DuckDB, an in-process database, with no row-count ceiling.</p>
+    <p><strong>Does either tool upload my data?</strong> No. Both run entirely on your computer — Kutools as an Excel add-in, Kramata as a normal desktop app.</p>
+  </article>
+
+  <footer><div class="wrap foot">
+    <a class="logo" href="/">Kra<span>mata</span></a>
+    <div class="links"><a href="/">Home</a><a href="/blog/">Blog</a><a href="/#download">Download</a></div>
+    <div class="copy">© 2026 Kramata</div>
+  </div></footer>
+</body>
+</html>
