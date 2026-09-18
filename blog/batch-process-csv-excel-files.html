@@ -29,7 +29,8 @@
     {"@type":"Question","name":"How do I clean multiple CSV files at once?","acceptedAnswer":{"@type":"Answer","text":"Build a cleaning recipe on one sample file, then run it in batch across the whole folder. Every file gets the same steps in one pass — no opening them one at a time."}},
     {"@type":"Question","name":"Can I get separate cleaned files back, or one merged file?","acceptedAnswer":{"@type":"Answer","text":"Either. Batch can output one cleaned file per input, or merge them all into a single combined file — your choice at run time."}},
     {"@type":"Question","name":"Can I mix CSV and Excel in the same folder?","acceptedAnswer":{"@type":"Answer","text":"Yes. Kramata reads CSV, modern Excel (.xlsx/.xlsm) and legacy binary Excel (.xls), and processes them together in one batch."}},
-    {"@type":"Question","name":"How many files can it handle?","acceptedAnswer":{"@type":"Answer","text":"Hundreds of files and large row counts — it's powered by an in-process database, not row-by-row formulas. Practical limits depend on your PC's memory and disk."}}
+    {"@type":"Question","name":"How many files can it handle?","acceptedAnswer":{"@type":"Answer","text":"Hundreds of files and large row counts — it's powered by an in-process database, not row-by-row formulas. Practical limits depend on your PC's memory and disk."}},
+    {"@type":"Question","name":"Can't Excel's Copilot just batch process a folder now?","acceptedAnswer":{"@type":"Answer","text":"No — as of 2026, Copilot in Excel works on one open workbook at a time. There's no built-in way to point it at a folder and run the same cleanup across every file; you'd need to bolt on Power Automate or a macro to approximate it. Kramata's batch mode does this natively, locally, in one pass."}}
   ]}
   </script>
   <link rel="stylesheet" href="../styles.css" />
@@ -109,6 +110,20 @@
       <a href="/blog/merge-multiple-csv-files-into-one">how to merge multiple CSV files into one</a>.
     </p>
 
+    <h2>Doesn't Excel's Copilot do this now?</h2>
+    <p>
+      Copilot's "Edit with Copilot" mode can clean up a single open workbook well — dedupe, fix dates,
+      standardize formats, all from a plain-language prompt. But it works on <strong>one open workbook at
+      a time</strong>. Point it at a folder of fifty files and there's no built-in "run this on all of
+      them" — you're back to opening each file and re-prompting, or bolting on Power Automate or a VBA
+      macro to approximate it, which puts a non-coder right back where they started.
+    </p>
+    <p>
+      It's also a Microsoft 365 Copilot add-on — a separate subscription on top of Excel, and each request
+      sends the workbook to Microsoft's cloud to process. Kramata's batch mode runs the same recipe across
+      the whole folder locally, in one pass, for a one-time price.
+    </p>
+
     <div class="cta-box">
       <a class="btn btn-lg btn-primary" href="/#download">Download Kramata free for Windows</a>
     </div>
@@ -128,6 +143,7 @@
     <p><strong>Separate cleaned files, or one merged file?</strong> Either. Batch can output one cleaned file per input, or merge them all into a single combined file — your choice at run time.</p>
     <p><strong>Can I mix CSV and Excel in the same folder?</strong> Yes. Kramata reads CSV, modern Excel (.xlsx/.xlsm) and legacy binary Excel (.xls), and processes them together in one batch.</p>
     <p><strong>How many files can it handle?</strong> Hundreds of files and large row counts — it's powered by an in-process database, not row-by-row formulas. Practical limits depend on your PC's memory and disk.</p>
+    <p><strong>Can't Excel's Copilot just batch process a folder now?</strong> No — as of 2026, Copilot in Excel works on one open workbook at a time. There's no built-in way to point it at a folder and run the same cleanup across every file; you'd need to bolt on Power Automate or a macro to approximate it. Kramata's batch mode does this natively, locally, in one pass.</p>
   </article>
 
   <footer><div class="wrap foot">
