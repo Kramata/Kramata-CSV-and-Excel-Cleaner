@@ -14,15 +14,15 @@
     gtag('config', 'AW-832148034');
     gtag('config', 'G-V3P8HEN7CB');
   </script>
-  <title>How to Merge Multiple CSV Files Into One — 3 Methods Compared</title>
-  <meta name="description" content="Three ways to merge multiple CSV files into one: CMD copy (fast but raw), Excel Power Query (powerful but technical), and a repeatable no-code method." />
+  <title>Merge CSV Files in Windows CMD (copy *.csv) — Skip Repeated Headers</title>
+  <meta name="description" content="Merge CSVs in Windows CMD with copy *.csv, then fix what it breaks: repeated headers, glued rows, BOM and tab damage. Plus Power Query and a no-code option." />
   <link rel="canonical" href="https://kramata.com/blog/merge-multiple-csv-files-into-one" />
   <meta property="og:type" content="article" />
-  <meta property="og:title" content="How to Merge Multiple CSV Files Into One — 3 Methods Compared" />
-  <meta property="og:description" content="Windows CMD copy, Excel Power Query, and a repeatable no-code method — compared honestly, with the catches the other guides bury." />
+  <meta property="og:title" content="Merge CSV Files in Windows CMD (copy *.csv) — Skip Repeated Headers" />
+  <meta property="og:description" content="copy *.csv merges CSVs in seconds, then repeats headers and glues rows. Tested fixes in CMD, Power Query, and a no-code method." />
   <meta property="og:image" content="https://kramata.com/assets/og-image.png" />
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"Article","headline":"How to Merge Multiple CSV Files Into One — 3 Methods Compared","publisher":{"@type":"Organization","name":"Kramata"},"url":"https://kramata.com/blog/merge-multiple-csv-files-into-one"}
+  {"@context":"https://schema.org","@type":"Article","headline":"Merge CSV Files in Windows CMD (copy *.csv) — Skip Repeated Headers","publisher":{"@type":"Organization","name":"Kramata"},"url":"https://kramata.com/blog/merge-multiple-csv-files-into-one"}
   </script>
   <script type="application/ld+json">
   {
@@ -114,9 +114,45 @@
         <li><strong>Columns must already match exactly.</strong> One file with "first_name" and another with "First Name" stack into misaligned columns — silently, with no error.</li>
         <li><strong>No cleanup, no dedupe.</strong> Whatever inconsistencies are in the source files are stacked directly into the output.</li>
         <li><strong>Order depends on filename alphabetical sort.</strong> Not always what you want.</li>
+        <li><strong>A missing final line break glues rows together.</strong> If a file doesn't end with a line break, its last row fuses with the next file's first line.</li>
+        <li><strong>Byte order marks end up mid-file.</strong> CSVs saved as "CSV UTF-8" by Excel start with an invisible BOM, which <code>copy</code> carries into the middle of the output.</li>
+        <li><strong>A stray end-of-file character.</strong> In our test, <code>copy *.csv</code> appended a Ctrl+Z (0x1A) byte at the end of the merged file.</li>
       </ul>
       <p style="margin:10px 0 0"><strong>Best for:</strong> a quick one-off when your files are already clean, already have identical headers, and you're going to clean the result manually anyway.</p>
     </div>
+
+    <h2>Merge CSV files in CMD without repeating header rows</h2>
+    <p>
+      To keep the header from the first file only, loop over the files and skip the first line of every
+      file after the first. Save this as <code>merge.bat</code> in the folder and run it:
+    </p>
+    <pre style="background:#f6f8fa;border:1px solid #e1e4e8;border-radius:8px;padding:14px 16px;font-size:15px;overflow-x:auto"><code>@echo off
+setlocal enabledelayedexpansion
+set first=1
+(for %%f in (*.csv) do (
+    if !first!==1 (
+        type "%%f"
+        set first=0
+    ) else (
+        more +1 "%%f"
+    )
+)) &gt; combined.csv</code></pre>
+    <p>
+      This removes the repeated headers, and a BOM on the second and later files goes with the skipped line.
+      It still breaks on real business data. We ran it on test files:
+    </p>
+    <div class="warn">
+      <ul style="margin:0">
+        <li><strong>Missing final line break still corrupts rows.</strong> A file ending in <code>2,b</code> with no line break and a next file starting <code>3,c</code> produced <code>2,b3,c</code>, one wrong row instead of two.</li>
+        <li><strong><code>more</code> rewrites tabs.</strong> A tab inside a value in the second file came out as spaces, silently changing the data.</li>
+        <li><strong>Columns are matched by position, not name.</strong> If April's export has Name and Amount swapped relative to March, the values stack into the wrong columns with no warning.</li>
+      </ul>
+    </div>
+    <p>
+      If your files come from different exports, matching columns by name matters more than speed.
+      Kramata <a href="/">merges a whole folder</a> by column name, writes the header once, and runs entirely on
+      your computer. Free users can merge up to 3 files per run.
+    </p>
 
     <h2>Method 2 — Excel Power Query: Combine Files</h2>
     <p>
