@@ -44,6 +44,8 @@
     {"@type":"Question","name":"Do the files need identical columns?","acceptedAnswer":{"@type":"Answer","text":"For CMD copy, yes — mismatched columns just stack into the wrong places with no warning. For Power Query and Kramata, mismatched headers are surfaced and can be resolved before combining."}},
     {"@type":"Question","name":"What if the files are too large to open in Excel?","acceptedAnswer":{"@type":"Answer","text":"Excel has a hard limit of around 1,048,576 rows. CMD copy has no row limit but produces a raw, uncleaned result. Kramata processes files through an in-process database (DuckDB) with no row-count ceiling — large files load and combine without the memory pressure that crashes Excel."}},
     {"@type":"Question","name":"Can I mix CSV and Excel files?","acceptedAnswer":{"@type":"Answer","text":"CMD copy only handles CSV (it concatenates raw text). Power Query and Kramata can read both formats and combine them."}},
+    {"@type":"Question","name":"How do I check every file has the same headers before appending?","acceptedAnswer":{"@type":"Answer","text":"Compare the first line of each file: spelling, order and spacing must match, or the columns stack into the wrong places. CMD copy does not check this. Kramata and csvtidy align columns by name."}},
+    {"@type":"Question","name":"How do I verify no rows were lost?","acceptedAnswer":{"@type":"Answer","text":"Add up the row counts of the input files and compare with the merged file. Kramata shows row counts before export, and the same recipe on the same files gives an identical result every time."}},
     {"@type":"Question","name":"Is it reproducible next month?","acceptedAnswer":{"@type":"Answer","text":"CMD copy is not reproducible — you re-run the command manually with no memory of what cleanup was applied. Power Query saves the query inside the workbook, but sharing it with a colleague is awkward. Kramata saves a portable recipe file you can re-run in one click or share with anyone."}}
   ]}
   </script>
@@ -153,11 +155,21 @@ set first=1
       Kramata <a href="/">merges a whole folder</a> by column name, writes the header once, and runs entirely on
       your computer. Free users can merge up to 3 files per run.
     </p>
+
     <p>
       Prefer to stay in the terminal? <a href="https://abhishekrai43.github.io/csvtidy/merge-csv-files-command-line.html">csvtidy</a>
       is our free, open-source command-line tool. <code>csvtidy merge ./exports --output combined.csv</code>
       writes one header, aligns columns by name and can add a source-file column. In our test it handled files
       with no final line break and a BOM correctly.
+    </p>
+
+    <h2>Append CSV files and check every file has the same headers</h2>
+    <p>
+      Appending only works cleanly when every file has the same column names. Before you stack them, open the
+      first line of each file and compare: spelling, order, and spacing ("First Name" and "first_name" become two
+      separate columns). Mixed date formats across months are the other common problem, because stacking them raw
+      leaves one column in several formats. Kramata aligns columns by name and lets you fix dates before combining,
+      so every row passes through the same cleanup.
     </p>
 
     <h2>Method 2 — Excel Power Query: Combine Files</h2>
@@ -250,7 +262,6 @@ set first=1
 
     <h2>Related</h2>
     <p>
-      <a href="/blog/combine-append-csv-files">Combine and append CSV files without losing data</a> ·
       <a href="/blog/merge-csv-files-by-column">Merge CSV files by a common column</a> ·
       <a href="/blog/merge-two-spreadsheets-vlookup-alternative">Merge two spreadsheets without VLOOKUP</a> ·
       <a href="/blog/power-query-alternative">Power Query vs the alternatives</a> ·
@@ -263,6 +274,8 @@ set first=1
     <p><strong>Do the files need identical columns?</strong> For CMD, yes — mismatched columns stack silently into the wrong places. For Power Query and Kramata, mismatched headers are surfaced and can be resolved before combining.</p>
     <p><strong>What if the files are too large to open in Excel?</strong> Excel caps at ~1,048,576 rows. CMD has no limit but produces a raw result. Kramata processes through DuckDB with no row-count ceiling — large files combine without the memory pressure that crashes Excel.</p>
     <p><strong>Can I mix CSV and Excel files?</strong> CMD only handles CSV (it concatenates raw text). Power Query and Kramata both read CSV and Excel and can combine them.</p>
+    <p><strong>How do I check every file has the same headers before appending?</strong> Compare the first line of each file: spelling, order and spacing must match, or the columns stack into the wrong places. CMD <code>copy</code> does not check this. Kramata and csvtidy align columns by name.</p>
+    <p><strong>How do I verify no rows were lost?</strong> Add up the row counts of the input files and compare with the merged file. Kramata shows row counts before export, and the same recipe on the same files gives an identical result every time.</p>
     <p><strong>Is it reproducible next month?</strong> CMD is not — you re-run it manually each time with no saved cleanup. Power Query saves the query inside the workbook but sharing it is awkward. Kramata saves a portable recipe file you re-run in one click or share with anyone.</p>
   </article>
 

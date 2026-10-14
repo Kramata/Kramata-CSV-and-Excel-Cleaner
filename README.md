@@ -16,3 +16,5 @@ one click. No formulas, fully offline, nothing leaves your computer.
 - Windows 10 & 11 · free to start
 
 This repository hosts the [kramata.com](https://kramata.com) site and the release downloads.
+
+Guide: [merge multiple CSV files into one on Windows](https://kramata.com/blog/merge-multiple-csv-files-into-one) — and where `copy *.csv` breaks.

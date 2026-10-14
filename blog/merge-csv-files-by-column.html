@@ -90,8 +90,8 @@
     </p>
     <p>
       <em>Note: if you want to <strong>stack</strong> multiple files row by row into one table, that
-      is a different operation — see <a href="/blog/combine-append-csv-files">how to combine and
-      append CSV files</a>.</em>
+      is a different operation — see <a href="/blog/merge-multiple-csv-files-into-one">how to merge and
+      append multiple CSV files</a>.</em>
     </p>
 
     <h2>Why VLOOKUP struggles with recurring files</h2>
@@ -143,7 +143,6 @@
     <h2>Related guides</h2>
     <p>
       <a href="/blog/merge-two-spreadsheets-vlookup-alternative">Merge two spreadsheets without VLOOKUP</a> ·
-      <a href="/blog/combine-append-csv-files">Combine and append CSV files without losing data</a> ·
       <a href="/blog/merge-multiple-csv-files-into-one">Merge multiple CSV files into one</a> ·
       <a href="/blog/power-query-alternative">A simple Power Query alternative</a>
     </p>
@@ -153,7 +152,7 @@
     <p><strong>What happens to rows with no match?</strong> Your choice: keep them with blank values for the pulled columns (a left join), or drop them (an inner join). Both options are set once in the recipe.</p>
     <p><strong>Can I match on more than one column?</strong> Single-key matching today; multi-key is on the roadmap.</p>
     <p><strong>Is this the same as Power Query's Merge Queries?</strong> Same idea — a join between two tables on a common key — in plain language, built for non-technical users. No M code required.</p>
-    <p><strong>Is this different from appending files?</strong> Yes. Merging by a column joins two files horizontally — pulling new columns from a second file to match rows in the first. <a href="/blog/combine-append-csv-files">Appending</a> stacks rows from multiple files with the same structure vertically into one table.</p>
+    <p><strong>Is this different from appending files?</strong> Yes. Merging by a column joins two files horizontally — pulling new columns from a second file to match rows in the first. <a href="/blog/merge-multiple-csv-files-into-one">Appending</a> stacks rows from multiple files with the same structure vertically into one table.</p>
     <p><strong>What if the secondary file changes next month?</strong> Re-running the recipe re-reads the secondary file fresh — so the merge automatically reflects any updates to it.</p>
   </article>
 
