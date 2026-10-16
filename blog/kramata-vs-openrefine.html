@@ -29,7 +29,7 @@
   </script>
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
-    {"@type":"Question","name":"Is OpenRefine free?","acceptedAnswer":{"@type":"Answer","text":"Yes — OpenRefine is fully free and open source. Kramata is also free for single files, with a 14-day batch trial; unlimited batch processing is a one-time $29."}},
+    {"@type":"Question","name":"Is OpenRefine free?","acceptedAnswer":{"@type":"Answer","text":"Yes — OpenRefine is fully free and open source. Kramata is also free for single files, with a 14-day batch trial; unlimited batch processing is a one-time $49."}},
     {"@type":"Question","name":"Can OpenRefine repeat cleaning steps like a recipe?","acceptedAnswer":{"@type":"Answer","text":"Yes. You can extract a project's operation history as JSON and apply it to another project. It works, but it's a manual extract-and-paste flow and it's sensitive to column names. Kramata makes the recipe the whole product: save once, then open next month's file and apply it in one click."}},
     {"@type":"Question","name":"Which handles bigger files?","acceptedAnswer":{"@type":"Answer","text":"OpenRefine loads projects into Java memory (2 GB by default) — big files need the memory setting raised and can get slow. Kramata uses DuckDB, an in-process analytical database, so large CSVs load and scroll smoothly without tuning."}},
     {"@type":"Question","name":"Does either tool upload my data?","acceptedAnswer":{"@type":"Answer","text":"No. Both run entirely on your computer. OpenRefine runs a local server you use from your browser; Kramata is a normal desktop app. Nothing leaves your machine with either."}}
@@ -73,14 +73,14 @@
       <li><strong>Kramata</strong> is built for the <em>recurring export ritual</em>: the same messy
         CSV or Excel file arrives every week, and you want it cleaned the same way in one click.
         Plain-language steps, live preview, built-in folder batching. Free for single files, with a 14-day batch
-        trial; unlimited batch is a one-time $29.</li>
+        trial; unlimited batch is a one-time $49.</li>
     </ul>
 
     <h2>Side by side</h2>
     <table class="cmp">
       <thead><tr><th></th><th>OpenRefine</th><th>Kramata</th></tr></thead>
       <tbody>
-        <tr><td>Price</td><td>Free, open source</td><td>Free (14-day batch trial); Pro $29 one-time (unlimited batch)</td></tr>
+        <tr><td>Price</td><td>Free, open source</td><td>Free (14-day batch trial); Pro $49 one-time (unlimited batch)</td></tr>
         <tr><td>Runs fully local, nothing uploaded</td><td>Yes (local server + browser)</td><td>Yes (desktop app)</td></tr>
         <tr><td>Interface</td><td>Browser tab: facets, menus, expressions</td><td>Linear recipe (list of steps, live preview)</td></tr>
         <tr><td>Fuzzy clustering of similar values ("NYC" / "New York")</td><td>Yes — a standout feature</td><td>No — exact matching after trim &amp; fix-case</td></tr>
@@ -135,7 +135,7 @@
     </p>
 
     <h2>FAQ</h2>
-    <p><strong>Is OpenRefine free?</strong> Yes — fully free and open source. Kramata is also free for single files, with a 14-day batch trial; unlimited batch processing is a one-time $29.</p>
+    <p><strong>Is OpenRefine free?</strong> Yes — fully free and open source. Kramata is also free for single files, with a 14-day batch trial; unlimited batch processing is a one-time $49.</p>
     <p><strong>Can OpenRefine repeat cleaning steps like a recipe?</strong> Yes — you can extract a project's operation history as JSON and apply it to another project. It works, but it's a manual extract-and-paste flow and it's sensitive to column names. Kramata makes the recipe the whole product: save once, apply to next month's file in one click.</p>
     <p><strong>Which handles bigger files?</strong> OpenRefine loads projects into Java memory (2&nbsp;GB by default) — big files need the memory setting raised and can get slow. Kramata uses DuckDB, an in-process analytical database, so large CSVs load and scroll smoothly without tuning.</p>
     <p><strong>Does either tool upload my data?</strong> No. Both run entirely on your computer — OpenRefine as a local server in your browser, Kramata as a normal desktop app.</p>
