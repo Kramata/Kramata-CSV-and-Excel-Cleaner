@@ -40,7 +40,7 @@
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
     {"@type":"Question","name":"What is the quickest way to merge CSV files on Windows?","acceptedAnswer":{"@type":"Answer","text":"The Windows CMD command `copy *.csv combined.csv` combines all CSV files in a folder into one in seconds. The catch: it stacks files exactly as-is, so every file's header row repeats in the middle of your data and there is no cleanup. It works for a quick one-off when files are already clean and have identical columns."}},
-    {"@type":"Question","name":"Can Excel Power Query merge multiple CSV files?","acceptedAnswer":{"@type":"Answer","text":"Yes — Power Query's Get Data › From Folder can combine a folder of CSV files into one table inside a workbook. The limitations: it loads everything into Excel (so you're capped at ~1 million rows), it can't output the result back as clean separate files, and the Query Editor has a learning curve for non-technical users."}},
+    {"@type":"Question","name":"Can Excel Power Query merge multiple CSV files?","acceptedAnswer":{"@type":"Answer","text":"Yes — Power Query's Get Data › From Folder can combine a folder of CSV files into one table inside a workbook. The limitations: loading the result into a worksheet caps it at about 1 million rows (the Data Model can hold more, but the result stays in Excel), it can't output the result back as clean separate files, and the Query Editor has a learning curve for non-technical users."}},
     {"@type":"Question","name":"Do the files need identical columns?","acceptedAnswer":{"@type":"Answer","text":"For CMD copy, yes — mismatched columns just stack into the wrong places with no warning. For Power Query and Kramata, mismatched headers are surfaced and can be resolved before combining."}},
     {"@type":"Question","name":"What if the files are too large to open in Excel?","acceptedAnswer":{"@type":"Answer","text":"Excel has a hard limit of around 1,048,576 rows. CMD copy has no row limit but produces a raw, uncleaned result. Kramata processes files through an in-process database (DuckDB) with no row-count ceiling — large files load and combine without the memory pressure that crashes Excel."}},
     {"@type":"Question","name":"Can I mix CSV and Excel files?","acceptedAnswer":{"@type":"Answer","text":"CMD copy only handles CSV (it concatenates raw text). Power Query and Kramata can read both formats and combine them."}},
@@ -196,7 +196,7 @@ set first=1
     <div class="warn">
       <strong>Where Power Query hits its wall:</strong>
       <ul style="margin:10px 0 0">
-        <li><strong>Excel's row limit is ~1,048,576.</strong> If your combined files exceed that, Power Query can't load the result.</li>
+        <li><strong>A worksheet stops at 1,048,576 rows.</strong> If your combined files exceed that, Power Query can't load the result into a sheet. Loading it to the Data Model can hold more, but the result stays in Excel.</li>
         <li><strong>It lives inside a workbook.</strong> The merged table lands in Excel — you can't get thirty clean files back out without scripting.</li>
         <li><strong>The Query Editor has a learning curve.</strong> The friendly buttons cover the basics; anything custom leaks into M code fast.</li>
         <li><strong>Sharing is awkward.</strong> A colleague needs the same workbook and a path that resolves the same way on their machine.</li>
@@ -229,8 +229,8 @@ set first=1
     <h2>What about files too large for Excel?</h2>
     <p>
       CMD has no row limit — it concatenates raw text regardless of size. But the result is
-      uncleaned and the header-row problem gets worse with large files. Power Query caps at Excel's
-      ~1M row ceiling, which many combined datasets exceed.
+      uncleaned and the header-row problem gets worse with large files. Power Query loading to a worksheet
+      stops at about 1M rows, which many combined datasets exceed; the Data Model can hold more, but the result stays in Excel.
     </p>
     <p>
       This is where the in-process database approach wins: Kramata processes files through
@@ -268,7 +268,7 @@ set first=1
     </ul>
 
     <div class="cta-box">
-      <p style="font-size:18px;font-weight:600;margin:0 0 14px">Doing this every week? Kramata saves the steps as a recipe, so the next file is one click.</p>
+      <p style="font-size:18px;font-weight:600;margin:0 0 14px">Doing this every week? Kramata saves the steps as a recipe, so next week’s file is open, apply, export.</p>
       <a class="btn btn-lg btn-primary" href="/#download" data-pos="inline">Download Kramata free for Windows</a>
     </div>
 
@@ -284,7 +284,7 @@ set first=1
 
     <h2>FAQ</h2>
     <p><strong>What is the quickest way to merge CSV files on Windows?</strong> The CMD command <code>copy *.csv combined.csv</code> combines all CSV files in a folder into one in seconds. The catch: every file's header row repeats in the output and there is no cleanup. Works for a quick one-off when files are already clean and columns are identical.</p>
-    <p><strong>Can Excel Power Query merge multiple CSV files?</strong> Yes — Get Data › From Folder does exactly this. The limitations: you're capped at ~1 million rows (Excel's row limit), the result lands inside a workbook (you can't get separate cleaned files back out), and the Query Editor has a learning curve.</p>
+    <p><strong>Can Excel Power Query merge multiple CSV files?</strong> Yes — Get Data › From Folder does exactly this. The limitations: a worksheet caps the result at about 1 million rows (the Data Model can hold more), the result lands inside a workbook (you can't get separate cleaned files back out), and the Query Editor has a learning curve.</p>
     <p><strong>Do the files need identical columns?</strong> For CMD, yes — mismatched columns stack silently into the wrong places. For Power Query and Kramata, mismatched headers are surfaced and can be resolved before combining.</p>
     <p><strong>What if the files are too large to open in Excel?</strong> Excel caps at ~1,048,576 rows. CMD has no limit but produces a raw result. Kramata processes through DuckDB with no row-count ceiling — large files combine without the memory pressure that crashes Excel.</p>
     <p><strong>Can I mix CSV and Excel files?</strong> CMD only handles CSV (it concatenates raw text). Power Query and Kramata both read CSV and Excel and can combine them.</p>
