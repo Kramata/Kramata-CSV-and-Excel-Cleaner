@@ -46,6 +46,7 @@
   <script type="application/ld+json">
   {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://kramata.com/"}, {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://kramata.com/blog/"}, {"@type": "ListItem", "position": 3, "name": "How to Automate Monthly Excel Reports — Without VBA", "item": "https://kramata.com/blog/automate-monthly-excel-reports"}]}
   </script>
+  <script defer src="/assets/track.js"></script>
 </head>
 <body>
   <header class="nav"><div class="wrap nav-inner">
@@ -127,8 +128,19 @@
       <a href="/blog/merge-multiple-csv-files-into-one">merged into one</a>.
     </p>
 
+    <h2 id="when-this-stops-working">When this stops working</h2>
+    <p>Copy-paste routines and macros work while the export looks exactly like last month's. They stop working when a column is added or renamed, when the export has merged cells, and when the person who wrote the macro is away.</p>
+    <ul>
+      <li><strong>Different headers across files.</strong> A macro that refers to column letters or positions breaks, or quietly reads the wrong column, when the export changes. Kramata refers to columns by name and, on re-run, asks you to match any column it can't find.</li>
+      <li><strong>Merged cells.</strong> Merged cells get in the way of sorting and filtering in Excel, which most report routines rely on. Kramata reads a merged block the same way: the value in the first cell, blanks below. A Fill missing values step set to “the value above” fills them back in.</li>
+      <li><strong>Files that arrive every month.</strong> Someone has to remember the steps or run the macro in the right workbook. In Kramata the cleanup is a saved recipe: open next week's file and click Apply recipe, or run it on a set of files at once with Batch.</li>
+      <li><strong>Non-technical teammates.</strong> Office blocks macros in files downloaded from the internet by default, and few teammates can read VBA. A Kramata recipe contains no code: they apply it to their own file. They do need Kramata installed on Windows.</li>
+      <li><strong>Large files.</strong> A worksheet stops at 1,048,576 rows. Kramata processes files with DuckDB, a database engine, so it isn't held to the worksheet limit. Export very large results as CSV: an .xlsx file still has Excel's row limit.</li>
+    </ul>
+
     <div class="cta-box">
-      <a class="btn btn-lg btn-primary" href="/#download">Download Kramata free for Windows</a>
+      <p style="font-size:18px;font-weight:600;margin:0 0 14px">Doing this every week? Kramata saves the steps as a recipe, so the next file is one click.</p>
+      <a class="btn btn-lg btn-primary" href="/#download" data-pos="inline">Download Kramata free for Windows</a>
     </div>
 
     <p class="meta">Kramata is a free, local desktop app for repeatable spreadsheet work. Build the
@@ -138,7 +150,8 @@
     <p>
       <a href="/blog/spreadsheet-recipes">Spreadsheet recipes: build once, reuse forever</a> ·
       <a href="/blog/excel-workflow-automation-without-vba">Excel workflow automation without VBA</a> ·
-      <a href="/blog/clean-messy-csv-reproducibly">Clean a messy CSV the same way every time</a>
+      <a href="/blog/clean-messy-csv-reproducibly">Clean a messy CSV the same way every time</a> ·
+      <a href="/blog/best-tool-clean-messy-csv-every-week">Best tool for cleaning the same CSV every week</a>
     </p>
 
     <h2>FAQ</h2>

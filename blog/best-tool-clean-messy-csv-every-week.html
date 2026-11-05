@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-832148034"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'AW-832148034');
+    gtag('config', 'G-V3P8HEN7CB');
+  </script>
+  <script defer src="/assets/track.js"></script>
+  <title>Best Tool for Cleaning the Same Messy CSV Every Week</title>
+  <meta name="description" content="The best tool saves your cleaning steps and re-runs them on next week&#x27;s file. How Power Query, Python, OpenRefine and Kramata compare for a recurring CSV." />
+  <link rel="canonical" href="https://kramata.com/blog/best-tool-clean-messy-csv-every-week" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Best Tool for Cleaning the Same Messy CSV Every Week" />
+  <meta property="og:description" content="The best tool saves your cleaning steps and re-runs them on next week&#x27;s file. How Power Query, Python, OpenRefine and Kramata compare for a recurring CSV." />
+  <meta property="og:image" content="https://kramata.com/assets/og-image.png" />
+  <link rel="icon" href="/favicon.ico" />
+  <script type="application/ld+json">
+  {"@context": "https://schema.org", "@type": "Article", "headline": "Best Tool for Cleaning the Same Messy CSV Every Week", "datePublished": "2026-11-05", "publisher": {"@type": "Organization", "name": "Kramata"}, "url": "https://kramata.com/blog/best-tool-clean-messy-csv-every-week"}
+  </script>
+  <script type="application/ld+json">
+  {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is the best tool for cleaning the same CSV every week?", "acceptedAnswer": {"@type": "Answer", "text": "One that saves your cleaning steps and re-runs them on the next file. Power Query suits Excel users, a Python script suits people who code, and Kramata suits people who want neither formulas nor code."}}, {"@type": "Question", "name": "Can Excel remember my cleaning steps?", "acceptedAnswer": {"@type": "Answer", "text": "Power Query can: it saves the steps in the query and re-runs them on Refresh. Commands like Remove Duplicates and Text to Columns change the sheet once and remember nothing."}}, {"@type": "Question", "name": "Is there a way to do this without code?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Power Query's buttons cover common steps without M code, and Kramata is built entirely around plain-language steps saved as a recipe."}}, {"@type": "Question", "name": "What if next week's file has a renamed column?", "acceptedAnswer": {"@type": "Answer", "text": "Power Query stops the refresh with an error until you edit the step. Kramata asks you which column is which when you apply the recipe, then saves that choice as a rename step."}}, {"@type": "Question", "name": "Does the data leave my computer?", "acceptedAnswer": {"@type": "Answer", "text": "Power Query, Python, OpenRefine and Kramata can all run locally. Kramata processes everything on your computer and never uploads your files."}}]}
+  </script>
+  <script type="application/ld+json">
+  {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://kramata.com/"}, {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://kramata.com/blog/"}, {"@type": "ListItem", "position": 3, "name": "What’s the best tool for cleaning the same messy CSV files every week?", "item": "https://kramata.com/blog/best-tool-clean-messy-csv-every-week"}]}
+  </script>
+  <link rel="stylesheet" href="../styles.css" />
+  <style>
+    .article{max-width:720px;margin:0 auto;padding:54px 22px}
+    .article h1{font-size:32px;margin-bottom:8px}.article .meta{color:var(--text-faint);margin-bottom:26px}
+    .article h2{font-size:23px;margin-top:34px}.article p,.article li{font-size:17px;color:#2b3138}
+    .article ol,.article ul{padding-left:22px}
+    .answer{background:var(--accent-soft);border:1px solid var(--border);border-left:4px solid var(--accent);border-radius:10px;padding:16px 18px;margin:22px 0}
+    table.cmp{width:100%;border-collapse:collapse;margin:22px 0;font-size:15px}
+    table.cmp th,table.cmp td{border:1px solid var(--border);padding:9px 12px;text-align:left;vertical-align:top}
+    table.cmp th{background:var(--bg-2)}
+    pre{background:#f6f8fa;border:1px solid #e1e4e8;border-radius:8px;padding:14px 16px;font-size:15px;overflow-x:auto}
+    .cta-box{text-align:center;margin:40px 0}
+  </style>
+</head>
+<body>
+  <header class="nav"><div class="wrap nav-inner">
+    <a class="logo" href="/">Kra<span>mata</span></a>
+    <nav><a href="/#download" class="btn btn-sm">Download free</a></nav>
+  </div></header>
+
+  <article class="article">
+    <h1>What’s the best tool for cleaning the same messy CSV files every week?</h1>
+    <div class="meta">Answer first, then the options, then how to choose.</div>
+
+    <div class="answer">
+      <p style="margin:0"><strong>Short answer:</strong> use a tool that saves your cleaning steps and re-runs them on the next file,
+      instead of one where you repeat the clicks. If you already live in Excel, that's Power Query. If you write code, it's a
+      Python script. If you want neither formulas nor code, a recipe-based app such as Kramata does it in plain-language steps.</p>
+    </div>
+
+    <p>
+      A weekly file is a different problem from a one-off file. The cleanup itself is usually small: trim spaces, fix dates,
+      remove duplicates, drop a few columns. What costs time is doing it again every week, doing it the same way, and
+      handing it over when you're away. So the question to ask of any tool is not “can it clean this?” but “can it repeat
+      this exactly, next week, for someone else?”
+    </p>
+
+    <h2>What to look for</h2>
+    <ul>
+      <li><strong>Saved steps.</strong> The cleanup is stored and re-applied, not redone by hand.</li>
+      <li><strong>Matching by column name.</strong> Next week's export will move or rename a column sooner or later.</li>
+      <li><strong>A preview.</strong> You can see what each step changes before you export.</li>
+      <li><strong>Easy hand-over.</strong> A colleague can run it without learning a language.</li>
+      <li><strong>Room for size.</strong> Exports grow; Excel worksheets stop at 1,048,576 rows.</li>
+      <li><strong>Where the data goes.</strong> For customer or financial data, a tool that runs on your own computer avoids uploading it.</li>
+    </ul>
+
+    <h2>The options, honestly</h2>
+    <table class="cmp">
+      <thead><tr><th>Tool</th><th>Best for</th><th>Watch out for</th></tr></thead>
+      <tbody>
+        <tr><td>Excel Power Query</td><td>People who already work in Excel. Saved steps, refresh, many data sources, included with Excel.</td><td>Custom steps lead into M code; results land inside a workbook.</td></tr>
+        <tr><td>Python (pandas)</td><td>People who write code. Unlimited flexibility, free, scriptable on a schedule.</td><td>Someone has to write and maintain the script.</td></tr>
+        <tr><td>OpenRefine</td><td>Free, open-source cleaning in the browser, with clustering for messy text. You can extract a project's operation history and apply it to another project.</td><td>A separate app with its own concepts; built around one project at a time.</td></tr>
+        <tr><td>Kramata</td><td>Non-technical users with a recurring CSV or Excel file. Plain-language steps, live preview, saved recipe, batch over many files, runs locally.</td><td>Windows only; CSV and Excel only; unlimited batch is a paid upgrade.</td></tr>
+      </tbody>
+    </table>
+
+    <h2>How the weekly job looks in Kramata</h2>
+    <ol>
+      <li>Open this week's file and add the steps it needs: trim spaces, fix dates, remove duplicates, rename or drop columns.</li>
+      <li>Check the preview; each step shows what it changed.</li>
+      <li>Export the cleaned file, then click <strong>Save recipe</strong>.</li>
+      <li>Next week, open the new file and click <strong>Apply recipe</strong>. If a column was renamed, Kramata asks you which column it is.</li>
+      <li>Several files at once? Use <strong>Batch</strong> to clean them separately or merge them into one.</li>
+    </ol>
+    <p>
+      Rows that fail a check (for example a missing email or a negative amount) can be moved to a separate review list
+      instead of disappearing. Single-file cleaning is free; your first batch starts a 14-day trial with no file limit,
+      then free batches take 3 files at a time, or unlimited with Kramata Pro ($49 one-time).
+    </p>
+
+    <div class="cta-box">
+      <p style="font-size:18px;font-weight:600;margin:0 0 14px">Doing this every week? Kramata saves the steps as a recipe, so the next file is one click.</p>
+      <a class="btn btn-lg btn-primary" href="/#download" data-pos="inline">Download Kramata free for Windows</a>
+    </div>
+
+    <h2>Related</h2>
+    <p>
+      <a href="/blog/clean-messy-csv-reproducibly">Clean a messy CSV the same way every time</a> ·
+      <a href="/blog/csv-merge-different-headers">Merge CSV files when the headers don’t match</a> ·
+      <a href="/blog/kramata-vs-power-query">Kramata vs Power Query</a> ·
+      <a href="/blog/spreadsheet-recipes">Spreadsheet recipes</a>
+    </p>
+
+    <h2>FAQ</h2>
+    <p><strong>What is the best tool for cleaning the same CSV every week?</strong> One that saves your cleaning steps and re-runs them on the next file. Power Query suits Excel users, a Python script suits people who code, and Kramata suits people who want neither formulas nor code.</p>
+    <p><strong>Can Excel remember my cleaning steps?</strong> Power Query can: it saves the steps in the query and re-runs them on Refresh. Commands like Remove Duplicates and Text to Columns change the sheet once and remember nothing.</p>
+    <p><strong>Is there a way to do this without code?</strong> Yes. Power Query's buttons cover common steps without M code, and Kramata is built entirely around plain-language steps saved as a recipe.</p>
+    <p><strong>What if next week's file has a renamed column?</strong> Power Query stops the refresh with an error until you edit the step. Kramata asks you which column is which when you apply the recipe, then saves that choice as a rename step.</p>
+    <p><strong>Does the data leave my computer?</strong> Power Query, Python, OpenRefine and Kramata can all run locally. Kramata processes everything on your computer and never uploads your files.</p>
+  </article>
+
+  <footer><div class="wrap foot">
+    <a class="logo" href="/">Kra<span>mata</span></a>
+    <div class="links"><a href="/">Home</a><a href="/blog/">Blog</a><a href="/#download">Download</a></div>
+    <div class="copy">© 2026 Kramata</div>
+  </div></footer>
+</body>
+</html>

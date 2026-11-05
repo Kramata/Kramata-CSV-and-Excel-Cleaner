@@ -42,6 +42,7 @@
   <script type="application/ld+json">
   {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Does it change my original file?", "acceptedAnswer": {"@type": "Answer", "text": "No. Kramata works on a copy and exports a clean file; your source is untouched."}}, {"@type": "Question", "name": "What date formats does it read?", "acceptedAnswer": {"@type": "Answer", "text": "The common ones — slashes, dashes, dots, and textual months — including two- and four-digit years, and rewrites them all to the format you pick."}}, {"@type": "Question", "name": "Can I see what got removed?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — the preview shows how many rows a step affects before you commit."}}]}
   </script>
+  <script defer src="/assets/track.js"></script>
 </head>
 <body>
   <header class="nav"><div class="wrap nav-inner">
@@ -113,14 +114,26 @@
       <li><strong>Reproducible:</strong> same file + same recipe = identical output, every time.</li>
     </ul>
 
+    <h2 id="when-this-stops-working">When this stops working</h2>
+    <p>Excel's Remove Duplicates and Text to Columns are one-off commands: they change the sheet once and remember nothing. They stop working when the same file comes back every week, when it has merged cells, or when someone else has to do the cleanup.</p>
+    <ul>
+      <li><strong>Different headers across files.</strong> You tick the columns for Remove Duplicates every time, so a renamed column is easy to miss. Kramata saves the dedupe step with its column names and, on re-run, asks you to match any column it can't find.</li>
+      <li><strong>Merged cells.</strong> Only the first row of a merged block holds the value, so rows don't compare the way they look on screen. Kramata reads a merged block the same way: the value in the first cell, blanks below. A Fill missing values step set to “the value above” fills them back in.</li>
+      <li><strong>Files that arrive every week.</strong> Every new export means repeating the same clicks in the same order. In Kramata the cleanup is a saved recipe: open next week's file and click Apply recipe, or run it on a set of files at once with Batch.</li>
+      <li><strong>Non-technical teammates.</strong> A checklist of clicks is easy to get slightly wrong. With Kramata you send them the recipe (a small .json file). They apply it to their own file in Kramata, with no formulas or code to follow. They do need Kramata installed on Windows.</li>
+      <li><strong>Large files.</strong> A worksheet stops at 1,048,576 rows. Kramata processes files with DuckDB, a database engine, so it isn't held to the worksheet limit. Export very large results as CSV: an .xlsx file still has Excel's row limit.</li>
+    </ul>
+
     <div class="cta-box">
-      <a class="btn btn-lg btn-primary" href="/#download">Download Kramata free for Windows</a>
+      <p style="font-size:18px;font-weight:600;margin:0 0 14px">Doing this every week? Kramata saves the steps as a recipe, so the next file is one click.</p>
+      <a class="btn btn-lg btn-primary" href="/#download" data-pos="inline">Download Kramata free for Windows</a>
     </div>
 
     <h2>Related</h2>
     <p>
       <a href="/blog/clean-messy-csv-reproducibly">How to clean a messy CSV the same way every time</a> ·
-      <a href="/blog/merge-two-spreadsheets-vlookup-alternative">Merge two spreadsheets without VLOOKUP</a>
+      <a href="/blog/merge-two-spreadsheets-vlookup-alternative">Merge two spreadsheets without VLOOKUP</a> ·
+      <a href="/blog/best-tool-clean-messy-csv-every-week">Best tool for cleaning the same CSV every week</a>
     </p>
 
     <h2>FAQ</h2>

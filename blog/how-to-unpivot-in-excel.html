@@ -45,6 +45,7 @@
   <script type="application/ld+json">
   {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is this the same as Power Query's \"Unpivot Columns\"?", "acceptedAnswer": {"@type": "Answer", "text": "Same result, in plain language, built for non-technical users."}}, {"@type": "Question", "name": "Can I unpivot dozens of columns at once?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — pick them all to fold in one step."}}, {"@type": "Question", "name": "What about the reverse (long → wide)?", "acceptedAnswer": {"@type": "Answer", "text": "That's a pivot/group-and-summarize step, also available in Kramata."}}]}
   </script>
+  <script defer src="/assets/track.js"></script>
 </head>
 <body>
   <header class="nav"><div class="wrap nav-inner">
@@ -117,14 +118,26 @@
       <li><strong>Batch</strong> — unpivot a whole folder of files at once.</li>
     </ul>
 
+    <h2 id="when-this-stops-working">When this stops working</h2>
+    <p>Unpivoting by hand, or with a one-off Power Query, works for a single report. It stops working when the report has merged group headers, when it arrives every month, and when the person who built it isn't there to redo it.</p>
+    <ul>
+      <li><strong>Different headers across files.</strong> Copy-paste unpivoting depends on every column being exactly where it was last time. Kramata's Unpivot step stores the columns it folds by name. A brand-new column (next month's “Apr”, say) isn't added automatically: tick it in the step once and save the recipe again.</li>
+      <li><strong>Merged cells.</strong> Wide reports often have a merged group label (“Q1”) above the month columns. When you open an Excel file in Kramata you can choose both header rows, and it names the columns “Q1 / Jan”, “Q1 / Feb” and so on.</li>
+      <li><strong>Files that arrive every month.</strong> Doing it by hand means doing it again every month. In Kramata the cleanup is a saved recipe: open next week's file and click Apply recipe, or run it on a set of files at once with Batch.</li>
+      <li><strong>Non-technical teammates.</strong> A colleague following written instructions for a reshape rarely gets the same result twice. With Kramata you send them the recipe (a small .json file). They apply it to their own file in Kramata, with no formulas or code to follow. They do need Kramata installed on Windows.</li>
+      <li><strong>Large files.</strong> Unpivoting multiplies the row count, and a worksheet stops at 1,048,576 rows. Kramata processes files with DuckDB, a database engine, so it isn't held to the worksheet limit. Export very large results as CSV: an .xlsx file still has Excel's row limit.</li>
+    </ul>
+
     <div class="cta-box">
-      <a class="btn btn-lg btn-primary" href="/#download">Download Kramata free for Windows</a>
+      <p style="font-size:18px;font-weight:600;margin:0 0 14px">Doing this every week? Kramata saves the steps as a recipe, so the next file is one click.</p>
+      <a class="btn btn-lg btn-primary" href="/#download" data-pos="inline">Download Kramata free for Windows</a>
     </div>
 
     <h2>Related</h2>
     <p>
       <a href="/blog/power-query-alternative">A simple Power Query alternative</a> ·
-      <a href="/blog/merge-two-spreadsheets-vlookup-alternative">Merge two spreadsheets without VLOOKUP</a>
+      <a href="/blog/merge-two-spreadsheets-vlookup-alternative">Merge two spreadsheets without VLOOKUP</a> ·
+      <a href="/blog/kramata-vs-power-query">Kramata vs Power Query</a>
     </p>
 
     <h2>FAQ</h2>

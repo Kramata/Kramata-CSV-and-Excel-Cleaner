@@ -55,6 +55,7 @@
     {"@type":"ListItem","position":5,"name":"csvkit","url":"https://csvkit.readthedocs.io/"}
   ]}
   </script>
+  <script defer src="/assets/track.js"></script>
 </head>
 <body>
   <header class="nav"><div class="wrap nav-inner">
@@ -139,8 +140,19 @@
       <li>Next month: open the new file, apply the recipe, click once. Identical output, every time.</li>
     </ol>
 
+    <h2 id="when-this-stops-working">When this stops working</h2>
+    <p>Power Query is excellent if you are comfortable in its editor. It gets harder when next month's columns are renamed, when the cleaned result has to leave Excel as separate files, and when the query is handed to someone who has never opened the editor.</p>
+    <ul>
+      <li><strong>Different headers across files.</strong> A query refers to columns by name, so a renamed column stops the refresh with an error until you edit the step. Kramata asks you to match the missing column when you re-run the recipe, and saves that as a rename step.</li>
+      <li><strong>Merged cells.</strong> Power Query reads a merged block as one value followed by nulls, and its Fill Down command handles that well. Kramata's equivalent is a Fill missing values step set to “the value above”.</li>
+      <li><strong>Files that arrive every week.</strong> Refresh re-runs the query, but the result stays inside the workbook. Kramata's Batch writes each cleaned file back to a folder, or merges them into one file.</li>
+      <li><strong>Non-technical teammates.</strong> Custom steps often end up in M code in the Advanced Editor. With Kramata you send them the recipe (a small .json file). They apply it to their own file in Kramata, with no formulas or code to follow. They do need Kramata installed on Windows.</li>
+      <li><strong>Large files.</strong> Loading to a worksheet stops at 1,048,576 rows; the Data Model can hold more, but the result stays in Excel. Kramata processes files with DuckDB, a database engine, so it isn't held to the worksheet limit. Export very large results as CSV: an .xlsx file still has Excel's row limit.</li>
+    </ul>
+
     <div class="cta-box">
-      <a class="btn btn-lg btn-primary" href="/#download">Download Kramata free for Windows</a>
+      <p style="font-size:18px;font-weight:600;margin:0 0 14px">Doing this every week? Kramata saves the steps as a recipe, so the next file is one click.</p>
+      <a class="btn btn-lg btn-primary" href="/#download" data-pos="inline">Download Kramata free for Windows</a>
     </div>
 
     <p class="meta">Not a replacement for everything Power Query does — but if your job is cleaning
@@ -173,7 +185,8 @@
       <a href="/blog/merge-multiple-csv-files-into-one">Merge multiple CSV files into one</a> ·
       <a href="/blog/merge-csv-files-by-column">Merge CSV files by a common column</a> ·
       <a href="/blog/merge-two-spreadsheets-vlookup-alternative">Merge two spreadsheets without VLOOKUP</a> ·
-      <a href="/blog/clean-messy-csv-reproducibly">Clean a messy CSV the same way every time</a>
+      <a href="/blog/clean-messy-csv-reproducibly">Clean a messy CSV the same way every time</a> ·
+      <a href="/blog/kramata-vs-power-query">Kramata vs Power Query</a>
     </p>
 
     <h2>FAQ</h2>

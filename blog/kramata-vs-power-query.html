@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-832148034"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'AW-832148034');
+    gtag('config', 'G-V3P8HEN7CB');
+  </script>
+  <script defer src="/assets/track.js"></script>
+  <title>Kramata vs Power Query — An Honest Comparison</title>
+  <meta name="description" content="Where Power Query is better, where Kramata is better, and who each is for. A fair comparison for cleaning recurring CSV and Excel files." />
+  <link rel="canonical" href="https://kramata.com/blog/kramata-vs-power-query" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Kramata vs Power Query — An Honest Comparison" />
+  <meta property="og:description" content="Where Power Query is better, where Kramata is better, and who each is for. A fair comparison for cleaning recurring CSV and Excel files." />
+  <meta property="og:image" content="https://kramata.com/assets/og-image.png" />
+  <link rel="icon" href="/favicon.ico" />
+  <script type="application/ld+json">
+  {"@context": "https://schema.org", "@type": "Article", "headline": "Kramata vs Power Query — An Honest Comparison", "datePublished": "2026-11-05", "publisher": {"@type": "Organization", "name": "Kramata"}, "url": "https://kramata.com/blog/kramata-vs-power-query"}
+  </script>
+  <script type="application/ld+json">
+  {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is Power Query free?", "acceptedAnswer": {"@type": "Answer", "text": "Power Query is included with Excel for Windows and with Power BI, so there is no extra cost if you already have Excel. Kramata is free for single files; unlimited batch processing is a one-time $49."}}, {"@type": "Question", "name": "Is Kramata a replacement for Power Query?", "acceptedAnswer": {"@type": "Answer", "text": "Not for everyone. Power Query has more data sources, more join types and a full language. Kramata covers the common cleanup steps in plain language for people who don't want to learn Power Query."}}, {"@type": "Question", "name": "Which handles renamed columns better?", "acceptedAnswer": {"@type": "Answer", "text": "Power Query stops the refresh with an error until you edit the step. Kramata asks you which column is which when you apply the recipe and saves the answer as a rename step."}}, {"@type": "Question", "name": "Can Kramata connect to databases or SharePoint?", "acceptedAnswer": {"@type": "Answer", "text": "No. Kramata reads CSV and Excel files only. Power Query is the better choice if your data comes from databases or online sources."}}, {"@type": "Question", "name": "Does either upload my data?", "acceptedAnswer": {"@type": "Answer", "text": "No. Both work on local files on your computer. Kramata never uploads your files."}}]}
+  </script>
+  <script type="application/ld+json">
+  {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://kramata.com/"}, {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://kramata.com/blog/"}, {"@type": "ListItem", "position": 3, "name": "Kramata vs Power Query", "item": "https://kramata.com/blog/kramata-vs-power-query"}]}
+  </script>
+  <link rel="stylesheet" href="../styles.css" />
+  <style>
+    .article{max-width:720px;margin:0 auto;padding:54px 22px}
+    .article h1{font-size:32px;margin-bottom:8px}.article .meta{color:var(--text-faint);margin-bottom:26px}
+    .article h2{font-size:23px;margin-top:34px}.article p,.article li{font-size:17px;color:#2b3138}
+    .article ol,.article ul{padding-left:22px}
+    .answer{background:var(--accent-soft);border:1px solid var(--border);border-left:4px solid var(--accent);border-radius:10px;padding:16px 18px;margin:22px 0}
+    table.cmp{width:100%;border-collapse:collapse;margin:22px 0;font-size:15px}
+    table.cmp th,table.cmp td{border:1px solid var(--border);padding:9px 12px;text-align:left;vertical-align:top}
+    table.cmp th{background:var(--bg-2)}
+    pre{background:#f6f8fa;border:1px solid #e1e4e8;border-radius:8px;padding:14px 16px;font-size:15px;overflow-x:auto}
+    .cta-box{text-align:center;margin:40px 0}
+  </style>
+</head>
+<body>
+  <header class="nav"><div class="wrap nav-inner">
+    <a class="logo" href="/">Kra<span>mata</span></a>
+    <nav><a href="/#download" class="btn btn-sm">Download free</a></nav>
+  </div></header>
+
+  <article class="article">
+    <h1>Kramata vs Power Query</h1>
+    <div class="meta">Where each one is better, and who each is for.</div>
+
+    <div class="answer">
+      <p style="margin:0"><strong>Short answer:</strong> Power Query is the more powerful tool and it's already in Excel. Choose it if
+      you work in Excel and are happy to learn its editor. Kramata is narrower and simpler: plain-language steps, a saved recipe
+      and batch output to files. Choose it if the people doing the work don't want to learn Power Query.</p>
+    </div>
+
+    <h2>Where Power Query is better</h2>
+    <ul>
+      <li><strong>It's already there.</strong> Power Query is built into Excel for Windows (Data › Get &amp; Transform) and into Power BI, with no extra cost beyond Excel.</li>
+      <li><strong>Far more data sources.</strong> Files and folders, databases, web pages, SharePoint and more. Kramata reads CSV and Excel files only.</li>
+      <li><strong>More ways to join.</strong> Merge Queries offers left, right, full outer, inner and anti joins, plus fuzzy matching. Kramata's merge does left and inner joins on exact matches.</li>
+      <li><strong>Unpivot Other Columns.</strong> Power Query can unpivot “everything except these columns”, so next month's new column is picked up automatically. Kramata's Unpivot step stores a fixed list of columns.</li>
+      <li><strong>A full language underneath.</strong> When the buttons run out, M code can do almost anything. Kramata's steps are deliberately limited.</li>
+      <li><strong>Refresh in place.</strong> Results stay connected to the workbook, pivot tables and charts that use them.</li>
+    </ul>
+
+    <h2>Where Kramata is better</h2>
+    <ul>
+      <li><strong>No editor to learn.</strong> Steps are written in plain language (“Remove duplicates”, “Fix dates”), each with a live preview of what it changed.</li>
+      <li><strong>Output as files.</strong> Batch writes one cleaned file per input to a folder, or merges them into one file. Power Query's results land in a workbook.</li>
+      <li><strong>A portable recipe.</strong> The steps are a small .json file you can send to a colleague; it isn't tied to a workbook or a file path on your machine.</li>
+      <li><strong>Renamed columns on re-run.</strong> When you apply a recipe to a new file that's missing a column it uses, Kramata asks which column it is (in Batch, it reports the missing column and skips the steps that need it). Power Query stops the refresh with an error until the step is edited.</li>
+      <li><strong>Flagged rows.</strong> Rows that fail a check can go to a separate review list instead of being dropped silently.</li>
+      <li><strong>No Excel needed.</strong> Kramata is a standalone Windows app and isn't held to Excel's 1,048,576-row worksheet limit (export very large results as CSV).</li>
+    </ul>
+
+    <h2>Side by side</h2>
+    <table class="cmp">
+      <thead><tr><th></th><th>Power Query</th><th>Kramata</th></tr></thead>
+      <tbody>
+        <tr><td>Where it runs</td><td>Inside Excel (Windows; Excel for Mac has it with fewer data sources) and Power BI</td><td>Standalone Windows app</td></tr>
+        <tr><td>Price</td><td>Included with Excel</td><td>Free for single files; 14-day batch trial; Pro $49 one-time for unlimited batch</td></tr>
+        <tr><td>Data sources</td><td>Many: files, folders, databases, web, SharePoint</td><td>CSV and Excel (.xlsx, .xlsm, .xls)</td></tr>
+        <tr><td>How you build steps</td><td>Query Editor, with M code for custom logic</td><td>A list of plain-language steps with live preview</td></tr>
+        <tr><td>Joins</td><td>Left, right, full outer, inner, anti; fuzzy matching</td><td>Left and inner, exact match</td></tr>
+        <tr><td>Repeat next month</td><td>Refresh the query</td><td>Apply the saved recipe, or Batch</td></tr>
+        <tr><td>Output</td><td>A table in the workbook or the Data Model</td><td>Cleaned CSV or Excel files</td></tr>
+        <tr><td>Runs locally</td><td>Yes, for local files</td><td>Yes, always</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Who each is for</h2>
+    <p><strong>Power Query</strong> is for Excel users who build reports from several sources, want refreshable tables inside a
+      workbook, and are willing to learn the editor (and some M) to get there.</p>
+    <p><strong>Kramata</strong> is for people who get the same CSV or Excel export every week, want it cleaned the same way
+      every time, and want to hand that job to a colleague without teaching them Power Query.</p>
+
+    <div class="cta-box">
+      <p style="font-size:18px;font-weight:600;margin:0 0 14px">Doing this every week? Kramata saves the steps as a recipe, so the next file is one click.</p>
+      <a class="btn btn-lg btn-primary" href="/#download" data-pos="inline">Download Kramata free for Windows</a>
+    </div>
+
+    <h2>Related</h2>
+    <p>
+      <a href="/blog/power-query-alternative">A simple Power Query alternative</a> ·
+      <a href="/blog/csv-merge-different-headers">Merge CSV files when the headers don’t match</a> ·
+      <a href="/blog/best-tool-clean-messy-csv-every-week">Best tool for cleaning the same CSV every week</a> ·
+      <a href="/blog/kramata-vs-easy-data-transform">Kramata vs Easy Data Transform</a>
+    </p>
+
+    <h2>FAQ</h2>
+    <p><strong>Is Power Query free?</strong> Power Query is included with Excel for Windows and with Power BI, so there is no extra cost if you already have Excel. Kramata is free for single files; unlimited batch processing is a one-time $49.</p>
+    <p><strong>Is Kramata a replacement for Power Query?</strong> Not for everyone. Power Query has more data sources, more join types and a full language. Kramata covers the common cleanup steps in plain language for people who don't want to learn Power Query.</p>
+    <p><strong>Which handles renamed columns better?</strong> Power Query stops the refresh with an error until you edit the step. Kramata asks you which column is which when you apply the recipe and saves the answer as a rename step.</p>
+    <p><strong>Can Kramata connect to databases or SharePoint?</strong> No. Kramata reads CSV and Excel files only. Power Query is the better choice if your data comes from databases or online sources.</p>
+    <p><strong>Does either upload my data?</strong> No. Both work on local files on your computer. Kramata never uploads your files.</p>
+  </article>
+
+  <footer><div class="wrap foot">
+    <a class="logo" href="/">Kra<span>mata</span></a>
+    <div class="links"><a href="/">Home</a><a href="/blog/">Blog</a><a href="/#download">Download</a></div>
+    <div class="copy">© 2026 Kramata</div>
+  </div></footer>
+</body>
+</html>

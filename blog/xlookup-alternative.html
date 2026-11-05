@@ -47,6 +47,7 @@
   <script type="application/ld+json">
   {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://kramata.com/"}, {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://kramata.com/blog/"}, {"@type": "ListItem", "position": 3, "name": "An XLOOKUP Alternative That Works Across Files", "item": "https://kramata.com/blog/xlookup-alternative"}]}
   </script>
+  <script defer src="/assets/track.js"></script>
 </head>
 <body>
   <header class="nav"><div class="wrap nav-inner">
@@ -116,8 +117,19 @@
       copied anywhere. That's the part XLOOKUP simply can't do.
     </p>
 
+    <h2 id="when-this-stops-working">When this stops working</h2>
+    <p>XLOOKUP fixes VLOOKUP's column-number problem, but it still lives in one workbook. It stops working when the lookup file is renamed every month, when keys sit in merged cells, and when a teammate is on an older Excel.</p>
+    <ul>
+      <li><strong>Different headers across files.</strong> XLOOKUP survives a moved column, but a link to another workbook points at one file name, so a new monthly file means re-pointing every reference. Kramata's merge step picks columns by name; if the lookup file moves, you choose the new file in that one step.</li>
+      <li><strong>Merged cells.</strong> Rows inside a merged block have an empty key and return no match. Kramata reads a merged block the same way: the value in the first cell, blanks below. A Fill missing values step set to “the value above” fills them back in.</li>
+      <li><strong>Files that arrive every week.</strong> Each new export means re-linking or re-pasting before the formulas work again. In Kramata the cleanup is a saved recipe: open next week's file and click Apply recipe, or run it on a set of files at once with Batch.</li>
+      <li><strong>Non-technical teammates.</strong> XLOOKUP needs Microsoft 365, Excel 2021 or later; on Excel 2019 or earlier it shows #NAME?. With Kramata you send them the recipe (a small .json file). They apply it to their own file in Kramata, with no formulas or code to follow. They do need Kramata installed on Windows.</li>
+      <li><strong>Large files.</strong> A worksheet stops at 1,048,576 rows. Kramata processes files with DuckDB, a database engine, so it isn't held to the worksheet limit. Export very large results as CSV: an .xlsx file still has Excel's row limit.</li>
+    </ul>
+
     <div class="cta-box">
-      <a class="btn btn-lg btn-primary" href="/#download">Download Kramata free for Windows</a>
+      <p style="font-size:18px;font-weight:600;margin:0 0 14px">Doing this every week? Kramata saves the steps as a recipe, so the next file is one click.</p>
+      <a class="btn btn-lg btn-primary" href="/#download" data-pos="inline">Download Kramata free for Windows</a>
     </div>
 
     <p class="meta">Kramata is a free, local desktop app. Match across files without formulas, and re-run

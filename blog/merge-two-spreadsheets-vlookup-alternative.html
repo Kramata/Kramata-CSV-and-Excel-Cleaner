@@ -44,6 +44,7 @@
   <script type="application/ld+json">
   {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://kramata.com/"}, {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://kramata.com/blog/"}, {"@type": "ListItem", "position": 3, "name": "Merge Two Spreadsheets by a Common Column — Without VLOOKUP", "item": "https://kramata.com/blog/merge-two-spreadsheets-vlookup-alternative"}]}
   </script>
+  <script defer src="/assets/track.js"></script>
 </head>
 <body>
   <header class="nav"><div class="wrap nav-inner">
@@ -103,8 +104,19 @@
       <li><strong>Big files:</strong> powered by an in-process database, not row-by-row formulas.</li>
     </ul>
 
+    <h2 id="when-this-stops-working">When this stops working</h2>
+    <p>VLOOKUP and INDEX-MATCH work for one lookup between two clean sheets. They stop working when next month's file has its columns in a different place, when the key sits in merged cells, and when someone else has to repeat the job.</p>
+    <ul>
+      <li><strong>Different headers across files.</strong> A lookup refers to a column position, so a new column in next month's export silently pulls the wrong data. Kramata picks columns by name and, on re-run, asks you to match any column it can't find. It matches keys exactly, so trim spaces and fix case on the key first if the two files format it differently.</li>
+      <li><strong>Merged cells.</strong> Only the first row of a merged block holds the key, so every other row in the block returns #N/A. In Kramata, a Fill missing values step set to “the value above” fills the key down before the merge step.</li>
+      <li><strong>Files that arrive every week.</strong> The formulas have to be re-pointed or re-dragged for every new file. In Kramata the cleanup is a saved recipe: open next week's file and click Apply recipe, or run it on a set of files at once with Batch.</li>
+      <li><strong>Non-technical teammates.</strong> Explaining nested lookups to a colleague takes longer than doing the job yourself. With Kramata you send them the recipe (a small .json file). They apply it to their own file in Kramata, with no formulas or code to follow. They do need Kramata installed on Windows.</li>
+      <li><strong>Large files.</strong> A worksheet stops at 1,048,576 rows. Kramata processes files with DuckDB, a database engine, so it isn't held to the worksheet limit. Export very large results as CSV: an .xlsx file still has Excel's row limit.</li>
+    </ul>
+
     <div class="cta-box">
-      <a class="btn btn-lg btn-primary" href="/#download">Download Kramata free for Windows</a>
+      <p style="font-size:18px;font-weight:600;margin:0 0 14px">Doing this every week? Kramata saves the steps as a recipe, so the next file is one click.</p>
+      <a class="btn btn-lg btn-primary" href="/#download" data-pos="inline">Download Kramata free for Windows</a>
     </div>
 
     <h2>Related guides</h2>
@@ -113,7 +125,8 @@
       <a href="/blog/merge-multiple-csv-files-into-one">Merge multiple CSV files into one</a> ·
       <a href="/blog/xlookup-alternative">An XLOOKUP alternative across files</a> ·
       <a href="/blog/power-query-alternative">A simple Power Query alternative</a> ·
-      <a href="/blog/clean-messy-csv-reproducibly">Clean a messy CSV the same way every time</a>
+      <a href="/blog/clean-messy-csv-reproducibly">Clean a messy CSV the same way every time</a> ·
+      <a href="/blog/csv-merge-different-headers">Merge CSV files when the headers don’t match</a>
     </p>
 
     <h2>FAQ</h2>

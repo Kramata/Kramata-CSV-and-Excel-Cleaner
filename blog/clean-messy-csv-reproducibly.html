@@ -43,6 +43,7 @@
   <script type="application/ld+json">
   {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is this like Power Query?", "acceptedAnswer": {"@type": "Answer", "text": "Similar goal — repeatable transforms — but built for non-technical users: no formula language, plain-language steps, and a flagged-rows view so bad data is surfaced, not hidden."}}, {"@type": "Question", "name": "Will it handle large files?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Kramata uses an in-process database, so big CSVs load and scroll smoothly."}}, {"@type": "Question", "name": "Does my data get uploaded?", "acceptedAnswer": {"@type": "Answer", "text": "No. All processing is local."}}]}
   </script>
+  <script defer src="/assets/track.js"></script>
 </head>
 <body>
   <header class="nav"><div class="wrap nav-inner">
@@ -108,15 +109,27 @@
       <li><strong>Fully local.</strong> Your files never leave your computer.</li>
     </ul>
 
+    <h2 id="when-this-stops-working">When this stops working</h2>
+    <p>Cleaning a CSV by hand in Excel works the first time. It stops working when next week's file has different headers, when it comes from Excel with merged cells, and when someone else has to repeat exactly what you did.</p>
+    <ul>
+      <li><strong>Different headers across files.</strong> Notes like “delete column C” go wrong as soon as the export adds a column. Kramata picks columns by name and, on re-run, asks you to match any it can't find.</li>
+      <li><strong>Merged cells.</strong> A merged block keeps its value in the first cell only, which breaks sorting and filters. Kramata reads a merged block the same way: the value in the first cell, blanks below. A Fill missing values step set to “the value above” fills them back in.</li>
+      <li><strong>Files that arrive every week.</strong> Each week you repeat the same clicks and hope you did them in the same order. In Kramata the cleanup is a saved recipe: open next week's file and click Apply recipe, or run it on a set of files at once with Batch.</li>
+      <li><strong>Non-technical teammates.</strong> Written instructions get followed slightly differently by each person. With Kramata you send them the recipe (a small .json file). They apply it to their own file in Kramata, with no formulas or code to follow. They do need Kramata installed on Windows.</li>
+      <li><strong>Large files.</strong> Opening the file in Excel stops at 1,048,576 rows. Kramata processes files with DuckDB, a database engine, so it isn't held to the worksheet limit. Export very large results as CSV: an .xlsx file still has Excel's row limit.</li>
+    </ul>
+
     <div class="cta-box">
-      <a class="btn btn-lg btn-primary" href="/#download">Download Kramata free for Windows</a>
+      <p style="font-size:18px;font-weight:600;margin:0 0 14px">Doing this every week? Kramata saves the steps as a recipe, so the next file is one click.</p>
+      <a class="btn btn-lg btn-primary" href="/#download" data-pos="inline">Download Kramata free for Windows</a>
     </div>
 
     <h2>Related</h2>
     <p>
       <a href="/blog/merge-multiple-csv-files-into-one">Merge multiple CSV files into one</a> ·
       <a href="/blog/batch-process-csv-excel-files">Batch process hundreds of files</a> ·
-      <a href="/blog/remove-duplicates-fix-dates-without-formulas">Remove duplicates and fix dates without formulas</a>
+      <a href="/blog/remove-duplicates-fix-dates-without-formulas">Remove duplicates and fix dates without formulas</a> ·
+      <a href="/blog/best-tool-clean-messy-csv-every-week">Best tool for cleaning the same CSV every week</a>
     </p>
 
     <h2>Frequently asked</h2>

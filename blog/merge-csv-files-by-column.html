@@ -64,6 +64,7 @@
   <script type="application/ld+json">
   {"@context": "https://schema.org", "@type": "HowTo", "name": "How to merge two CSV files by a common column", "tool": [{"@type": "HowToTool", "name": "Kramata"}], "step": [{"@type": "HowToStep", "position": 1, "text": "Open your primary file (e.g. orders.csv).", "url": "https://kramata.com/blog/merge-csv-files-by-column"}, {"@type": "HowToStep", "position": 2, "text": "Add a Merge from another file step and select the secondary file (customers.csv).", "url": "https://kramata.com/blog/merge-csv-files-by-column"}, {"@type": "HowToStep", "position": 3, "text": "Pick the matching columns: orders.CustomerID matches customers.ID.", "url": "https://kramata.com/blog/merge-csv-files-by-column"}, {"@type": "HowToStep", "position": 4, "text": "Choose which columns to pull across: Name, Region, Email.", "url": "https://kramata.com/blog/merge-csv-files-by-column"}, {"@type": "HowToStep", "position": 5, "text": "Decide how to handle non-matches: keep all rows with blanks for unmatched, or keep only matched rows.", "url": "https://kramata.com/blog/merge-csv-files-by-column"}]}
   </script>
+  <script defer src="/assets/track.js"></script>
 </head>
 <body>
   <header class="nav"><div class="wrap nav-inner">
@@ -136,15 +137,27 @@
       <a href="/blog/merge-two-spreadsheets-vlookup-alternative">merge two spreadsheets without VLOOKUP</a>.
     </p>
 
+    <h2 id="when-this-stops-working">When this stops working</h2>
+    <p>A VLOOKUP is fine for a one-time lookup between two tidy sheets. It stops working when the columns move, when the key column sits inside merged cells, and when the lookup has to be rebuilt for every new export.</p>
+    <ul>
+      <li><strong>Different headers across files.</strong> VLOOKUP points at a column number, so an added or moved column returns the wrong field without an error. Kramata's merge step picks the key and the columns to bring in by name, and when you re-run a recipe on a file whose columns changed, it asks you which column is which. Keys must match exactly, so add a Trim spaces &amp; fix case step first if one file writes them differently.</li>
+      <li><strong>Merged cells.</strong> A key inside a merged block exists only in its first row, so the rows below it find no match. In Kramata, a Fill missing values step set to “the value above” fills the key down before the merge.</li>
+      <li><strong>Files that arrive every week.</strong> Each new export means pasting the data in and dragging the formulas down again. Kramata keeps the merge in a saved recipe: open the new export, click Apply recipe, export.</li>
+      <li><strong>Non-technical teammates.</strong> A teammate inherits a sheet of formulas that breaks if they sort it or insert a column. With Kramata you send them the recipe (a small .json file). They apply it to their own file in Kramata, with no formulas or code to follow. They do need Kramata installed on Windows.</li>
+      <li><strong>Large files.</strong> A worksheet stops at 1,048,576 rows, and lookups across many rows make Excel slow to recalculate. Kramata matches keys with DuckDB instead of formulas, so it isn't held to the worksheet limit. Export very large results as CSV.</li>
+    </ul>
+
     <div class="cta-box">
-      <a class="btn btn-lg btn-primary" href="/#download">Download Kramata free for Windows</a>
+      <p style="font-size:18px;font-weight:600;margin:0 0 14px">Doing this every week? Kramata saves the steps as a recipe, so the next file is one click.</p>
+      <a class="btn btn-lg btn-primary" href="/#download" data-pos="inline">Download Kramata free for Windows</a>
     </div>
 
     <h2>Related guides</h2>
     <p>
       <a href="/blog/merge-two-spreadsheets-vlookup-alternative">Merge two spreadsheets without VLOOKUP</a> ·
       <a href="/blog/merge-multiple-csv-files-into-one">Merge multiple CSV files into one</a> ·
-      <a href="/blog/power-query-alternative">A simple Power Query alternative</a>
+      <a href="/blog/power-query-alternative">A simple Power Query alternative</a> ·
+      <a href="/blog/csv-merge-different-headers">Merge CSV files when the headers don’t match</a>
     </p>
 
     <h2>FAQ</h2>

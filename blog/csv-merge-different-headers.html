@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-832148034"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'AW-832148034');
+    gtag('config', 'G-V3P8HEN7CB');
+  </script>
+  <script defer src="/assets/track.js"></script>
+  <title>How to Merge CSV Files When the Headers Don’t Match</title>
+  <meta name="description" content="Merge CSV files by column name, not position, then fix the names that differ. Methods for Power Query, Python and Kramata, and why copy *.csv gets it wrong." />
+  <link rel="canonical" href="https://kramata.com/blog/csv-merge-different-headers" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="How to Merge CSV Files When the Headers Don’t Match" />
+  <meta property="og:description" content="Merge CSV files by column name, not position, then fix the names that differ. Methods for Power Query, Python and Kramata, and why copy *.csv gets it wrong." />
+  <meta property="og:image" content="https://kramata.com/assets/og-image.png" />
+  <link rel="icon" href="/favicon.ico" />
+  <script type="application/ld+json">
+  {"@context": "https://schema.org", "@type": "Article", "headline": "How to Merge CSV Files When the Headers Don’t Match", "datePublished": "2026-11-05", "publisher": {"@type": "Organization", "name": "Kramata"}, "url": "https://kramata.com/blog/csv-merge-different-headers"}
+  </script>
+  <script type="application/ld+json">
+  {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Why are my columns misaligned after merging CSV files?", "acceptedAnswer": {"@type": "Answer", "text": "The tool stacked the files by position, not by column name. Windows copy *.csv does this, so any file with a different column order ends up under the wrong headers."}}, {"@type": "Question", "name": "Can I merge CSV files with different column orders?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, if the tool matches by name. Power Query, pandas and Kramata all line columns up by name, so the order in each file doesn't matter."}}, {"@type": "Question", "name": "What happens to a column that only some files have?", "acceptedAnswer": {"@type": "Answer", "text": "In a name-based merge it is kept, and rows from the files without it are left blank."}}, {"@type": "Question", "name": "How do I combine First Name and first_name into one column?", "acceptedAnswer": {"@type": "Answer", "text": "Rename one to match the other before merging (Power Query or pandas), or in Kramata add a Merge columns step with skip empty values on, which folds the two into one column."}}, {"@type": "Question", "name": "What if a file has a title row above the header?", "acceptedAnswer": {"@type": "Answer", "text": "Skip it: in pandas use skiprows, in Power Query remove the top rows before promoting headers, and in Kramata choose the header row when you open the file. Kramata's batch also skips a title row in Excel files by using the fullest row near the top as the header."}}]}
+  </script>
+  <script type="application/ld+json">
+  {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://kramata.com/"}, {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://kramata.com/blog/"}, {"@type": "ListItem", "position": 3, "name": "How to merge CSV files when the headers don’t match", "item": "https://kramata.com/blog/csv-merge-different-headers"}]}
+  </script>
+  <link rel="stylesheet" href="../styles.css" />
+  <style>
+    .article{max-width:720px;margin:0 auto;padding:54px 22px}
+    .article h1{font-size:32px;margin-bottom:8px}.article .meta{color:var(--text-faint);margin-bottom:26px}
+    .article h2{font-size:23px;margin-top:34px}.article p,.article li{font-size:17px;color:#2b3138}
+    .article ol,.article ul{padding-left:22px}
+    .answer{background:var(--accent-soft);border:1px solid var(--border);border-left:4px solid var(--accent);border-radius:10px;padding:16px 18px;margin:22px 0}
+    table.cmp{width:100%;border-collapse:collapse;margin:22px 0;font-size:15px}
+    table.cmp th,table.cmp td{border:1px solid var(--border);padding:9px 12px;text-align:left;vertical-align:top}
+    table.cmp th{background:var(--bg-2)}
+    pre{background:#f6f8fa;border:1px solid #e1e4e8;border-radius:8px;padding:14px 16px;font-size:15px;overflow-x:auto}
+    .cta-box{text-align:center;margin:40px 0}
+  </style>
+</head>
+<body>
+  <header class="nav"><div class="wrap nav-inner">
+    <a class="logo" href="/">Kra<span>mata</span></a>
+    <nav><a href="/#download" class="btn btn-sm">Download free</a></nav>
+  </div></header>
+
+  <article class="article">
+    <h1>How to merge CSV files when the headers don’t match</h1>
+    <div class="meta">Match columns by name, then decide what to do with the names that differ.</div>
+
+    <div class="answer">
+      <p style="margin:0"><strong>Short answer:</strong> merge by column <em>name</em>, not by position, and rename the columns
+      that are spelled differently so they line up. Tools that stack files by position, like Windows <code>copy *.csv</code>,
+      put values under the wrong headers without any warning.</p>
+    </div>
+
+    <h2>The three ways headers go wrong</h2>
+    <ul>
+      <li><strong>Different order.</strong> March has Name, Amount; April has Amount, Name. Matching by name fixes this on its own.</li>
+      <li><strong>Different spelling or case.</strong> “First Name”, “first name”, “first_name”. Case is easy to ignore; spelling needs a rename.</li>
+      <li><strong>Extra or missing columns.</strong> One export adds “Discount”. A name-based merge keeps it and leaves it blank for the files that don't have it.</li>
+      <li><strong>Rows above the header.</strong> Some exports start with a title or a date line. That row has to be skipped, or it becomes the header.</li>
+    </ul>
+
+    <h2>Why <code>copy *.csv</code> gets it wrong</h2>
+    <p>
+      CMD's <code>copy</code> joins the files as raw text. It doesn't know what a column is, so every file's header row
+      repeats in the output and any file with a different column order is silently misaligned. It's only safe when every file
+      has exactly the same columns in the same order. (Our <a href="/blog/merge-multiple-csv-files-into-one">CMD merge guide</a> shows the details.)
+    </p>
+
+    <h2>Method 1: Power Query (Excel)</h2>
+    <p>
+      In Excel, <strong>Data › Get Data › From File › From Folder › Combine</strong> stacks a folder of files. Appending tables
+      in Power Query matches columns by name, and a column that exists in only some files is filled with null for the rest.
+      Rename differently spelled columns in the transform before the combine so they become one column. Check the step that
+      expands the combined table: its column list comes from the sample file, so a column that appears only in later files can be left out.
+    </p>
+
+    <h2>Method 2: Python (pandas)</h2>
+    <pre><code>import pandas as pd, glob
+fix = {"first_name": "First Name", "first name": "First Name"}
+frames = [pd.read_csv(f).rename(columns=fix) for f in glob.glob("exports/*.csv")]
+pd.concat(frames, ignore_index=True).to_csv("combined.csv", index=False)</code></pre>
+    <p><code>pd.concat</code> lines frames up by column name; the <code>rename</code> mapping folds the spelling variants together.
+      Add <code>skiprows=</code> to <code>read_csv</code> for files with a title row above the header.</p>
+
+    <h2>Method 3: Kramata (no code)</h2>
+    <ol>
+      <li>Open one of the files and build the cleanup it needs. Save it as a recipe.</li>
+      <li>Click <strong>Batch</strong>, pick all the files, and choose <strong>Merge into one</strong>.</li>
+      <li>Kramata stacks the files by column name, ignoring differences in case and order. A column missing from a file is left blank for that file's rows.</li>
+      <li>A column spelled differently (first_name vs First Name) comes through as its own column. Add a <strong>Merge columns</strong> step with “skip empty values” on to fold the two into one, and save the recipe again.</li>
+      <li>Next week, run the same batch on the new files.</li>
+    </ol>
+    <p>
+      For Excel files, batch reads the first sheet and uses the fullest row near the top as the header, so a title row above it
+      is usually skipped. CSV files are read with their first row as the header. If a file needs a different header row, open it
+      on its own: Kramata lets you choose the header row(s) and the row where the data starts.
+    </p>
+
+    <div class="cta-box">
+      <p style="font-size:18px;font-weight:600;margin:0 0 14px">Doing this every week? Kramata saves the steps as a recipe, so the next file is one click.</p>
+      <a class="btn btn-lg btn-primary" href="/#download" data-pos="inline">Download Kramata free for Windows</a>
+    </div>
+
+    <h2>Related</h2>
+    <p>
+      <a href="/blog/merge-multiple-csv-files-into-one">Merge CSV files in Windows CMD</a> ·
+      <a href="/blog/merge-csv-files-by-column">Merge CSV files by a common column</a> ·
+      <a href="/blog/batch-process-csv-excel-files">Batch process CSV &amp; Excel files</a> ·
+      <a href="/blog/kramata-vs-power-query">Kramata vs Power Query</a>
+    </p>
+
+    <h2>FAQ</h2>
+    <p><strong>Why are my columns misaligned after merging CSV files?</strong> The tool stacked the files by position, not by column name. Windows copy *.csv does this, so any file with a different column order ends up under the wrong headers.</p>
+    <p><strong>Can I merge CSV files with different column orders?</strong> Yes, if the tool matches by name. Power Query, pandas and Kramata all line columns up by name, so the order in each file doesn't matter.</p>
+    <p><strong>What happens to a column that only some files have?</strong> In a name-based merge it is kept, and rows from the files without it are left blank.</p>
+    <p><strong>How do I combine First Name and first_name into one column?</strong> Rename one to match the other before merging (Power Query or pandas), or in Kramata add a Merge columns step with skip empty values on, which folds the two into one column.</p>
+    <p><strong>What if a file has a title row above the header?</strong> Skip it: in pandas use skiprows, in Power Query remove the top rows before promoting headers, and in Kramata choose the header row when you open the file. Kramata's batch also skips a title row in Excel files by using the fullest row near the top as the header.</p>
+  </article>
+
+  <footer><div class="wrap foot">
+    <a class="logo" href="/">Kra<span>mata</span></a>
+    <div class="links"><a href="/">Home</a><a href="/blog/">Blog</a><a href="/#download">Download</a></div>
+    <div class="copy">© 2026 Kramata</div>
+  </div></footer>
+</body>
+</html>

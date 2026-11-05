@@ -65,6 +65,7 @@
   <script type="application/ld+json">
   {"@context": "https://schema.org", "@type": "HowTo", "name": "How to merge multiple CSV files into one cleaned file", "tool": [{"@type": "HowToTool", "name": "Kramata"}], "step": [{"@type": "HowToStep", "position": 1, "text": "Put all the files in one folder.", "url": "https://kramata.com/blog/merge-multiple-csv-files-into-one"}, {"@type": "HowToStep", "position": 2, "text": "Build a cleaning recipe on a single sample file — normalize headers, fix dates, dedupe, whatever they all need.", "url": "https://kramata.com/blog/merge-multiple-csv-files-into-one"}, {"@type": "HowToStep", "position": 3, "text": "Run that recipe across the folder in batch mode.", "url": "https://kramata.com/blog/merge-multiple-csv-files-into-one"}, {"@type": "HowToStep", "position": 4, "text": "Choose merge into one file as the output.", "url": "https://kramata.com/blog/merge-multiple-csv-files-into-one"}]}
   </script>
+  <script defer src="/assets/track.js"></script>
 </head>
 <body>
   <header class="nav"><div class="wrap nav-inner">
@@ -256,8 +257,19 @@ set first=1
       with no file limit; after that it's 3 files per batch, or unlimited with <a href="/#pricing">Kramata Pro</a>.
     </p>
 
+    <h2 id="when-this-stops-working">When this stops working</h2>
+    <p><code>copy *.csv</code> and Power Query are fine for a one-off merge of clean files with identical columns. They stop working when the headers differ between files, when Excel files with merged cells are involved, or when the same merge has to be redone every week by someone who doesn't use the command line.</p>
+    <ul>
+      <li><strong>Different headers across files.</strong> CMD stacks rows by position, so a renamed or moved column lands under the wrong header with no warning. Kramata's batch merge lines columns up by name, ignoring differences in case and order. A column spelled differently (first_name vs First Name) comes through as its own column, and a Merge columns step folds the two back into one.</li>
+      <li><strong>Merged cells.</strong> CMD can't read Excel files at all, and a merged block in Excel holds its value only in the first cell. Kramata reads a merged block the same way: the value in the first cell, blanks below. A Fill missing values step set to “the value above” fills them back in.</li>
+      <li><strong>Files that arrive every week.</strong> The batch file or query has to be re-run and the result re-checked by hand each time. In Kramata the cleanup is a saved recipe: open next week's file and click Apply recipe, or run it on a set of files at once with Batch.</li>
+      <li><strong>Non-technical teammates.</strong> Handing this over means teaching someone Command Prompt or the Power Query editor. With Kramata you send them the recipe (a small .json file). They apply it to their own file in Kramata, with no formulas or code to follow. They do need Kramata installed on Windows.</li>
+      <li><strong>Large files.</strong> Loading the merged result into a worksheet stops at 1,048,576 rows. Kramata processes files with DuckDB, a database engine, so it isn't held to the worksheet limit. Export very large results as CSV: an .xlsx file still has Excel's row limit.</li>
+    </ul>
+
     <div class="cta-box">
-      <a class="btn btn-lg btn-primary" href="/#download">Download Kramata free for Windows</a>
+      <p style="font-size:18px;font-weight:600;margin:0 0 14px">Doing this every week? Kramata saves the steps as a recipe, so the next file is one click.</p>
+      <a class="btn btn-lg btn-primary" href="/#download" data-pos="inline">Download Kramata free for Windows</a>
     </div>
 
     <h2>Related</h2>
@@ -265,7 +277,9 @@ set first=1
       <a href="/blog/merge-csv-files-by-column">Merge CSV files by a common column</a> ·
       <a href="/blog/merge-two-spreadsheets-vlookup-alternative">Merge two spreadsheets without VLOOKUP</a> ·
       <a href="/blog/power-query-alternative">Power Query vs the alternatives</a> ·
-      <a href="/blog/batch-process-csv-excel-files">Batch process hundreds of files</a>
+      <a href="/blog/batch-process-csv-excel-files">Batch process hundreds of files</a> ·
+      <a href="/blog/csv-merge-different-headers">Merge CSV files when the headers don’t match</a> ·
+      <a href="/blog/kramata-vs-power-query">Kramata vs Power Query</a>
     </p>
 
     <h2>FAQ</h2>
