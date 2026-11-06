@@ -106,6 +106,11 @@
     </p>
     <pre style="background:#f6f8fa;border:1px solid #e1e4e8;border-radius:8px;padding:14px 16px;font-size:15px;overflow-x:auto"><code>copy *.csv combined.csv</code></pre>
     <p>
+      <strong>Watch out:</strong> this repeats every file’s header row inside the result, and if a file doesn’t end
+      with a line break, its last row is joined onto the first line of the next file. Kramata merges files by column
+      name and keeps a single header.
+    </p>
+    <p>
       That's it. Windows concatenates every <code>.csv</code> file in the folder into one file.
       It takes seconds regardless of how many files you have.
     </p>
