@@ -1,0 +1,21 @@
+# Kramata
+
+> Kramata is a Windows desktop app (Windows 10 and 11) for cleaning recurring CSV and Excel files without formulas or code. You build the cleanup steps once — merge files, join by a key column, remove duplicates, fix dates, trim and change case, group and summarize like a pivot table, unpivot — save them as a recipe, and re-run that recipe on next week's file or on a whole folder of files. Everything runs locally on your PC: files are never uploaded, and there is no account or cloud service. It is available from the Microsoft Store and as a direct installer from https://kramata.com/.
+
+## Pricing
+
+- Free ($0): all cleaning rules, save and re-run recipes, single-file cleaning, CSV and Excel export. The first batch run starts a 14-day trial of unlimited batch processing (no card, no sign-up); after the trial, batches are limited to 3 files.
+- Kramata Pro ($49, one-time purchase, lifetime license): everything in Free, plus unlimited batch processing of whole folders. Buy: https://rai89.gumroad.com/l/kramata
+
+## Top guides
+
+- [How to merge multiple CSV files into one](https://kramata.com/blog/merge-multiple-csv-files-into-one): Windows CMD copy *.csv, Power Query, and a repeatable no-code way, with what each one breaks.
+- [How to merge CSV files when the headers don't match](https://kramata.com/blog/csv-merge-different-headers): match columns by name, not position, then fix the names that differ.
+- [How to merge CSV files by a common column](https://kramata.com/blog/merge-csv-files-by-column): join two files by a shared key and choose which fields to bring across.
+- [Merge two spreadsheets without VLOOKUP](https://kramata.com/blog/merge-two-spreadsheets-vlookup-alternative): combine two CSV or Excel files by a key column without formulas.
+- [How to clean a messy CSV the same way every time](https://kramata.com/blog/clean-messy-csv-reproducibly): build a reusable cleaning recipe for an export you get on repeat.
+- [Remove duplicates and fix dates without formulas](https://kramata.com/blog/remove-duplicates-fix-dates-without-formulas): dedupe rows and standardize date formats, then re-run on each new file.
+- [How to unpivot in Excel](https://kramata.com/blog/how-to-unpivot-in-excel): turn wide month or category columns into tidy long rows.
+- [Batch process CSV and Excel files](https://kramata.com/blog/batch-process-csv-excel-files): apply the same steps to every file in a folder, output separately or merged.
+- [How to automate monthly Excel reports without VBA](https://kramata.com/blog/automate-monthly-excel-reports): turn each new export into the report with a saved recipe.
+- [Best tool for cleaning the same messy CSV every week](https://kramata.com/blog/best-tool-clean-messy-csv-every-week): how Power Query, Python, OpenRefine and Kramata compare for recurring files.

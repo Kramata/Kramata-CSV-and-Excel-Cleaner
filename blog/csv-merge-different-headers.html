@@ -24,7 +24,7 @@
   <meta property="og:image" content="https://kramata.com/assets/og-image.png" />
   <link rel="icon" href="/favicon.ico" />
   <script type="application/ld+json">
-  {"@context": "https://schema.org", "@type": "Article", "headline": "How to Merge CSV Files When the Headers Don’t Match", "datePublished": "2026-11-05", "publisher": {"@type": "Organization", "name": "Kramata"}, "url": "https://kramata.com/blog/csv-merge-different-headers"}
+  {"@context": "https://schema.org", "@type": "Article", "headline": "How to Merge CSV Files When the Headers Don’t Match", "datePublished": "2026-11-05", "publisher": {"@type": "Organization", "name": "Kramata"}, "url": "https://kramata.com/blog/csv-merge-different-headers", "dateModified": "2026-11-05", "author": {"@type": "Person", "name": "Abhishek Rai"}, "image": "https://kramata.com/assets/og-image.png"}
   </script>
   <script type="application/ld+json">
   {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Why are my columns misaligned after merging CSV files?", "acceptedAnswer": {"@type": "Answer", "text": "The tool stacked the files by position, not by column name. Windows copy *.csv does this, so any file with a different column order ends up under the wrong headers."}}, {"@type": "Question", "name": "Can I merge CSV files with different column orders?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, if the tool matches by name. Power Query, pandas and Kramata all line columns up by name, so the order in each file doesn't matter."}}, {"@type": "Question", "name": "What happens to a column that only some files have?", "acceptedAnswer": {"@type": "Answer", "text": "In a name-based merge it is kept, and rows from the files without it are left blank."}}, {"@type": "Question", "name": "How do I combine First Name and first_name into one column?", "acceptedAnswer": {"@type": "Answer", "text": "Rename one to match the other before merging (Power Query or pandas), or in Kramata add a Merge columns step with skip empty values on, which folds the two into one column."}}, {"@type": "Question", "name": "What if a file has a title row above the header?", "acceptedAnswer": {"@type": "Answer", "text": "Skip it: in pandas use skiprows, in Power Query remove the top rows before promoting headers, and in Kramata choose the header row when you open the file. Kramata's batch also skips a title row in Excel files by using the fullest row near the top as the header."}}]}
@@ -54,6 +54,7 @@
 
   <article class="article">
     <h1>How to merge CSV files when the headers don’t match</h1>
+    <p class="post-updated" style="color:var(--muted);font-size:14px;margin:0 0 6px">Updated <time datetime="2026-11-05">November 5, 2026</time></p>
     <div class="meta">Match columns by name, then decide what to do with the names that differ.</div>
 
     <div class="answer">
