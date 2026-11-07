@@ -58,6 +58,12 @@ try {
   await until(`document.readyState === 'complete' && !!window.KramataMerge`)
   assert.equal(await js(`!!window.Papa`), false, 'Papa Parse must not load before files are added')
 
+  // gtag.js is deferred on this page: absent until the visitor interacts, then loaded.
+  const gtagTag = `!!document.querySelector('script[src*="googletagmanager.com/gtag/js"]')`
+  assert.equal(await js(gtagTag), false, 'gtag.js must not load before interaction')
+  await send('Input.dispatchMouseEvent', { type: 'mouseMoved', x: 200, y: 300 })
+  await until(gtagTag, 3000)
+
   const doc = await send('DOM.getDocument')
   const { result: { nodeId } } = await send('DOM.querySelector', { nodeId: doc.result.root.nodeId, selector: '#mt-input' })
   await send('DOM.setFileInputFiles', { nodeId, files: [path.join(ROOT, 'tests/fixtures/sets-a.csv'), path.join(ROOT, 'tests/fixtures/sets-b.csv')] })

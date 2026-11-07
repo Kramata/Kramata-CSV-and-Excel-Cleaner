@@ -4,8 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-832148034"></script>
+  <!-- Google tag (gtag.js): same tags as the rest of the site, but the library loads on the first
+       interaction (or 5 s after load) so it doesn't slow the tool down. Calls queue in dataLayer. -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
@@ -13,6 +13,19 @@
 
     gtag('config', 'AW-832148034');
     gtag('config', 'G-V3P8HEN7CB');
+    (function () {
+      var done = false, evs = ['pointerdown', 'pointermove', 'keydown', 'touchstart', 'scroll', 'dragenter'];
+      var load = function () {
+        if (done) return; done = true;
+        evs.forEach(function (e) { window.removeEventListener(e, load, true); });
+        var s = document.createElement('script'); s.async = true;
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=AW-832148034';
+        document.head.appendChild(s);
+      };
+      evs.forEach(function (e) { window.addEventListener(e, load, { capture: true, passive: true, once: true }); });
+      var later = function () { setTimeout(load, 5000); };
+      if (document.readyState === 'complete') later(); else window.addEventListener('load', later, { once: true });
+    })();
   </script>
   <script defer src="/assets/track.js"></script>
   <title>Merge CSV Files Online Free – No Upload, Matches Columns | Kramata</title>
