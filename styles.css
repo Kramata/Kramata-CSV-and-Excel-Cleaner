@@ -95,7 +95,7 @@ a:hover{text-decoration:underline}
 .fineprint{color:#7d8794;font-size:13px;max-width:600px;margin:18px auto 0}
 footer{background:#0b0e12;color:#9aa3af;padding:30px 0}
 .foot{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px}
-.foot .links{display:flex;gap:18px}.foot .links a{color:#c7ccd4}
+.foot .links{display:flex;flex-wrap:wrap;gap:10px 18px}.foot .links a{color:#c7ccd4}
 .copy{color:#5b636e;font-size:14px}
 
 @media(max-width:760px){

@@ -1,0 +1,2 @@
+tests/fixtures/** -text
+assets/vendor/** -text

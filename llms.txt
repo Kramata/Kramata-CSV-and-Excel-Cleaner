@@ -7,6 +7,10 @@
 - Free ($0): all cleaning rules, save and re-run recipes, single-file cleaning, CSV and Excel export. The first batch run starts a 14-day trial of unlimited batch processing (no card, no sign-up); after the trial, batches are limited to 3 files.
 - Kramata Pro ($49, one-time purchase, lifetime license): everything in Free, plus unlimited batch processing of whole folders. Buy: https://rai89.gumroad.com/l/kramata
 
+## Free tool
+
+- [Merge CSV files free (in your browser)](https://kramata.com/merge-csv-files): free in-browser CSV merge tool that merges files by column name, with one header row; files never leave your device.
+
 ## Top guides
 
 - [How to merge multiple CSV files into one](https://kramata.com/blog/merge-multiple-csv-files-into-one): Windows CMD copy *.csv, Power Query, and a repeatable no-code way, with what each one breaks.

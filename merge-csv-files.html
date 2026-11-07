@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-832148034"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'AW-832148034');
+    gtag('config', 'G-V3P8HEN7CB');
+  </script>
+  <script defer src="/assets/track.js"></script>
+  <title>Merge CSV Files Online Free – No Upload, Matches Columns | Kramata</title>
+  <meta name="description" content="Free CSV merge tool that works in your browser. Your files stay on your device. Merges by column name and keeps a single header row. No sign-up." />
+  <link rel="canonical" href="https://kramata.com/merge-csv-files" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://kramata.com/merge-csv-files" />
+  <meta property="og:title" content="Merge CSV Files Online Free – No Upload, Matches Columns" />
+  <meta property="og:description" content="Free CSV merge tool that works in your browser. Your files stay on your device. Merges by column name and keeps a single header row. No sign-up." />
+  <meta property="og:image" content="https://kramata.com/assets/og-image.png" />
+  <link rel="icon" href="/favicon.ico" />
+  <script type="application/ld+json">
+  {"@context": "https://schema.org", "@type": "WebApplication", "name": "Kramata Free CSV Merge Tool", "url": "https://kramata.com/merge-csv-files", "description": "Merge CSV files in your browser. Files stay on your device; columns are matched by name and the result has a single header row.", "applicationCategory": "BusinessApplication", "operatingSystem": "Any (web browser)", "browserRequirements": "Requires JavaScript", "isAccessibleForFree": true, "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "publisher": {"@type": "Organization", "name": "Kramata", "url": "https://kramata.com/"}}
+  </script>
+  <script type="application/ld+json">
+  {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Are my files uploaded?", "acceptedAnswer": {"@type": "Answer", "text": "No. The merge runs in your browser, so your files are read and merged on your own device and the merged file is created there too. Nothing from your files is sent to Kramata or anyone else. We only count that a merge happened (how many files and a rough row count), never file names or contents."}}, {"@type": "Question", "name": "How big can the files be?", "acceptedAnswer": {"@type": "Answer", "text": "There's no fixed limit. It depends on your computer's memory and your browser, and a few hundred megabytes in total usually works. For multi-gigabyte files, the Kramata desktop app for Windows is the better fit."}}, {"@type": "Question", "name": "What if the files have different columns?", "acceptedAnswer": {"@type": "Answer", "text": "Columns are matched by name, ignoring upper and lower case and extra spaces, so the order of columns doesn't matter. A column that only some files have is kept and left blank for the rows from the other files. The summary shows which columns each file was missing."}}, {"@type": "Question", "name": "Can it merge Excel files?", "acceptedAnswer": {"@type": "Answer", "text": "No, this tool merges CSV and TXT files only. To merge Excel files (.xlsx or .xls), use the Kramata desktop app for Windows, or save each sheet as CSV first."}}, {"@type": "Question", "name": "Is it really free?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. There's no sign-up, no limit on how often you use it and no watermark on the result. It's made by Kramata, a Windows app for cleaning the same spreadsheets every week, but the tool works without it."}}]}
+  </script>
+  <script type="application/ld+json">
+  {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://kramata.com/"}, {"@type": "ListItem", "position": 2, "name": "Free CSV merge tool", "item": "https://kramata.com/merge-csv-files"}]}
+  </script>
+  <link rel="stylesheet" href="/styles.css" />
+  <style>
+    .tool-page{max-width:880px;margin:0 auto;padding:40px 22px 54px}
+    .tool-page h1{font-size:34px;margin:0 0 8px}
+    .tool-page .intro{font-size:18px;color:var(--dim);margin:0 0 22px}
+    .tool-page h2{font-size:24px;margin-top:40px}
+    .tool-page p,.tool-page li{font-size:17px;color:#2b3138}
+    .mt{border:1px solid var(--line);border-radius:14px;padding:20px;background:var(--paper);box-shadow:0 8px 30px rgba(0,0,0,.06)}
+    .mt-drop{display:block;border:2px dashed #c9d2dc;border-radius:12px;padding:26px 16px;text-align:center;background:var(--soft);cursor:pointer;transition:border-color .15s,background .15s}
+    .mt-drop.over{border-color:var(--accent);background:var(--accent-soft)}
+    .mt-drop strong{display:block;font-size:18px;margin-bottom:10px}
+    .mt-drop .btn{pointer-events:none}
+    .mt-drop small{display:block;color:var(--dim);margin-top:10px;font-size:14px}
+    .mt-input{position:absolute;width:1px;height:1px;opacity:0;overflow:hidden}
+    .mt-drop:focus-within{outline:3px solid var(--accent-soft);outline-offset:2px}
+    .mt-list{list-style:none;margin:14px 0 0;padding:0;height:150px;overflow-y:auto;border:1px solid var(--line);border-radius:10px}
+    .mt-list li{display:flex;align-items:center;gap:10px;padding:7px 12px;border-bottom:1px solid var(--line);font-size:15px}
+    .mt-list li:last-child{border-bottom:0}
+    .mt-list .mt-empty{color:var(--dim);border:0;justify-content:center;height:100%}
+    .mt-name{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+    .mt-size{color:var(--dim);font-size:14px;white-space:nowrap}
+    .mt-x{border:0;background:none;font-size:20px;line-height:1;color:var(--dim);cursor:pointer;padding:2px 6px;border-radius:6px}
+    .mt-x:hover{background:var(--soft);color:var(--ink)}
+    .mt-status{min-height:3em;margin:8px 0 0;font-size:14px;color:var(--dim)}
+    .mt-warn{color:#9a5b00}
+    .mt-row{display:flex;flex-wrap:wrap;align-items:center;gap:10px 22px;margin-top:6px}
+    .mt-row label{font-size:15px;display:flex;gap:8px;align-items:center;cursor:pointer}
+    .mt-row .btn{margin-left:auto}
+    .mt-row .btn:disabled{opacity:.45;cursor:not-allowed;transform:none}
+    .mt-result{min-height:560px;margin-top:20px;border-top:1px solid var(--line);padding-top:18px}
+    .mt-progress{color:var(--dim)}
+    .mt-error,.mt-bad{color:#b42318}
+    .mt-ok{color:#067647}
+    .mt-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px}
+    .mt-stats div{background:var(--soft);border-radius:10px;padding:10px 14px}
+    .mt-stats b{display:block;font-size:24px}
+    .mt-stats span{font-size:13px;color:var(--dim)}
+    .mt-notes{max-height:170px;overflow-y:auto;margin:14px 0;padding-left:20px}
+    .mt-notes li{font-size:15px;margin:4px 0}
+    .mt-label{font-size:14px;color:var(--dim);margin:14px 0 6px}
+    .mt-preview{max-height:300px;overflow:auto;border:1px solid var(--line);border-radius:10px}
+    .mt-preview table{border-collapse:collapse;font-size:13px;min-width:100%}
+    .mt-preview th,.mt-preview td{border-bottom:1px solid var(--line);padding:6px 10px;text-align:left;white-space:nowrap;max-width:260px;overflow:hidden;text-overflow:ellipsis}
+    .mt-preview th{position:sticky;top:0;background:var(--soft)}
+    .mt-actions{text-align:center;margin:18px 0 8px}
+    .mt-upsell,.upsell{background:var(--accent-soft);border:1px solid var(--border);border-radius:12px;padding:16px 18px;text-align:center;margin-top:14px}
+    .mt-upsell p,.upsell p{margin:0 0 12px;font-weight:600}
+    .upsell{margin:36px 0;padding:24px}
+    .upsell p{font-size:18px}
+    .steps-list li{margin:6px 0}
+    @media(max-width:560px){.tool-page h1{font-size:30px}.mt-row .btn{width:100%;margin-left:0}}
+  </style>
+  <script defer src="/assets/merge-csv/merge-core.js"></script>
+  <script defer src="/assets/merge-csv/tool.js"></script>
+</head>
+<body>
+  <header class="nav"><div class="wrap nav-inner">
+    <a class="logo" href="/">Kra<span>mata</span></a>
+    <nav><a href="/merge-csv-files">Free CSV merge tool</a><a href="/#download" class="btn btn-sm">Download free</a></nav>
+  </div></header>
+
+  <main class="tool-page">
+    <h1>Merge CSV files free (in your browser)</h1>
+    <p class="intro">Combine CSV files into one with a single header row. Columns are matched by name, and your files never leave your computer.</p>
+
+    <section class="mt" aria-label="CSV merge tool">
+      <label class="mt-drop" id="mt-drop">
+        <strong>Drop CSV files here</strong>
+        <span class="btn btn-primary">Choose files</span>
+        <input class="mt-input" id="mt-input" type="file" multiple accept=".csv,.txt,.tsv,text/csv,text/plain" />
+        <small>.csv or .txt · comma, semicolon, tab or pipe separated · nothing is uploaded</small>
+      </label>
+      <ul class="mt-list" id="mt-list" aria-live="polite"><li class="mt-empty">No files yet. Add two or more CSV files.</li></ul>
+      <p class="mt-status" id="mt-status" aria-live="polite"></p>
+      <div class="mt-row">
+        <label><input type="checkbox" id="mt-source" /> Add a column with the source file name</label>
+        <label><input type="checkbox" id="mt-dedupe" /> Remove exact duplicate rows</label>
+        <button type="button" class="btn btn-lg btn-primary" id="mt-go" disabled>Merge files</button>
+      </div>
+      <div class="mt-result" id="mt-result" aria-live="polite" hidden></div>
+      <noscript><p class="mt-error">This tool needs JavaScript turned on.</p></noscript>
+    </section>
+
+    <h2>How it works</h2>
+    <ol class="steps-list">
+      <li><strong>Add your CSV files</strong> by dropping them on the box or clicking Choose files.</li>
+      <li><strong>Click Merge files.</strong> Columns are lined up by name, so their order in each file doesn’t matter.</li>
+      <li><strong>Check the summary and download merged.csv.</strong> It’s saved as UTF-8, so Excel shows accented characters correctly.</li>
+    </ol>
+
+    <h2>Why not just copy *.csv?</h2>
+    <p>
+      Windows <code>copy *.csv combined.csv</code> glues the files together as plain text. Every file’s header row repeats
+      inside the result, a file that doesn’t end with a line break has its last row stuck onto the first row of the next file,
+      and if one file has its columns in a different order, its values land under the wrong headers.
+      Our guide to <a href="/blog/merge-multiple-csv-files-into-one">merging CSV files in Windows CMD</a> shows each problem.
+    </p>
+
+    <div class="upsell">
+      <p>Doing this every week? Kramata saves these steps as a recipe, so next week’s files are open, apply, export.</p>
+      <a class="btn btn-lg btn-primary" href="https://apps.microsoft.com/detail/9PH81XKFZ77D?cid=website" data-pos="merge_tool_static">Get Kramata from the Microsoft Store</a>
+    </div>
+
+    <h2>FAQ</h2>
+    <p><strong>Are my files uploaded?</strong> No. The merge runs in your browser, so your files are read and merged on your own device and the merged file is created there too. Nothing from your files is sent to Kramata or anyone else. We only count that a merge happened (how many files and a rough row count), never file names or contents.</p>
+    <p><strong>How big can the files be?</strong> There's no fixed limit. It depends on your computer's memory and your browser, and a few hundred megabytes in total usually works. For multi-gigabyte files, the Kramata desktop app for Windows is the better fit.</p>
+    <p><strong>What if the files have different columns?</strong> Columns are matched by name, ignoring upper and lower case and extra spaces, so the order of columns doesn't matter. A column that only some files have is kept and left blank for the rows from the other files. The summary shows which columns each file was missing.</p>
+    <p><strong>Can it merge Excel files?</strong> No, this tool merges CSV and TXT files only. To merge Excel files (.xlsx or .xls), use the Kramata desktop app for Windows, or save each sheet as CSV first.</p>
+    <p><strong>Is it really free?</strong> Yes. There's no sign-up, no limit on how often you use it and no watermark on the result. It's made by Kramata, a Windows app for cleaning the same spreadsheets every week, but the tool works without it.</p>
+  </main>
+
+  <footer><div class="wrap foot">
+    <a class="logo" href="/">Kra<span>mata</span></a>
+    <div class="links"><a href="/">Home</a><a href="/blog/">Blog</a><a href="/merge-csv-files">Free CSV merge tool</a><a href="/#download">Download</a></div>
+    <div class="copy">© 2026 Kramata</div>
+  </div></footer>
+</body>
+</html>
