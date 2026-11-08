@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-832148034"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'AW-832148034');
+    gtag('config', 'G-V3P8HEN7CB');
+  </script>
+  <script defer src="/assets/track.js"></script>
+  <title>Merging Files When a Key Repeats (and Why VLOOKUP Picks the Wrong Row)</title>
+  <meta name="description" content="When a key appears twice, VLOOKUP takes the first row and joins multiply rows. How to choose the right row, keep your row count and see what happened." />
+  <link rel="canonical" href="https://kramata.com/blog/merge-files-when-key-repeats" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Merging Files When a Key Repeats (and Why VLOOKUP Picks the Wrong Row)" />
+  <meta property="og:description" content="When a key appears twice, VLOOKUP takes the first row and joins multiply rows. How to choose the right row, keep your row count and see what happened." />
+  <meta property="og:image" content="https://kramata.com/assets/og-image.png" />
+  <link rel="icon" href="/favicon.ico" />
+  <script type="application/ld+json">
+  {"@context": "https://schema.org", "@type": "Article", "headline": "Merging Files When a Key Repeats (and Why VLOOKUP Picks the Wrong Row)", "datePublished": "2026-11-08", "publisher": {"@type": "Organization", "name": "Kramata"}, "url": "https://kramata.com/blog/merge-files-when-key-repeats", "dateModified": "2026-11-08", "author": {"@type": "Organization", "name": "Kramata", "url": "https://www.linkedin.com/company/kramata"}, "image": "https://kramata.com/assets/og-image.png"}
+  </script>
+  <script type="application/ld+json">
+  {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Why does VLOOKUP return the wrong row when there are duplicates?", "acceptedAnswer": {"@type": "Answer", "text": "With an exact match, VLOOKUP stops at the first matching row from the top and gives no sign that others exist. If the row you wanted is further down, such as the newest record in an export, you get the older one."}}, {"@type": "Question", "name": "How do I get the last match instead of the first?", "acceptedAnswer": {"@type": "Answer", "text": "In Excel, use XLOOKUP with search_mode set to -1, which searches from the bottom up. In pandas, use drop_duplicates with keep=\"last\" on the lookup table before merging. In Kramata, set the merge step to Use last row."}}, {"@type": "Question", "name": "Why did my row count go up after a merge?", "acceptedAnswer": {"@type": "Answer", "text": "A key repeated in the lookup file, and the tool created one output row for every match. Power Query, pandas and SQL joins all do this unless you remove the duplicates from the lookup table first."}}, {"@type": "Question", "name": "Does Kramata change my row count when a key repeats?", "acceptedAnswer": {"@type": "Answer", "text": "No. Kramata uses one row per key from the other file, so with Keep all rows you get the same number of rows out as you put in. It tells you how many keys repeated and which row it used. The Only matches setting removes rows that found no match, and Kramata reports how many."}}, {"@type": "Question", "name": "Should I ignore case and spaces when matching keys?", "acceptedAnswer": {"@type": "Answer", "text": "Only if you know those differences don't mean anything in your data. In some systems ABC and abc are different codes. Kramata matches exactly by default, tells you how many unmatched rows differ only by case or spaces, and leaves the choice to you."}}]}
+  </script>
+  <script type="application/ld+json">
+  {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://kramata.com/"}, {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://kramata.com/blog/"}, {"@type": "ListItem", "position": 3, "name": "Merging files when a key repeats", "item": "https://kramata.com/blog/merge-files-when-key-repeats"}]}
+  </script>
+  <link rel="stylesheet" href="../styles.css" />
+  <style>
+    .article{max-width:720px;margin:0 auto;padding:54px 22px}
+    .article h1{font-size:32px;margin-bottom:8px}.article .meta{color:var(--text-faint);margin-bottom:26px}
+    .article h2{font-size:23px;margin-top:34px}.article p,.article li{font-size:17px;color:#2b3138}
+    .article ol,.article ul{padding-left:22px}
+    .answer{background:var(--accent-soft);border:1px solid var(--border);border-left:4px solid var(--accent);border-radius:10px;padding:16px 18px;margin:22px 0}
+    table.cmp{width:100%;border-collapse:collapse;margin:22px 0;font-size:15px}
+    table.cmp th,table.cmp td{border:1px solid var(--border);padding:9px 12px;text-align:left;vertical-align:top}
+    table.cmp th{background:var(--bg-2)}
+    pre{background:#f6f8fa;border:1px solid #e1e4e8;border-radius:8px;padding:14px 16px;font-size:15px;overflow-x:auto}
+    .cta-box{text-align:center;margin:40px 0}
+  </style>
+</head>
+<body>
+  <header class="nav"><div class="wrap nav-inner">
+    <a class="logo" href="/">Kra<span>mata</span></a>
+    <nav><a href="/merge-csv-files">Free CSV merge tool</a><a href="/#download" class="btn btn-sm">Download free</a></nav>
+  </div></header>
+
+  <article class="article">
+    <h1>Merging files when a key repeats (and why VLOOKUP picks the wrong row)</h1>
+    <p class="post-updated" style="color:var(--muted);font-size:14px;margin:0 0 6px">Updated <time datetime="2026-11-08">November 8, 2026</time></p>
+    <div class="meta">Two ways a repeated key quietly damages a merge, and how to avoid both.</div>
+
+    <div class="answer">
+      <p style="margin:0"><strong>Short answer:</strong> a repeated key forces a choice, and most tools make it without telling you.
+      VLOOKUP takes the first row it finds. Joins keep every match and add rows. Decide which row should win, keep your row count
+      fixed, and make sure something reports the repeats, including on next month’s file.</p>
+    </div>
+
+    <h2>What a repeated key looks like</h2>
+    <p>You have orders, and you want each customer’s city from a second file. Customer C1 moved, so the customer export has two rows for them:</p>
+    <table class="cmp">
+      <tr><th>ID</th><th>City</th><th>Row</th></tr>
+      <tr><td>C1</td><td>Old town</td><td>2</td></tr>
+      <tr><td>C2</td><td>Riverside</td><td>3</td></tr>
+      <tr><td>C1</td><td>New town</td><td>4</td></tr>
+    </table>
+    <p>One order, two possible cities. There are only three things a tool can do: take one row, take both, or stop and ask. The damage comes from the tools that do one of these without saying so.</p>
+
+    <h2>Why VLOOKUP picks the wrong row</h2>
+    <p>
+      With an exact match, <code>VLOOKUP</code> reads from the top and stops at the first hit. For C1 that’s Old town. There’s no
+      error and no hint that a second row exists. It isn’t a bug: the first row is simply what it returns. But exports are often
+      in date order, so the first row is the <em>oldest</em> one, and the record you wanted is further down.
+    </p>
+    <p>
+      The approximate-match form is worse here. If the last argument is <code>TRUE</code> or left out, VLOOKUP assumes the column is
+      sorted, and on unsorted data it can return an unrelated row, again with no error.
+    </p>
+    <p>
+      <code>XLOOKUP</code> gives you the choice: set <code>search_mode</code> to <code>-1</code> and it searches from the bottom up. You
+      still aren’t told that the key repeated.
+    </p>
+
+    <h2>The opposite failure: joins that add rows</h2>
+    <p>
+      Power Query’s Merge, pandas <code>merge</code> and SQL joins take the other route and return one row per match. The order for C1
+      becomes two orders. Nothing looks broken until a total comes out too high, because that order is now counted twice.
+    </p>
+
+    <h2>How to do it safely</h2>
+    <ol>
+      <li><strong>Check for repeats first.</strong> In Excel, <code>=COUNTIF(A:A,A2)&gt;1</code> beside the lookup column marks them.</li>
+      <li><strong>Decide which row should win.</strong> Usually the newest. If the file isn’t in date order, sort it first so that “first” or “last” means what you want.</li>
+      <li><strong>Reduce the lookup table to one row per key, then merge.</strong> This is what keeps the row count fixed.</li>
+      <li><strong>Compare row counts before and after.</strong> Same number in and out means nothing multiplied.</li>
+    </ol>
+    <p>In pandas, you can make the merge fail if a repeat gets through:</p>
+    <pre><code>lookup = customers.drop_duplicates(subset="ID", keep="last")
+result = orders.merge(lookup, left_on="Cust", right_on="ID",
+                      how="left", validate="many_to_one")</code></pre>
+
+    <h2>Keys that almost match</h2>
+    <p>
+      The reverse problem is a key that should match and doesn’t: <code>C3</code> against <code>C3 </code> with a trailing space. VLOOKUP
+      ignores case but not spaces, so that row comes back as <code>#N/A</code>. Excel’s <code>TRIM</code> fixes ordinary spaces, but not the
+      non-breaking spaces that often arrive from web exports.
+    </p>
+    <p>
+      Be careful about fixing this automatically. In some systems <code>ABC</code> and <code>abc</code> are different codes, and a tool that
+      quietly folds them together attaches the wrong record, which is the same problem you started with.
+    </p>
+
+    <h2>How Kramata handles it</h2>
+    <p>Since version 1.0.7, the <strong>Merge from another file</strong> step works like this:</p>
+    <table class="cmp">
+      <tr><th>Situation</th><th>What happens</th></tr>
+      <tr><td>A key repeats in the other file</td><td>One row is used, so your rows don’t multiply. You choose <strong>Use first row</strong> (the default) or <strong>Use last row</strong>. The step says how many keys repeated, with examples.</td></tr>
+      <tr><td>A key repeats in your own data</td><td>Each of those rows gets the same match.</td></tr>
+      <tr><td>A row finds no match</td><td>The step shows, for example, “9,200 of 10,000 rows matched”. <strong>Keep all rows</strong> leaves those rows blank; <strong>Only matches</strong> removes them.</td></tr>
+      <tr><td>Keys differ only by case or spaces</td><td>They don’t match unless you tick <strong>Ignore case and extra spaces</strong>. Kramata tells you how many rows this would affect, and never applies it on its own.</td></tr>
+      <tr><td>A blank key</td><td>Never matches anything.</td></tr>
+      <tr><td>A saved recipe runs on new files</td><td>The same checks run on every file, and any warnings appear next to that file in the batch results.</td></tr>
+    </table>
+    <p>
+      That last row matters most. A recipe can be clean the week you build it, and next week’s export can contain a duplicate nobody expected.
+    </p>
+    <p>
+      <strong>What it doesn’t do:</strong> it can only choose the first or last row in the file’s order, so if you want the row with the latest
+      date, the other file needs to be in date order first. It also won’t bring in every match, because that would change your row count.
+    </p>
+
+    <div class="cta-box">
+      <p style="font-size:18px;font-weight:600;margin:0 0 14px">Doing this every week? Kramata saves the steps as a recipe, so next week’s file is open, apply, export.</p>
+      <a class="btn btn-lg btn-primary" href="/#download" data-pos="inline">Download Kramata free for Windows</a>
+    </div>
+
+    <h2>Related</h2>
+    <p>
+      <a href="/blog/merge-two-spreadsheets-vlookup-alternative">Merge two spreadsheets without VLOOKUP</a> ·
+      <a href="/blog/merge-csv-files-by-column">Merge CSV files by a common column</a> ·
+      <a href="/blog/xlookup-alternative">An XLOOKUP alternative that works across files</a> ·
+      <a href="/blog/csv-merge-different-headers">Merge CSV files when the headers don’t match</a>
+    </p>
+
+    <h2>FAQ</h2>
+    <p><strong>Why does VLOOKUP return the wrong row when there are duplicates?</strong> With an exact match, VLOOKUP stops at the first matching row from the top and gives no sign that others exist. If the row you wanted is further down, such as the newest record in an export, you get the older one.</p>
+    <p><strong>How do I get the last match instead of the first?</strong> In Excel, use XLOOKUP with search_mode set to -1, which searches from the bottom up. In pandas, use drop_duplicates with keep="last" on the lookup table before merging. In Kramata, set the merge step to Use last row.</p>
+    <p><strong>Why did my row count go up after a merge?</strong> A key repeated in the lookup file, and the tool created one output row for every match. Power Query, pandas and SQL joins all do this unless you remove the duplicates from the lookup table first.</p>
+    <p><strong>Does Kramata change my row count when a key repeats?</strong> No. Kramata uses one row per key from the other file, so with Keep all rows you get the same number of rows out as you put in. It tells you how many keys repeated and which row it used. The Only matches setting removes rows that found no match, and Kramata reports how many.</p>
+    <p><strong>Should I ignore case and spaces when matching keys?</strong> Only if you know those differences don't mean anything in your data. In some systems ABC and abc are different codes. Kramata matches exactly by default, tells you how many unmatched rows differ only by case or spaces, and leaves the choice to you.</p>
+  </article>
+
+  <footer><div class="wrap foot">
+    <a class="logo" href="/">Kra<span>mata</span></a>
+    <div class="links"><a href="/">Home</a><a href="/blog/">Blog</a><a href="/merge-csv-files">Free CSV merge tool</a><a href="/#download">Download</a></div>
+    <div class="copy">© 2026 Kramata</div>
+  </div></footer>
+</body>
+</html>
